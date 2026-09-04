@@ -1,0 +1,908 @@
+{
+  "generated": "2026-09-03",
+  "national": [
+    {
+      "stat": "Past-year hallucinogen use (any: LSD, PCP, peyote, mescaline, psilocybin, MDMA, ketamine, DMT, salvia)",
+      "value": 3.8,
+      "unit": "percent",
+      "count": 10018000,
+      "population": "US adults 18+",
+      "year": 2024,
+      "source": "https://www.samhsa.gov/data/report/2024-nsduh-detailed-tables",
+      "note": "NSDUH 2024 Detailed Tables, Table 1.3A/1.3B. 2023 comparison: 3.3% / 8,408,000 (statistically significant increase)."
+    },
+    {
+      "stat": "Past-year psilocybin use",
+      "value": 2.9,
+      "unit": "percent",
+      "count": 7579000,
+      "population": "US adults 18+",
+      "year": 2024,
+      "source": "https://www.samhsa.gov/data/report/2024-nsduh-detailed-tables",
+      "note": "NSDUH 2024 Detailed Tables, Table 1.3A/1.3B. 2024 is the first NSDUH year with a psilocybin-specific past-year question."
+    },
+    {
+      "stat": "Lifetime (ever) psilocybin use",
+      "value": 13.3,
+      "unit": "percent",
+      "count": 34889000,
+      "population": "US adults 18+",
+      "year": 2024,
+      "source": "https://www.samhsa.gov/data/report/2024-nsduh-detailed-tables",
+      "note": "NSDUH 2024 Detailed Tables, Table 1.3A/1.3B."
+    },
+    {
+      "stat": "Past-year psilocybin use",
+      "value": 5.4,
+      "unit": "percent",
+      "count": 1898000,
+      "population": "US young adults 18-25",
+      "year": 2024,
+      "source": "https://www.samhsa.gov/data/report/2024-nsduh-detailed-tables",
+      "note": "NSDUH 2024 Detailed Tables, Table 1.4A/1.4B."
+    },
+    {
+      "stat": "Past-year hallucinogen use",
+      "value": 3.6,
+      "unit": "percent",
+      "count": 10400000,
+      "population": "US people 12+",
+      "year": 2024,
+      "source": "https://www.samhsa.gov/data/sites/default/files/reports/rpt56287/2024-nsduh-annual-national-report.pdf",
+      "note": "Key Substance Use and Mental Health Indicators, 2024 NSDUH annual report (Figure 19 / Table A.10B). Up from 2.7% (7.6M) in 2021."
+    },
+    {
+      "stat": "Past-year psilocybin use",
+      "value": 2.7,
+      "unit": "percent",
+      "count": 7890000,
+      "population": "US people 12+",
+      "year": 2024,
+      "source": "https://www.samhsa.gov/data/report/2024-nsduh-detailed-tables",
+      "note": "NSDUH 2024 Detailed Tables, Table 1.1A/1.1B."
+    },
+    {
+      "stat": "Past-year hallucinogen use (national row of the state table)",
+      "value": 3.54,
+      "unit": "percent",
+      "population": "US adults 18+",
+      "year": "2023-2024 annual average",
+      "source": "https://www.samhsa.gov/data/report/2023-2024-nsduh-state-prevalence-estimates",
+      "note": "Table 11, 'Total U.S.' row, 95% CI 3.36-3.74."
+    },
+    {
+      "stat": "Past-year psilocybin use (2023 RAND Psychedelics Survey)",
+      "value": 3.1,
+      "unit": "percent",
+      "count": 8100000,
+      "population": "US adults 18+",
+      "year": 2023,
+      "source": "https://www.rand.org/pubs/research_reports/RRA2825-1.html",
+      "note": "Kilmer et al., RAND RRA2825-1 (2024), 'Considering Alternatives to Psychedelic Drug Prohibition'. Survey fielded Dec 2023, n=4,263 AmeriSpeak panelists. Psilocybin had the highest past-year prevalence of any psychedelic."
+    },
+    {
+      "stat": "Lifetime psilocybin use (2023 RAND Psychedelics Survey)",
+      "value": 12.1,
+      "unit": "percent",
+      "count": 31700000,
+      "population": "US adults 18+",
+      "year": 2023,
+      "source": "https://www.rand.org/pubs/research_reports/RRA2825-1.html",
+      "note": "Same report; LSD lifetime 12.0% (~31.5M)."
+    },
+    {
+      "stat": "Share of past-year psilocybin users who microdosed the last time they used",
+      "value": 47,
+      "unit": "percent",
+      "population": "US adults 18+ who used psilocybin in past year",
+      "year": 2023,
+      "source": "https://www.rand.org/pubs/research_reports/RRA2825-1.html",
+      "note": "RAND 2024 report: '47 percent of those who used in the past year reported this was the case.' Report notes this may understate microdosing prevalence overall."
+    },
+    {
+      "stat": "Past-month psilocybin use (2023 RAND Psychedelics Survey)",
+      "value": 0.9,
+      "unit": "percent",
+      "population": "US adults 18+",
+      "year": 2023,
+      "source": "https://www.rand.org/pubs/research_reports/RRA2825-1.html"
+    },
+    {
+      "stat": "Past-year psilocybin use (2025 RAND Psychedelics Survey)",
+      "value": 4.26,
+      "unit": "percent",
+      "count": 11000000,
+      "population": "US adults 18+",
+      "year": 2025,
+      "source": "https://www.rand.org/pubs/research_reports/RRA4334-1.html",
+      "note": "Priest, Kilmer, Senator, Setodji, RAND RRA4334-1 (Jan 2026), 'U.S. Psychedelic Use and Microdosing in 2025'. Fielded Sept 2025, n=10,122. Figures confirmed via RAND press release and secondary coverage (rand.org blocked direct fetch)."
+    },
+    {
+      "stat": "Adults who microdosed psilocybin, LSD, or MDMA in the past year",
+      "value": 3.7,
+      "unit": "percent",
+      "count": 9550000,
+      "population": "US adults 18+",
+      "year": 2025,
+      "source": "https://www.rand.org/pubs/research_reports/RRA4334-1.html",
+      "note": "RAND 2026 press release: https://www.rand.org/news/press/2026/01/millions-of-us-adults-microdosing-psychedelics.html"
+    },
+    {
+      "stat": "Share of past-year psilocybin users who microdosed at least once",
+      "value": 69,
+      "unit": "percent",
+      "population": "US adults 18+ who used psilocybin in past year",
+      "year": 2025,
+      "source": "https://www.rand.org/pubs/research_reports/RRA4334-1.html",
+      "note": "MDMA 65%, LSD 59%."
+    },
+    {
+      "stat": "Lifetime psilocybin use, 2019 vs 2023 (peer-reviewed)",
+      "value": 12.1,
+      "unit": "percent",
+      "count": 31300000,
+      "population": "US adults 18+",
+      "year": 2023,
+      "source": "https://doi.org/10.7326/ANNALS-24-03145",
+      "note": "Rockhill, Black et al., 'The Rise of Psilocybin Use in the United States: A Multisource Observational Study', Annals of Internal Medicine, Apr 2025. 2019: 10.0% (~25M). Past-year use rose 44% among 18-29 and 188% among 30+ from 2019-2023."
+    },
+    {
+      "stat": "Past-year psilocybin use, 2024 NSDUH (peer-reviewed)",
+      "value": 2.8,
+      "unit": "percent",
+      "count": 8000000,
+      "population": "US people 12+",
+      "year": 2024,
+      "source": "https://news.illinois.edu/study-millions-in-the-us-report-past-year-psilocybin-use/",
+      "note": "Yockey & Hoopsick, AJPM Focus 2026, doi 10.1016/j.focus.2026.100518, n=58,000+. Stated as '8+ million' / ~2.8%."
+    },
+    {
+      "stat": "Past-year hallucinogen use (Monitoring the Future panel)",
+      "value": 9,
+      "unit": "percent",
+      "population": "US adults 19-30",
+      "year": 2023,
+      "source": "https://nida.nih.gov/news-events/news-releases/2024/08/cannabis-and-hallucinogen-use-among-adults-remained-at-historic-highs-in-2023",
+      "note": "'reaching 9% for young adults and 4% for early midlife adults in 2023' (NIDA/NIH release Aug 2024; quoted via Healio). Historic high."
+    },
+    {
+      "stat": "Past-year hallucinogen use (Monitoring the Future panel)",
+      "value": 4,
+      "unit": "percent",
+      "population": "US adults 35-50",
+      "year": 2023,
+      "source": "https://nida.nih.gov/news-events/news-releases/2024/08/cannabis-and-hallucinogen-use-among-adults-remained-at-historic-highs-in-2023",
+      "note": "Same release. Historic high."
+    },
+    {
+      "stat": "Lifetime psilocybin use, 2015-2018 NSDUH (peer-reviewed)",
+      "value": 9.68,
+      "unit": "percent",
+      "population": "US adults 18+",
+      "year": "2015-2018",
+      "source": "https://akjournals.com/view/journals/2054/5/1/article-p17.xml",
+      "note": "Journal of Psychedelic Studies 5(1), 2021."
+    }
+  ],
+  "national_unverified": [
+    {
+      "stat": "Past-year hallucinogen use, MTF panel, ages 19-30, 2024",
+      "value": "9.7 or 8.9",
+      "unit": "percent",
+      "year": 2024,
+      "source": "https://monitoringthefuture.org/wp-content/uploads/2024/07/mtfpanel2024.pdf",
+      "note": "UNVERIFIED: search snippets disagree (9.7% via addictionpolicy.org vs 8.9% via NIH 2025 release, which also says 7.2% in 2025). PDF and NIH page blocked fetch. Do not publish until checked against the MTF Panel 2025 report."
+    }
+  ],
+  "states": {
+    "table": "Table 11. Hallucinogen Use in the Past Year: Among People Aged 12 or Older; by Age Group and State, Annual Average Percentages, 2023-2024",
+    "age_group": "18+",
+    "years": "2023-2024",
+    "source": "https://www.samhsa.gov/data/report/2023-2024-nsduh-state-prevalence-estimates",
+    "csv_source": "https://www.samhsa.gov/data/sites/default/files/reports/rpt56957/2024-nsduh-sae-tables-percent-csvs/2024-nsduh-sae-tables-percent-CSVs.zip",
+    "method": "SAMHSA small-area (hierarchical Bayes) model-based estimates; 95% credible intervals in ci_18plus",
+    "values": {
+      "AL": 2.39,
+      "AK": 3.57,
+      "AZ": 3.65,
+      "AR": 2.96,
+      "CA": 4.73,
+      "CO": 7.73,
+      "CT": 3.45,
+      "DE": 2.4,
+      "DC": 8.8,
+      "FL": 2.94,
+      "GA": 3.57,
+      "HI": 3.04,
+      "ID": 3.99,
+      "IL": 3.24,
+      "IN": 2.84,
+      "IA": 2.23,
+      "KS": 2.42,
+      "KY": 2.56,
+      "LA": 3.34,
+      "ME": 5.7,
+      "MD": 3.44,
+      "MA": 4.51,
+      "MI": 3.36,
+      "MN": 2.59,
+      "MS": 2.17,
+      "MO": 2.79,
+      "MT": 5.79,
+      "NE": 2.44,
+      "NV": 4.07,
+      "NH": 3.98,
+      "NJ": 3.09,
+      "NM": 3.9,
+      "NY": 4.48,
+      "NC": 2.59,
+      "ND": 2.6,
+      "OH": 2.47,
+      "OK": 3.2,
+      "OR": 6.98,
+      "PA": 3.48,
+      "RI": 3.55,
+      "SC": 2.87,
+      "SD": 2.34,
+      "TN": 3.29,
+      "TX": 2.66,
+      "UT": 4.07,
+      "VT": 8.06,
+      "VA": 2.64,
+      "WA": 4.8,
+      "WV": 2.04,
+      "WI": 2.76,
+      "WY": 3.85
+    },
+    "values_12plus": {
+      "AL": 2.29,
+      "AK": 3.37,
+      "AZ": 3.48,
+      "AR": 2.83,
+      "CA": 4.45,
+      "CO": 7.29,
+      "CT": 3.29,
+      "DE": 2.32,
+      "DC": 8.32,
+      "FL": 2.83,
+      "GA": 3.36,
+      "HI": 2.86,
+      "ID": 3.76,
+      "IL": 3.08,
+      "IN": 2.71,
+      "IA": 2.14,
+      "KS": 2.31,
+      "KY": 2.44,
+      "LA": 3.14,
+      "ME": 5.45,
+      "MD": 3.28,
+      "MA": 4.29,
+      "MI": 3.18,
+      "MN": 2.46,
+      "MS": 2.06,
+      "MO": 2.67,
+      "MT": 5.48,
+      "NE": 2.34,
+      "NV": 3.87,
+      "NH": 3.82,
+      "NJ": 2.94,
+      "NM": 3.74,
+      "NY": 4.24,
+      "NC": 2.48,
+      "ND": 2.46,
+      "OH": 2.35,
+      "OK": 3.04,
+      "OR": 6.62,
+      "PA": 3.31,
+      "RI": 3.38,
+      "SC": 2.73,
+      "SD": 2.24,
+      "TN": 3.14,
+      "TX": 2.53,
+      "UT": 3.79,
+      "VT": 7.65,
+      "VA": 2.52,
+      "WA": 4.55,
+      "WV": 1.96,
+      "WI": 2.65,
+      "WY": 3.64
+    },
+    "ci_18plus": {
+      "AL": [
+        1.76,
+        3.24
+      ],
+      "AK": [
+        2.56,
+        4.94
+      ],
+      "AZ": [
+        2.7,
+        4.91
+      ],
+      "AR": [
+        2.19,
+        4.0
+      ],
+      "CA": [
+        4.12,
+        5.42
+      ],
+      "CO": [
+        6.25,
+        9.53
+      ],
+      "CT": [
+        2.44,
+        4.84
+      ],
+      "DE": [
+        1.73,
+        3.32
+      ],
+      "DC": [
+        6.98,
+        11.06
+      ],
+      "FL": [
+        2.42,
+        3.57
+      ],
+      "GA": [
+        2.76,
+        4.6
+      ],
+      "HI": [
+        2.18,
+        4.21
+      ],
+      "ID": [
+        3.0,
+        5.28
+      ],
+      "IL": [
+        2.63,
+        3.99
+      ],
+      "IN": [
+        2.12,
+        3.8
+      ],
+      "IA": [
+        1.57,
+        3.15
+      ],
+      "KS": [
+        1.77,
+        3.31
+      ],
+      "KY": [
+        1.86,
+        3.51
+      ],
+      "LA": [
+        2.45,
+        4.53
+      ],
+      "ME": [
+        4.38,
+        7.38
+      ],
+      "MD": [
+        2.5,
+        4.73
+      ],
+      "MA": [
+        3.35,
+        6.06
+      ],
+      "MI": [
+        2.74,
+        4.11
+      ],
+      "MN": [
+        1.84,
+        3.63
+      ],
+      "MS": [
+        1.54,
+        3.07
+      ],
+      "MO": [
+        2.04,
+        3.82
+      ],
+      "MT": [
+        4.58,
+        7.28
+      ],
+      "NE": [
+        1.73,
+        3.44
+      ],
+      "NV": [
+        3.06,
+        5.41
+      ],
+      "NH": [
+        2.97,
+        5.32
+      ],
+      "NJ": [
+        2.36,
+        4.03
+      ],
+      "NM": [
+        2.91,
+        5.2
+      ],
+      "NY": [
+        3.8,
+        5.28
+      ],
+      "NC": [
+        1.93,
+        3.46
+      ],
+      "ND": [
+        1.86,
+        3.61
+      ],
+      "OH": [
+        1.96,
+        3.11
+      ],
+      "OK": [
+        2.4,
+        4.27
+      ],
+      "OR": [
+        5.59,
+        8.69
+      ],
+      "PA": [
+        2.82,
+        4.3
+      ],
+      "RI": [
+        2.58,
+        4.87
+      ],
+      "SC": [
+        2.01,
+        4.08
+      ],
+      "SD": [
+        1.66,
+        3.31
+      ],
+      "TN": [
+        2.45,
+        4.42
+      ],
+      "TX": [
+        2.18,
+        3.24
+      ],
+      "UT": [
+        3.17,
+        5.22
+      ],
+      "VT": [
+        6.34,
+        10.21
+      ],
+      "VA": [
+        2.02,
+        3.46
+      ],
+      "WA": [
+        3.78,
+        6.08
+      ],
+      "WV": [
+        1.43,
+        2.9
+      ],
+      "WI": [
+        2.04,
+        3.74
+      ],
+      "WY": [
+        2.84,
+        5.21
+      ]
+    },
+    "national_and_regions": {
+      "Total U.S.": {
+        "pct_18plus": 3.54,
+        "pct_12plus": 3.36
+      },
+      "Northeast": {
+        "pct_18plus": 4.01,
+        "pct_12plus": 3.81
+      },
+      "Midwest": {
+        "pct_18plus": 2.83,
+        "pct_12plus": 2.69
+      },
+      "South": {
+        "pct_18plus": 2.91,
+        "pct_12plus": 2.77
+      },
+      "West": {
+        "pct_18plus": 4.86,
+        "pct_12plus": 4.58
+      }
+    }
+  },
+  "decrim": [
+    {
+      "place": "Denver",
+      "state": "CO",
+      "year": 2019,
+      "mechanism": "Ballot Initiative 301 (May 2019, 50.6%): adult psilocybin possession made lowest law-enforcement priority; no city funds for prosecution.",
+      "lat": 39.74,
+      "lng": -104.99,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Oakland",
+      "state": "CA",
+      "year": 2019,
+      "mechanism": "City Council resolution (June 2019, unanimous) deprioritizing enforcement for entheogenic plants and fungi.",
+      "lat": 37.8,
+      "lng": -122.27,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Santa Cruz",
+      "state": "CA",
+      "year": 2020,
+      "mechanism": "City Council resolution (Jan 2020, unanimous) deprioritizing adult possession/cultivation of entheogenic plants and fungi.",
+      "lat": 36.97,
+      "lng": -122.03,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Ann Arbor",
+      "state": "MI",
+      "year": 2020,
+      "mechanism": "City Council resolution (Sept 2020, unanimous): entheogenic plants/fungi lowest law-enforcement priority.",
+      "lat": 42.28,
+      "lng": -83.74,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Washtenaw County",
+      "state": "MI",
+      "year": 2021,
+      "mechanism": "County prosecutor policy (Jan 2021): no charges for entheogenic plant/fungi possession or use.",
+      "lat": 42.25,
+      "lng": -83.84,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true,
+      "kind": "county"
+    },
+    {
+      "place": "Washington",
+      "state": "DC",
+      "year": 2020,
+      "mechanism": "Initiative 81 (Nov 2020 ballot, effective Mar 2021): entheogenic plants/fungi lowest enforcement priority.",
+      "lat": 38.91,
+      "lng": -77.04,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Somerville",
+      "state": "MA",
+      "year": 2021,
+      "mechanism": "City Council resolution (Jan 2021, unanimous) deprioritizing entheogenic plants.",
+      "lat": 42.39,
+      "lng": -71.1,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Cambridge",
+      "state": "MA",
+      "year": 2021,
+      "mechanism": "City Council policy order (Feb 2021) deprioritizing entheogenic plants.",
+      "lat": 42.37,
+      "lng": -71.11,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Northampton",
+      "state": "MA",
+      "year": 2021,
+      "mechanism": "City Council resolution (Mar 2021) deprioritizing entheogenic plants.",
+      "lat": 42.33,
+      "lng": -72.64,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Easthampton",
+      "state": "MA",
+      "year": 2021,
+      "mechanism": "City Council non-binding resolution (Oct 2021, 7-0) deprioritizing enforcement.",
+      "lat": 42.27,
+      "lng": -72.67,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Amherst",
+      "state": "MA",
+      "year": 2022,
+      "mechanism": "Town Council resolution (July 2022) deprioritizing entheogenic plants.",
+      "lat": 42.37,
+      "lng": -72.52,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Salem",
+      "state": "MA",
+      "year": 2023,
+      "mechanism": "City Council resolution (May 2023) deprioritizing psilocybin/entheogens.",
+      "lat": 42.52,
+      "lng": -70.9,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Provincetown",
+      "state": "MA",
+      "year": 2023,
+      "mechanism": "Select Board / town resolution (Dec 2023) deprioritizing entheogens.",
+      "lat": 42.06,
+      "lng": -70.18,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Medford",
+      "state": "MA",
+      "year": 2024,
+      "mechanism": "City Council resolution (Feb 2024) deprioritizing entheogens and endorsing state decrim bill.",
+      "lat": 42.42,
+      "lng": -71.11,
+      "source": "https://www.marijuanamoment.net/eighth-massachusetts-city-adopts-psychedelics-decriminalization-policy-also-pushing-changes-to-pending-state-ballot-initiative/",
+      "verified": true
+    },
+    {
+      "place": "Seattle",
+      "state": "WA",
+      "year": 2021,
+      "mechanism": "City Council resolution (Oct 2021, unanimous) deprioritizing entheogen enforcement.",
+      "lat": 47.61,
+      "lng": -122.33,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Port Townsend",
+      "state": "WA",
+      "year": 2021,
+      "mechanism": "City Council resolution (Dec 2021) deprioritizing enforcement for non-public entheogen use.",
+      "lat": 48.12,
+      "lng": -122.76,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Jefferson County",
+      "state": "WA",
+      "year": 2023,
+      "mechanism": "County resolution (May 2023) deprioritizing entheogenic plants and fungi.",
+      "lat": 47.85,
+      "lng": -123.0,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true,
+      "kind": "county"
+    },
+    {
+      "place": "Olympia",
+      "state": "WA",
+      "year": 2024,
+      "mechanism": "City Council resolution (Aug 13, 2024): entheogenic plants/fungi low enforcement priority, no city funds for arrests.",
+      "lat": 47.04,
+      "lng": -122.9,
+      "source": "https://www.kuow.org/stories/what-s-an-entheogen-olympia-s-approach-to-psychedelics-is-now-a-low-priority",
+      "verified": true
+    },
+    {
+      "place": "Tacoma",
+      "state": "WA",
+      "year": 2025,
+      "mechanism": "City Council Resolution 41609 (Jan 28, 2025): entheogen-related activities lowest enforcement priority.",
+      "lat": 47.25,
+      "lng": -122.44,
+      "source": "https://tacoma.gov/news/city-of-tacomas-passage-of-resolution-41609-deprioritizes-local-enforcement-against-entheogen-related-activities/",
+      "verified": true
+    },
+    {
+      "place": "King County",
+      "state": "WA",
+      "year": 2026,
+      "mechanism": "County Council motion (Mar 24, 2026, 6-2): personal non-commercial entheogen use among lowest enforcement priorities.",
+      "lat": 47.5,
+      "lng": -122.0,
+      "source": "https://kingcounty.gov/en/dept/council/governance-leadership/county-council/newsroom/2026/03-24-mosqueda-entheogens-motion-release",
+      "verified": true,
+      "kind": "county"
+    },
+    {
+      "place": "Detroit",
+      "state": "MI",
+      "year": 2021,
+      "mechanism": "Proposal E ballot initiative (Nov 2021, ~61%): personal possession/therapeutic use of entheogens lowest priority.",
+      "lat": 42.33,
+      "lng": -83.05,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Hazel Park",
+      "state": "MI",
+      "year": 2022,
+      "mechanism": "City Council resolution (Mar 2022) deprioritizing natural psychedelics.",
+      "lat": 42.46,
+      "lng": -83.1,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Ferndale",
+      "state": "MI",
+      "year": 2023,
+      "mechanism": "City Council resolution (Feb 2023) deprioritizing entheogenic plants and fungi.",
+      "lat": 42.46,
+      "lng": -83.13,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Ypsilanti",
+      "state": "MI",
+      "year": 2024,
+      "mechanism": "City Council Resolution 2024-001 (Jan 9, 2024, unanimous): entheogen enforcement lowest priority.",
+      "lat": 42.24,
+      "lng": -83.61,
+      "source": "https://www.easternecho.com/article/2024/01/ypsilanti-city-council-passes-resolution-to-deprioritize-entheogenic-plants",
+      "verified": true
+    },
+    {
+      "place": "Arcata",
+      "state": "CA",
+      "year": 2021,
+      "mechanism": "City Council resolution (Oct 2021, unanimous) deprioritizing entheogen enforcement.",
+      "lat": 40.87,
+      "lng": -124.08,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "San Francisco",
+      "state": "CA",
+      "year": 2022,
+      "mechanism": "Board of Supervisors resolution (Sept 2022, unanimous) deprioritizing entheogenic plants.",
+      "lat": 37.77,
+      "lng": -122.42,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Berkeley",
+      "state": "CA",
+      "year": 2023,
+      "mechanism": "City Council resolution (July 2023) deprioritizing entheogenic plants and fungi.",
+      "lat": 37.87,
+      "lng": -122.27,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Eureka",
+      "state": "CA",
+      "year": 2023,
+      "mechanism": "City Council resolution (Oct 2023) deprioritizing entheogens.",
+      "lat": 40.8,
+      "lng": -124.16,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true
+    },
+    {
+      "place": "Minneapolis",
+      "state": "MN",
+      "year": 2023,
+      "mechanism": "Mayoral Executive Order 2023-01 (July 21, 2023): entheogenic plant enforcement lowest priority.",
+      "lat": 44.98,
+      "lng": -93.27,
+      "source": "https://minneapolismn.gov/government/mayor/executive-orders/executive-order-2023-01/",
+      "verified": true
+    },
+    {
+      "place": "Portland",
+      "state": "ME",
+      "year": 2023,
+      "mechanism": "City Council resolution (Oct 2023, 6-3) deprioritizing prosecution for psilocybin/entheogen possession.",
+      "lat": 43.66,
+      "lng": -70.26,
+      "source": "https://www.mainepublic.org/politics/2023-10-04/portland-city-council-passes-a-resolution-in-support-of-decriminalizing-psychedelic-fungi",
+      "verified": true
+    },
+    {
+      "place": "Oregon (statewide)",
+      "state": "OR",
+      "year": 2020,
+      "mechanism": "Measure 109 (Nov 2020): licensed supervised psilocybin services for adults 21+ (still in force). Measure 110 (Nov 2020) decriminalized personal possession; repealed by HB 4002 (signed Apr 1, 2024, effective Sept 1, 2024) - possession is a misdemeanor again.",
+      "lat": 44.94,
+      "lng": -123.03,
+      "source": "https://www.opb.org/article/2024/09/01/oregon-starts-drug-possession-recriminalization/",
+      "verified": true,
+      "kind": "state"
+    },
+    {
+      "place": "Colorado (statewide)",
+      "state": "CO",
+      "year": 2022,
+      "mechanism": "Proposition 122 (Nov 2022 ballot): decriminalized personal use/possession/cultivation of psilocybin and other natural psychedelics for adults 21+; regulated healing centers (first opened 2025).",
+      "lat": 39.74,
+      "lng": -104.99,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": true,
+      "kind": "state"
+    },
+    {
+      "place": "New Mexico (statewide)",
+      "state": "NM",
+      "year": 2025,
+      "mechanism": "SB 219, Medical Psilocybin Act (signed Apr 2025, effective June 20, 2025): state-regulated medical psilocybin program; NOT general decriminalization.",
+      "lat": 35.69,
+      "lng": -105.94,
+      "source": "https://www.nmlegis.gov/Sessions/25%20Regular/bills/senate/SB0219.HTML",
+      "verified": true,
+      "kind": "state"
+    },
+    {
+      "place": "New Jersey (statewide)",
+      "state": "NJ",
+      "year": 2021,
+      "mechanism": "State law signed Feb 2021: possession of under 1 oz psilocybin downgraded from 3rd-degree crime to disorderly-persons offense. Penalty reduction, not decriminalization.",
+      "lat": 40.22,
+      "lng": -74.76,
+      "source": "https://newjerseyglobe.com/governor/murphy-signs-bill-downgrading-magic-mushroom-penalties/",
+      "verified": true,
+      "kind": "state"
+    },
+    {
+      "place": "Grand Rapids",
+      "state": "MI",
+      "year": null,
+      "mechanism": "UNVERIFIED: not listed in Wikipedia or mindmedicinelaw city lists as a decrim jurisdiction.",
+      "lat": 42.96,
+      "lng": -85.67,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": false
+    },
+    {
+      "place": "Jersey City",
+      "state": "NJ",
+      "year": null,
+      "mechanism": "UNVERIFIED: no source found for a Jersey City psilocybin measure.",
+      "lat": 40.72,
+      "lng": -74.04,
+      "source": "https://en.wikipedia.org/wiki/Psilocybin_decriminalization_in_the_United_States",
+      "verified": false
+    }
+  ]
+}
