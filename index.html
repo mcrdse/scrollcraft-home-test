@@ -194,11 +194,11 @@
 
   /* ── 3 · PEAK ── */
   .grow { background: var(--slate); --sc-ink: #14202A; --sc-ink-soft: #2E3F4B; color: var(--sc-ink); }
-  .grow__tl { position: absolute; inset-inline: auto; bottom: auto; left: var(--sc-gutter); top: calc(var(--promo-h) + clamp(4.5rem, 12vh, 8rem)); max-width: min(34rem, 82vw); }
+  .grow__tl { position: absolute; inset-inline: auto; bottom: auto; left: var(--sc-gutter); top: calc(var(--promo-h) + clamp(4.5rem, 12vh, 8rem)); max-width: min(40rem, 82vw); }
   .grow__line { font-size: var(--sc-t-2xl); margin: 0; }
   .grow__big { font-size: var(--sc-t-4xl); margin: 0; }
-  .grow__end { font-size: var(--sc-t-3xl); max-width: 14ch; }
-  .grow__sub { margin: var(--sc-4) 0 0; font: italic 400 var(--sc-t-lg)/1.35 var(--sc-font-display); color: var(--sc-ink-soft); max-width: 30ch; }
+  .grow__end { font-size: var(--sc-t-3xl); max-width: 22ch; }
+  .grow__sub { margin: var(--sc-4) 0 0; font: italic 600 var(--sc-t-base)/1.35 var(--sc-font-display); color: var(--sc-ink); max-width: 44ch; }
   /* the burst: the flush swells and the capsule row irises in over it, driven by the act's progress */
   .grow video, .grow .sc-stage__poster { transform: scale(calc(1 + clamp(0, (var(--sc-p, 0) - 0.78) * 4, 1) * 0.12)); transform-origin: 50% 60%; }
   .grow__flat { position: absolute; inset: auto 0 -16% 0; width: 100%; height: 116%; object-fit: cover; object-position: 50% 70%; clip-path: circle(calc(clamp(0, (var(--sc-p, 0) - 0.78) * 14, 1) * 85%) at 50% 62%); }
@@ -388,7 +388,7 @@
 <main id="top">
 
   <!-- 1 · OFFER: scrub. Two hands bring Focus and Bliss together; the ledger fills and the total halves. -->
-  <section data-sc-act="scrub" data-sc-span="2.2" data-sc-dwell="0.3" data-sc-drift="#F2E8DA" id="offer">
+  <section data-sc-act="scrub" data-sc-span="2.2" data-sc-dwell="0.12" data-sc-drift="#F2E8DA" id="offer">
     <div data-sc-stage class="offer-stage">
       <img class="sc-stage__poster" src="assets/01-cheers-poster.webp" width="1920" height="1065" alt="">
       <video data-sc-scrub data-sc-src="assets/01-cheers.mp4" data-sc-src-mobile="assets/01-cheers-m.mp4" playsinline muted></video>
@@ -468,8 +468,8 @@
         <h2 class="sc-display grow__big" data-sc-cue="0.60 0.78 0.28 0.2" data-sc-kinetic="lines">then it <em>fruits</em>.</h2>
       </div>
       <div class="sc-copy grow__tl">
-        <h2 class="sc-display grow__line grow__end" data-sc-cue="0.87 1 0.25 0.1" data-sc-kinetic="lines">dried whole, <em>ground whole</em>.</h2>
-        <p class="grow__sub" data-sc-cue="0.9 1 0.25 0.1">Cap and stem, nothing extracted, into the capsule.</p>
+        <h2 class="sc-display grow__line grow__end" data-sc-cue="0.85 1 0.08 0" data-sc-kinetic="lines">dried whole, <em>ground whole</em>.</h2>
+        <p class="grow__sub" data-sc-cue="0.9 1 0.06 0">Cap and stem, nothing extracted, into the capsule.</p>
       </div>
     </div>
   </section>
@@ -530,7 +530,7 @@
         <div><b><span class="sc-nums" data-sc-count="0 1,390" data-sc-count-at="0.1 0.6">0</span></b><span>people on the ritual</span></div>
         <div><b><span class="sc-nums" data-sc-count="0 49" data-sc-count-at="0.1 0.6">0</span></b><span>states, plus 9 countries</span></div>
         <div><b><span class="sc-nums" data-sc-count="0 2,838" data-sc-count-at="0.1 0.6">0</span></b><span>orders since February 2024</span></div>
-        <div><b>1 in <span class="sc-nums" data-sc-count="0 3" data-sc-count-at="0.1 0.6">0</span></b><span>comes back for more</span></div>
+        <div><b>1 in 3</b><span>comes back for more</span></div>
       </div>
       <div class="quotes" data-sc-in data-sc-stagger="80">
         <figure class="quotes__fig"><img src="assets/06-heart.webp" width="1400" height="1854" alt="Two hands making a heart around a Focus tube"></figure>
@@ -542,14 +542,14 @@
   </section>
 
   <!-- 6 · SHARE: scrub. The pour, tubes in hand. -->
-  <section data-sc-act="scrub" data-sc-span="1.5" data-sc-dwell="0.35" data-sc-drift="#EBDCC6" id="share">
+  <section data-sc-act="scrub" data-sc-span="1.5" data-sc-dwell="0.15" data-sc-drift="#EBDCC6" id="share">
     <div data-sc-stage class="share" data-sc-spotlight>
       <img class="sc-stage__poster" src="assets/06-pour-poster.webp" width="1920" height="1065" alt="">
       <video data-sc-scrub data-sc-src="assets/06-pour.mp4" data-sc-src-mobile="assets/06-pour-m.mp4" playsinline muted></video>
       <div class="share__scrim" aria-hidden="true"></div>
       <div class="sc-copy sc-copy--trail">
-        <h2 class="sc-display" data-sc-cue="0.06 0.94 0.18 0.15" data-sc-kinetic="lines">pass it <em>on</em>.</h2>
-        <p class="share__sub" data-sc-cue="0.14 0.94 0.2 0.15">The best way in is a friend who already runs it. Send this page to yours.</p>
+        <h2 class="sc-display" data-sc-cue="0.06 1 0.18 0.08" data-sc-kinetic="lines">pass it <em>on</em>.</h2>
+        <p class="share__sub" data-sc-cue="0.14 1 0.2 0.08">The best way in is a friend who already runs it. Send this page to yours.</p>
       </div>
     </div>
   </section>

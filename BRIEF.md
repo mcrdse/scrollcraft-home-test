@@ -288,3 +288,15 @@ split dot and the copy says so); Stamets lede loses the "new beginning, grown fr
 kicker; close lede no longer repeats the community lede. Kept on purpose (Kevin's asks, taste
 rules waived): gradient light on "limitless", best-plan halo, certificate frame, 🍄 spores.
 Pre-edit copy at out/index.pre-seams.html. guard.py 0 block. 0 em dashes.
+
+## Round 15b (2026-09-05): flow audit (shoot.mjs, 6 frames per act)
+Kevin: "some of the transitions were kind of iffy." Harness run over 70 frames. Fixed: hero dwell
+0.3 → 0.12 and pour dwell 0.35 → 0.15 (both left the clip hanging with no copy after the copy
+exited); pour copy now holds to p=1 with a short 0.08 out; peak end cues were "0.87 1 0.25 0.1"
+(in-ramp longer than the window, so the line never reached full opacity and faded out while
+fading in) → "0.85 1 0.08 0" / "0.9 1 0.06 0"; peak end headline wrapped to three lines
+(.grow__tl 34rem → 40rem, .grow__end 14ch → 22ch) which pushed the sub onto the dried caps
+(real contrast fail); sub now ink, 600, t-base, one line, clear of the flat lay. "1 in 3" count
+made static (it counted through "1 in 0 / 1 in 1 / 1 in 2"). No dead scroll; all clips move.
+Harness still reports worst 1.02:1 on the sub: it measures the bbox's empty patches, the frame
+itself (lab/shots/v5-peak-end.png) is clean.
