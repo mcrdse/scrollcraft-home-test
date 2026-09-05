@@ -1,32 +1,27 @@
-# MCRDSE Homepage — Scrollcraft Build (Test Draft)
+# The Colony Scrollcraft prototype
 
-Hey Layla! This is a **work-in-progress** draft of the new mcrdse.com homepage — a scroll-driven interactive site built with [scrollcraft](https://github.com/nateherkai/scroll-craft). It's not live yet and has a few rough edges (placeholder photos, one price to fix) — that's fine, treat it as a vibe/reference, not final copy.
+This branch turns the original Scrollcraft test into a local, review-only prototype for The Colony in Jacumba Hot Springs, California.
 
-## Run it locally
+## Run locally
 
-No build step — it's static.
+There is no build step. From this directory:
 
 ```bash
-python3 -m http.server 4501
+python3 -m http.server 4605
 ```
 
-Then open `http://localhost:4501` and scroll.
+Then open `http://localhost:4605`.
 
-## What we'd love from you (just for fun — no pressure, no deadline)
+## What is in the prototype
 
-Using this build as inspiration/source material, create:
+- Real current-property photographs for the stage, tent, pool, and gathering space
+- One clearly labeled illustrative 3D concept render
+- Scrollcraft pin, pan, drift, cue, and kinetic-text primitives
+- A Today to Pilot to Vision story instead of a public investment solicitation
+- Reduced-motion behavior, keyboard focus treatment, semantic headings, and descriptive image text
 
-- **1 carousel** (IG feed)
-- **5 Reels** — mix of POV and informative style, your call on the split, but we're especially curious to see:
-  - 2 **POV reels** (in-the-moment, first-person feel)
-  - 1 **informative reel** (educational / breaks something down)
-  - the other 2, however you want to interpret the brand
+## Publication boundary
 
-Brand context is in `BRIEF.md` in this repo. Rough guardrails:
-- Voice: informative-first, a little playful, never guru-ish
-- On Instagram/TikTok specifically: skip the words "psilocybin" / "microdose" / "microdosing" — use 🍄, "magic mushrooms," "whole mushrooms" instead
-- Tagline: "Limitless by nature."
+This is not live and must not be published without Kecho's approval. Property facts, rights, operations, and financial claims need current verification. The public page does not include investment terms or an investor intake flow.
 
-Make it yours — we want to see how *you'd* tell this story, not a copy of what's here.
-
-Send whatever you make back whenever it's ready. Thank you for taking the time!
+The selected web images are optimized working derivatives. Canonical full-resolution media stays in the Nomadic and Colony Google Drive or Synology source libraries.

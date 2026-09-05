@@ -1,740 +1,235 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>mcrdse · limitless by nature</title>
-<meta name="description" content="Focus and Bliss 2.0, grown in California. First order: the whole stack for $111, shipping on us.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23F2E8DA'/><circle cx='16' cy='16' r='7' fill='%231E0A38'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,800;1,6..72,400;1,6..72,700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="scrollcraft.css">
-<style>
-  :root {
-    --sc-canvas:     #F2E8DA;   /* cream, same as mcrdse.com body */
-    --sc-surface:    #E4D5C4;   /* bisque */
-    --sc-ink:        #1E0A38;   /* abyss */
-    --sc-ink-soft:   #50385E;   /* walnut */
-    --sc-accent:     #8E2CFB;   /* purple: CTA + links only */
-    --sc-accent-ink: #FAFAF8;
-    --sc-font-display: "Newsreader", Georgia, serif;
-    --sc-font-text:    "Sora", system-ui, sans-serif;
-    --sc-shadow-color: 30 30% 20%;
-    --sc-edge: transparent;
-    --kraft: #C9A27A;           /* the tube, the cap */
-    --lilac: #5B2D8E;           /* amethyst: data marks only */
-    --slate: #9AAAB4;           /* the fruiting-block photo's ground: the peak */
-  }
-  html { scroll-behavior: auto; }
-  body { background: var(--sc-canvas); color: var(--sc-ink); }
-  .sc-display { font-weight: 800; letter-spacing: -0.02em; line-height: 1.02; }
-  .sc-display em, h1 em, h2 em { font-style: italic; font-weight: 700; }
-  .sc-body { font-weight: 300; line-height: 1.65; }
-  .sc-lede { font-weight: 300; }
-  .sc-label { font-family: var(--sc-font-text); font-size: var(--sc-t-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--sc-ink-soft); font-weight: 500; }
-  a { color: var(--sc-ink); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-  a:hover { color: var(--sc-accent); }
-
-  /* ── the one CTA ── */
-  .cta {
-    display: inline-flex; align-items: center; gap: .6em;
-    font: 500 var(--sc-t-sm)/1 var(--sc-font-text);
-    color: var(--sc-accent-ink); background: var(--sc-accent);
-    padding: .95em 1.5em; border-radius: 999px; text-decoration: none;
-    box-shadow: 0 10px 24px -10px hsl(270 60% 20% / .45), inset 0 1px 0 hsl(0 0% 100% / .18);
-    transition: transform 140ms var(--sc-ease-out), background 140ms var(--sc-ease-out);
-    white-space: nowrap;
-  }
-  .cta:hover { background: #9B45FF; color: var(--sc-accent-ink); }
-  .cta:active { transform: scale(.97); }
-  /* live CTA: a ring of light leaves the pill, then it rocks once and settles. ease-out only. */
-  .cta--live { position: relative; isolation: isolate; }
-  .cta--live::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 2px var(--sc-accent); opacity: 0; pointer-events: none; z-index: -1; }
-  @media (prefers-reduced-motion: no-preference) {
-    .cta--live { animation: cta-rock 5.5s var(--sc-ease-out) infinite; }
-    .cta--live::after { animation: cta-ring 5.5s var(--sc-ease-out) infinite; }
-    .cta--live:active { animation: none; transform: scale(.97); }
-  }
-  @keyframes cta-rock { 0%, 78%, 100% { transform: rotate(0); } 82% { transform: rotate(-2.5deg) scale(1.02); } 86% { transform: rotate(2deg) scale(1.02); } 90% { transform: rotate(-.75deg); } 94% { transform: rotate(0); } }
-  @keyframes cta-ring { 0%, 76% { opacity: 0; transform: scale(1); } 80% { opacity: .55; } 100% { opacity: 0; transform: scale(1.45); } }
-  .cta:focus-visible { outline: 2px solid var(--sc-accent-ink); outline-offset: 4px; }
-
-  /* ── promo strip ── */
-  :root { --promo-h: 3.4rem; }
-  .promo { position: fixed; inset: 0 0 auto 0; z-index: 61; height: var(--promo-h); display: flex; align-items: center; justify-content: center; gap: clamp(1rem, 4vw, 4rem); padding: 0 var(--sc-gutter); background: var(--sc-ink); color: var(--sc-canvas); font-family: var(--sc-font-text); }
-  .promo__text { display: grid; line-height: 1.25; }
-  .promo__text b { font-weight: 600; font-size: var(--sc-t-sm); letter-spacing: .04em; text-transform: uppercase; }
-  .promo__text span { font-size: var(--sc-t-xs); color: #CDB3F2; letter-spacing: .02em; }
-  .promo__timer { display: flex; align-items: center; gap: .55rem; font-variant-numeric: tabular-nums; }
-  .promo__timer div { display: grid; text-align: center; line-height: 1; }
-  .promo__timer b { font: 700 1.15rem/1 var(--sc-font-text); }
-  .promo__timer i { font-style: normal; font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: #CDB3F2; margin-top: .2rem; }
-  .promo__timer em { font-style: normal; color: #CDB3F2; padding-bottom: .8rem; }
-  @media (max-width: 860px) {
-    :root { --promo-h: 4.4rem; }
-    .promo { flex-direction: column; gap: .3rem; justify-content: center; text-align: center; }
-    .promo__text span { display: none; }
-    .promo__timer b { font-size: 1rem; }
-  }
-
-  /* ── the frame: a hairline border with corner marks, like a certificate, over every stage ── */
-  .frame { position: fixed; inset: calc(var(--promo-h) + .75rem) .75rem .75rem; z-index: 58; pointer-events: none; border: 1px solid hsl(270 40% 20% / .16); }
-  .frame i { position: absolute; width: 14px; height: 14px; border: 1.5px solid hsl(270 40% 20% / .5); }
-  .frame i:nth-child(1) { left: -1px; top: -1px; border-right: 0; border-bottom: 0; }
-  .frame i:nth-child(2) { right: -1px; top: -1px; border-left: 0; border-bottom: 0; }
-  .frame i:nth-child(3) { left: -1px; bottom: -1px; border-right: 0; border-top: 0; }
-  .frame i:nth-child(4) { right: -1px; bottom: -1px; border-left: 0; border-top: 0; }
-  .sc-label--rule { display: inline-flex; align-items: center; gap: .75rem; }
-  .sc-label--rule::before { content: ""; width: 2rem; height: 1px; background: currentColor; opacity: .6; }
-  @media (max-width: 860px) { .frame { inset: calc(var(--promo-h) + .5rem) .5rem .5rem; } }
-
-  /* ── fixed bar ── */
-  .bar {
-    position: fixed; inset: var(--promo-h) 0 auto 0; z-index: 60;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: clamp(.8rem, 2vw, 1.25rem) var(--sc-gutter);
-    pointer-events: none;
-  }
-  .bar > * { pointer-events: auto; }
-  .mark { display: block; color: var(--sc-ink); }
-  .mark svg { height: 26px; width: auto; display: block; }
-  .bar .cta { padding: .7em 1.15em; }
-
-  /* ── 1 · OFFER ── */
-  .offer-stage { background: var(--sc-canvas); }
-  .sc-stage.offer-stage video[data-sc-scrub], .sc-stage.offer-stage .sc-stage__poster { left: auto; right: 0; width: 57%; height: 100%; object-fit: cover; object-position: 52% 50%; }
-  .addins { position: absolute; left: 52%; right: var(--sc-gutter); bottom: clamp(1.5rem, 6vh, 4rem); z-index: 3; display: flex; gap: .6rem; flex-wrap: nowrap; justify-content: flex-end; }
-  .addin { display: inline-flex; align-items: center; gap: .55rem; padding: .4rem .9rem .4rem .4rem; border-radius: 999px; background: #FAFAF8; box-shadow: 0 10px 24px -12px hsl(var(--sc-shadow-color) / .5), 0 0 0 1px hsl(var(--sc-shadow-color) / .1); font: 600 var(--sc-t-sm)/1 var(--sc-font-text); color: var(--sc-ink); opacity: 0; will-change: opacity, transform; white-space: nowrap; backface-visibility: hidden; transform: translateZ(0); }
-  .addin img, .addin b { width: 2rem; height: 2rem; border-radius: 50%; object-fit: cover; display: grid; place-items: center; font: 700 .75rem/2rem var(--sc-font-text); text-align: center; background: var(--sc-surface); flex: none; }
-  .addin b { background: var(--sc-accent); color: var(--sc-accent-ink); letter-spacing: -.02em; }
-  .offer { position: absolute; inset: 0; z-index: 2; display: grid; grid-template-columns: minmax(0, 40%) minmax(0, 1fr); align-items: center; padding: 0 var(--sc-gutter); pointer-events: none; }
-  .offer__copy { display: grid; gap: var(--sc-3); align-self: center; padding-top: calc(5.5rem + var(--promo-h)); max-width: 36rem; pointer-events: auto; }
-  .offer__copy h1 { font-size: clamp(2.6rem, 1rem + 4.2vw, 4.6rem); line-height: 1.02; max-width: 12ch; padding-bottom: .1em; }
-  .offer__copy h1 em { font-weight: 700; }
-  .offer__sub { max-width: 38ch; font-size: var(--sc-t-base); color: var(--sc-ink-soft); }
-  .offer__sub b { color: var(--sc-ink); font-weight: 600; }
-  .offer__coffee { margin: -.25rem 0 0; font: italic 400 var(--sc-t-sm)/1.4 var(--sc-font-display); color: var(--sc-ink-soft); max-width: 40ch; }
-  /* "limitless" breathes: a slow drift and a light passing through the letters */
-  .limitless { display: inline-block; font-style: italic; position: relative; background: linear-gradient(100deg, var(--sc-ink) 0 40%, var(--sc-accent) 50%, var(--sc-ink) 60% 100%); background-size: 260% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
-  @media (prefers-reduced-motion: no-preference) {
-    .limitless { animation: limitless-drift 3.2s ease-in-out infinite, limitless-light 4.8s linear infinite; }
-    @keyframes limitless-drift { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-3px) rotate(1deg); } }
-    @keyframes limitless-light { 0% { background-position: 120% 0; } 100% { background-position: -120% 0; } }
-  }
-  .gets { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; max-width: 31rem; }
-  .gets li { display: grid; grid-template-columns: 2rem 1fr auto; align-items: center; gap: .7rem; font: 400 var(--sc-t-sm)/1.25 var(--sc-font-text); opacity: 0; will-change: opacity, transform; }
-  .gets li img { width: 2rem; height: 2rem; object-fit: contain; object-position: center; }
-  .gets li .gets__tin { border-radius: 50%; object-fit: cover; }
-  .gets li em { font: 700 .7rem/2rem var(--sc-font-text); width: 2rem; height: 2rem; border-radius: 50%; text-align: center; font-style: normal; background: #FAFAF8; color: var(--sc-ink); box-shadow: 0 0 0 1px hsl(var(--sc-shadow-color) / .12); }
-  .gets li span b { font-weight: 600; }
-  .gets li span { min-width: 0; }
-  .gets li i { font-style: normal; color: var(--sc-ink-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .offer__actions { display: flex; align-items: center; gap: var(--sc-5); flex-wrap: wrap; }
-  .offer__fine { font-size: var(--sc-t-xs); color: var(--sc-ink-soft); letter-spacing: .04em; }
-  .ledger { font-family: var(--sc-font-text); font-size: var(--sc-t-sm); font-variant-numeric: tabular-nums; max-width: 22rem; }
-  .ledger__row { display: flex; justify-content: space-between; gap: 1.5rem; padding: .22rem 0; border-bottom: 1px solid hsl(270 20% 20% / .14); opacity: 0; will-change: opacity, transform; }
-  .ledger__row span:last-child { color: var(--sc-ink-soft); }
-  .ledger__total { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; padding-top: .45rem; opacity: 0; }
-  .ledger__was { color: var(--sc-ink-soft); text-decoration: line-through; text-decoration-thickness: 1.5px; }
-  .ledger__now { font: 800 var(--sc-t-xl)/1 var(--sc-font-display); letter-spacing: -0.02em; }
-  .ledger__ship { text-align: left; font-size: var(--sc-t-xs); letter-spacing: .08em; text-transform: uppercase; color: var(--sc-ink-soft); padding-top: .25rem; opacity: 0; }
-
-  /* ── 1a · PLANS ── */
-  .plans { padding-block: clamp(2.5rem, 5vw, 5rem); }
-  .plans__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(1.5rem, 5vw, 6rem); align-items: start; }
-  .plans__head h2 { font-size: var(--sc-t-3xl); margin: .5rem 0 var(--sc-5); }
-  .plans__head p { color: var(--sc-ink-soft); max-width: 40ch; }
-  .checks { list-style: none; margin: var(--sc-6) 0 0; padding: 0; display: grid; gap: .55rem; }
-  .checks li { display: flex; gap: .7rem; align-items: flex-start; font: 400 var(--sc-t-sm)/1.4 var(--sc-font-text); }
-  .checks li::before { content: ""; flex: 0 0 1.1rem; height: 1.1rem; margin-top: .1rem; border-radius: 50%; background: var(--sc-accent) center / 60% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.5l2.3 2.3L9.7 4' fill='none' stroke='%23FAFAF8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
-  .plans__list { display: grid; gap: .7rem; }
-  .plan { position: relative; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "name price" "meta meta"; gap: .25rem 1rem; padding: 1.1rem 1.25rem 1.1rem 3.1rem; border-radius: var(--sc-r-sm); background: #FAFAF8; box-shadow: 0 0 0 1px hsl(var(--sc-shadow-color) / .14); cursor: pointer; transition: box-shadow 140ms var(--sc-ease-out), transform 140ms var(--sc-ease-out); }
-  .plan:hover { transform: translateY(-1px); }
-  .plan.is-on { box-shadow: 0 0 0 2px var(--sc-ink), 0 14px 30px -18px hsl(var(--sc-shadow-color) / .5); }
-  .plan--best { box-shadow: 0 0 0 1px hsl(var(--sc-shadow-color) / .14), 0 0 0 6px rgba(142,44,251,.10), 0 0 34px 4px rgba(142,44,251,.28); }
-  .plan--best.is-on { box-shadow: 0 0 0 2px var(--sc-accent), 0 0 0 7px rgba(142,44,251,.12), 0 0 40px 6px rgba(142,44,251,.38); }
-  @media (prefers-reduced-motion: no-preference) {
-    .plan--best { animation: halo 2.6s ease-in-out infinite; }
-    @keyframes halo { 0%, 100% { box-shadow: 0 0 0 2px var(--sc-accent), 0 0 0 6px rgba(142,44,251,.10), 0 0 26px 2px rgba(142,44,251,.22); } 50% { box-shadow: 0 0 0 2px var(--sc-accent), 0 0 0 9px rgba(142,44,251,.16), 0 0 48px 10px rgba(142,44,251,.42); } }
-  }
-  /* click illumination: a light ring bursts out of whatever was pressed */
-  .lit { position: relative; }
-  .lit::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: 0 0 0 0 rgba(142,44,251,.55); opacity: 0; }
-  .lit.is-lit::after { animation: lit 620ms var(--sc-ease-out) forwards; }
-  @keyframes lit { 0% { opacity: 1; box-shadow: 0 0 0 0 rgba(142,44,251,.6), 0 0 0 0 rgba(255,255,255,.7); } 100% { opacity: 0; box-shadow: 0 0 0 26px rgba(142,44,251,0), 0 0 60px 20px rgba(255,255,255,0); } }
-  .spore { position: fixed; z-index: 99; pointer-events: none; font-size: 1.1rem; will-change: transform, opacity; animation: spore 900ms var(--sc-ease-out) forwards; }
-  @keyframes spore { 0% { transform: translate(-50%, -50%) scale(.6); opacity: 1; } 100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.1) rotate(var(--rot)); opacity: 0; } }
-  .plan input { position: absolute; left: 1.15rem; top: 1.3rem; width: 1.1rem; height: 1.1rem; margin: 0; accent-color: var(--sc-accent); }
-  .plan__tag { position: absolute; right: -.4rem; top: -.7rem; font: 600 .62rem/1 var(--sc-font-text); letter-spacing: .12em; text-transform: uppercase; color: #FAFAF8; background: var(--sc-ink); padding: .4rem .6rem; border-radius: 999px; }
-  .plan__name { grid-area: name; font: 600 var(--sc-t-base)/1.2 var(--sc-font-text); }
-  .plan__price { grid-area: price; font: 500 var(--sc-t-xl)/1 var(--sc-font-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-  .plan__price small { font: 400 var(--sc-t-xs)/1 var(--sc-font-text); color: var(--sc-ink-soft); margin-left: .15rem; }
-  .plan__meta { grid-area: meta; font: 400 var(--sc-t-xs)/1.4 var(--sc-font-text); color: var(--sc-ink-soft); }
-  .plan__meta b { color: var(--sc-ink); font-weight: 600; }
-  .plans__cta { justify-self: start; margin-top: .5rem; }
-  .plans__fine { font-size: var(--sc-t-xs); color: var(--sc-ink-soft); max-width: 48ch; margin: .25rem 0 0; }
-  @media (max-width: 860px) { .plans__grid { grid-template-columns: 1fr; } .plans__head h2 { font-size: var(--sc-t-2xl); } }
-
-  /* ── 2 · CALIFORNIA ── */
-  .cali { padding-block: clamp(2rem, 5vw, 5rem) var(--sc-section); }
-  .cali__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(1.5rem, 5vw, 6rem); align-items: end; }
-  .cali figure { margin: 0; overflow: hidden; border-radius: var(--sc-r-sm); }
-  .cali figure img { width: 100%; height: auto; display: block; aspect-ratio: 16/9; object-fit: cover; }
-  .cali figcaption { margin-top: .6rem; font-size: var(--sc-t-xs); color: var(--sc-ink-soft); letter-spacing: .04em; }
-  .cali__copy h2 { font-size: var(--sc-t-3xl); margin: 0 0 var(--sc-5); }
-  .cali__copy p + p { margin-top: var(--sc-4); }
-  .cali__copy a { color: var(--sc-ink); }
-
-  /* ── 3 · PEAK ── */
-  .grow { background: var(--slate); --sc-ink: #14202A; --sc-ink-soft: #2E3F4B; color: var(--sc-ink); }
-  .grow__tl { position: absolute; inset-inline: auto; bottom: auto; left: var(--sc-gutter); top: calc(var(--promo-h) + clamp(4.5rem, 12vh, 8rem)); max-width: min(34rem, 82vw); }
-  .grow__line { font-size: var(--sc-t-2xl); margin: 0; }
-  .grow__big { font-size: var(--sc-t-4xl); margin: 0; }
-  .grow__end { font-size: var(--sc-t-3xl); max-width: 14ch; }
-  .grow__sub { margin: var(--sc-4) 0 0; font: italic 400 var(--sc-t-lg)/1.35 var(--sc-font-display); color: var(--sc-ink-soft); max-width: 30ch; }
-  /* the burst: the flush swells and the capsule row irises in over it, driven by the act's progress */
-  .grow video, .grow .sc-stage__poster { transform: scale(calc(1 + clamp(0, (var(--sc-p, 0) - 0.78) * 4, 1) * 0.12)); transform-origin: 50% 60%; }
-  .grow__flat { position: absolute; inset: auto 0 -16% 0; width: 100%; height: 116%; object-fit: cover; object-position: 50% 70%; clip-path: circle(calc(clamp(0, (var(--sc-p, 0) - 0.78) * 14, 1) * 85%) at 50% 62%); }
-  @media (prefers-reduced-motion: reduce) {
-    .grow video, .grow .sc-stage__poster { transform: none; }
-    .grow__flat { clip-path: none; opacity: clamp(0, (var(--sc-p, 0) - 0.78) * 14, 1); }
-  }
-  @media (max-width: 1100px) { .grow__big { font-size: var(--sc-t-3xl); } .grow__line { font-size: var(--sc-t-xl); } }
-
-  /* ── 4 · INSIDE (rail) ── */
-  #inside [data-sc-stage] { background: #EFE3D2; }
-  .rail { display: flex; align-items: stretch; gap: clamp(1rem, 2vw, 1.75rem); padding: 0 var(--sc-gutter); height: 100%; align-items: center; }
-  .rail__lead { flex: 0 0 auto; width: min(30rem, 78vw); padding-right: clamp(1rem, 4vw, 4rem); }
-  .rail__lead h2 { font-size: var(--sc-t-3xl); margin: 0 0 var(--sc-5); }
-  .rail__lead p { color: var(--sc-ink-soft); max-width: 36ch; }
-  .spec { flex: 0 0 auto; width: clamp(11rem, 15vw, 14rem); display: grid; grid-template-rows: auto auto auto; gap: .5rem; padding: 1rem 1rem 1.1rem; border-radius: var(--sc-r-sm); background: hsl(0 0% 100% / .45); box-shadow: 0 0 0 1px hsl(var(--sc-shadow-color) / .1); }
-  .spec__art { aspect-ratio: 1; display: grid; place-items: center; }
-  .spec__art img { width: 82%; height: 82%; object-fit: contain; filter: drop-shadow(0 12px 16px hsl(var(--sc-shadow-color) / .3)); }
-  .spec b { font: 500 var(--sc-t-lg)/1.1 var(--sc-font-display); }
-  .spec i { display: block; font-style: normal; font-size: var(--sc-t-xs); color: var(--sc-ink-soft); letter-spacing: .03em; margin-top: .15rem; }
-  .spec u { text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; font-size: var(--sc-t-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--sc-ink-soft); }
-  .spec u::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: var(--dot); }
-  .spec--focus { --dot: var(--kraft); }
-  .spec--bliss { --dot: var(--lilac); }
-  .spec--both  { --dot: var(--lilac); }
-  .spec--label { width: clamp(15rem, 22vw, 21rem); background: #FAFAF8; padding: .6rem; }
-  .spec--label img { width: 100%; height: auto; display: block; border-radius: 2px; }
-  .spec--label i { color: #50385E; padding: .5rem .3rem 0; }
-  .rail__note { flex: 0 0 auto; width: min(24rem, 78vw); padding-left: clamp(1rem, 3vw, 3rem); color: var(--sc-ink-soft); }
-  .rail__note a { color: var(--sc-ink); }
-  @media (prefers-reduced-motion: no-preference) {
-    .spec, .rail__note { opacity: calc(0.55 + 0.45 * clamp(0, (var(--sc-p, 0) * 1.6 - var(--i, 0) * 0.075), 1)); transform: translateY(calc((1 - clamp(0, (var(--sc-p, 0) * 1.6 - var(--i, 0) * 0.075), 1)) * 18px)); }
-  }
-
-  /* ── 5 · COMMUNITY ── */
-  .fam { padding-block: var(--sc-section); }
-  .fam__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 6rem); align-items: end; }
-  .fam__head h2 { font-size: var(--sc-t-3xl); margin: 0; }
-  .fam__head p { color: var(--sc-ink-soft); max-width: 40ch; }
-  .counts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sc-4); margin-top: clamp(2rem, 5vw, 4rem); padding-top: var(--sc-5); border-top: 1px solid hsl(270 20% 20% / .16); }
-  .counts b { display: block; font: 800 var(--sc-t-3xl)/1 var(--sc-font-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-  .fam__src { margin-top: var(--sc-4); font-size: var(--sc-t-xs); color: var(--sc-ink-soft); max-width: 70ch; line-height: 1.5; }
-  .fam__src a { color: var(--sc-ink-soft); }
-  .counts span { display: block; margin-top: .5rem; font-size: var(--sc-t-xs); letter-spacing: .04em; color: var(--sc-ink-soft); max-width: 18ch; }
-  .quotes { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 4fr) minmax(0, 4fr); gap: clamp(1.25rem, 3vw, 3rem); margin-top: clamp(2.5rem, 6vw, 5rem); align-items: start; }
-  .quotes blockquote { margin: 0; font: 400 var(--sc-t-lg)/1.35 var(--sc-font-display); text-wrap: pretty; }
-  .quotes__fig { margin: 0; grid-row: 1 / span 1; }
-  .quotes__fig img { width: 100%; height: auto; display: block; border-radius: var(--sc-r-sm); aspect-ratio: 3/4; object-fit: cover; }
-  .quotes blockquote:nth-child(2) { font-size: var(--sc-t-xl); }
-  .quotes footer { margin-top: .8rem; font: 400 var(--sc-t-xs)/1.4 var(--sc-font-text); color: var(--sc-ink-soft); letter-spacing: .04em; }
-  .press { margin-top: clamp(2.5rem, 6vw, 5rem); padding-top: var(--sc-5); border-top: 1px solid hsl(270 20% 20% / .16); overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
-  .press__track { display: flex; align-items: center; width: max-content; }
-  .press img { --h: 1.2rem; height: var(--h); width: auto; margin-right: clamp(3rem, 7vw, 6rem); filter: brightness(0); opacity: .6; flex: none; }
-  .press img[alt="Rolling Stone"] { --h: 1.6rem; }
-  .press img[alt="Vogue"] { --h: 1.05rem; }
-  .press img[alt="TIME"] { --h: 1.35rem; }
-  @media (prefers-reduced-motion: no-preference) {
-    .press__track { animation: press-slide 36s linear infinite; }
-    .press:hover .press__track { animation-play-state: paused; }
-  }
-  @keyframes press-slide { to { transform: translateX(-50%); } }
-
-  /* ── 6 · SHARE ── */
-  .share { background: #EBDCC6; }
-  /* the frame leans with the pointer: the engine publishes --sc-mx/--sc-my (0..1) on the spotlight stage */
-  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    .share video, .share .sc-stage__poster { transform: scale(1.06) translate(calc((0.5 - var(--sc-mx, 0.5)) * 2.4%), calc((0.5 - var(--sc-my, 0.5)) * 2.4%)); transition: transform 320ms var(--sc-ease-out); will-change: transform; }
-  }
-  .share .sc-copy { max-width: min(30rem, 80vw); }
-  @media (max-width: 1100px) { .share video, .share .sc-stage__poster { object-position: 50% 62%; } }
-  .share .sc-display { color: var(--sc-ink); font-size: var(--sc-t-3xl); }
-  .share__sub { color: var(--sc-ink); max-width: 30ch; margin-left: auto; }
-  .share__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(60% 55% at 92% 88%, rgba(242,232,218,.96), rgba(242,232,218,.82) 45%, rgba(242,232,218,0) 100%); }
-  @media (max-width: 860px) { .share__scrim { background: linear-gradient(to top, rgba(242,232,218,.96) 0%, rgba(242,232,218,.86) 34%, rgba(242,232,218,0) 58%); } }
-
-  /* ── 7 · CLOSE (map) ── */
-  .close { background: #F6F0E8; }
-  .close__copy { position: absolute; left: var(--sc-gutter); top: calc(clamp(5rem, 14vh, 9rem) + var(--promo-h)); max-width: min(26rem, 84vw); display: grid; gap: var(--sc-5); z-index: 2; }
-  .close__copy h2 { font-size: var(--sc-t-3xl); margin: 0; }
-  .close__copy p { color: var(--sc-ink-soft); max-width: 32ch; }
-  .close__fine { font-size: var(--sc-t-xs); color: var(--sc-ink-soft); letter-spacing: .02em; }
-  .close__fine a { color: var(--sc-ink-soft); }
-  .map { position: absolute; right: var(--sc-gutter); top: 50%; translate: 0 -50%; width: min(62vw, 120vh, 66rem); aspect-ratio: 959 / 593; }
-  .usmap { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
-  .usmap__states path { fill: #EFE3D2; stroke: #F6F0E8; stroke-width: 1.2; transition: fill 380ms var(--sc-ease-out); cursor: default; }
-  .usmap__states path.is-hot { stroke: var(--sc-ink); stroke-width: 1.6; }
-  .usmap--pins { pointer-events: none; }
-  .usmap--pins g { pointer-events: auto; cursor: default; transform-box: fill-box; transform-origin: 50% 100%; }
-  .map__legend { position: absolute; left: 0; bottom: -1.2rem; display: flex; align-items: center; gap: .5rem; font: 400 var(--sc-t-xs)/1 var(--sc-font-text); color: var(--sc-ink-soft); letter-spacing: .04em; }
-  .map__legend i { display: block; width: 6.5rem; height: .5rem; border-radius: 2px; background: linear-gradient(90deg, #EFE3D2, #CDB3F2, #5B2D8E); }
-  .map__tip { position: absolute; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 140ms var(--sc-ease-out); background: var(--sc-ink); color: #FAFAF8; padding: .55rem .75rem; border-radius: 6px; font: 400 var(--sc-t-xs)/1.4 var(--sc-font-text); letter-spacing: .02em; max-width: 18rem; translate: -50% calc(-100% - 12px); box-shadow: var(--sc-e2); }
-  .map__tip b { display: block; font: 700 var(--sc-t-sm)/1.2 var(--sc-font-display); margin-bottom: .15rem; }
-  .map__tip.is-on { opacity: 1; }
-  .foot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between; padding: 1rem var(--sc-gutter) max(1rem, env(safe-area-inset-bottom)); font-size: var(--sc-t-xs); color: var(--sc-ink-soft); letter-spacing: .04em; }
-  .foot nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-  .foot__mark { display: inline-flex; align-items: center; gap: .6rem; }
-  .foot__mark svg { height: 14px; width: auto; }
-  .foot a { color: var(--sc-ink-soft); }
-
-  /* ── hero stacks below 1100px: copy on a cream plate, the clip beneath it ── */
-  @media (max-width: 1100px) {
-    .offer { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: .5rem; padding-top: 4.5rem; }
-    .offer__copy h1 { font-size: var(--sc-t-2xl); }
-    .offer__sub { font-size: var(--sc-t-base); }
-    .offer { grid-template-columns: 1fr; align-content: start; padding-top: calc(4.25rem + var(--promo-h)); }
-    .offer__copy { position: relative; z-index: 3; max-width: none; margin-inline: calc(-1 * var(--sc-gutter)); padding-inline: var(--sc-gutter); padding-bottom: 1.5rem; background: linear-gradient(to bottom, var(--sc-canvas) 0, var(--sc-canvas) calc(100% - 1.25rem), transparent); }
-    .addins { left: .6rem; right: .6rem; bottom: .6rem; max-width: none; gap: .3rem; flex-wrap: nowrap; justify-content: center; }
-    .addin { font-size: .72rem; padding: .25rem .55rem .25rem .25rem; gap: .35rem; white-space: nowrap; }
-    .addin img, .addin b { width: 1.25rem; height: 1.25rem; line-height: 1.25rem; font-size: .5rem; }
-    .offer__copy { padding-top: 0; gap: var(--sc-3); }
-    .offer__copy h1 { font-size: clamp(2.4rem, 11vw, 3.4rem); }
-    .offer__sub { font-size: var(--sc-t-sm); }
-    .offer__fine { display: none; }
-    .ledger { font-size: var(--sc-t-xs); }
-    .gets li { font-size: var(--sc-t-xs); gap: .5rem; grid-template-columns: 1.6rem 1fr auto; }
-    .gets li img, .gets li em { width: 1.6rem; height: 1.6rem; line-height: 1.6rem; font-size: .6rem; }
-    .gets { gap: .15rem; }
-    .ledger__now { font-size: var(--sc-t-xl); }
-  }
-  /* short viewports: keep the CTA inside the fold */
-  @media (max-height: 780px) and (min-width: 1101px) {
-    .offer__copy { gap: var(--sc-2); padding-top: calc(4.5rem + var(--promo-h)); }
-    .offer__copy h1 { font-size: clamp(2.4rem, 1rem + 3.4vw, 3.6rem); }
-    .offer__coffee { display: none; }
-    .gets { gap: .3rem; }
-  }
-  @media (max-height: 820px) and (max-width: 1100px) {
-    .offer__copy h1 { font-size: clamp(2.1rem, 1rem + 3.2vw, 2.8rem); }
-    .offer__coffee { display: none; }
-    .gets { gap: .15rem; }
-    .gets li { font-size: var(--sc-t-xs); }
-    .ledger__now { font-size: var(--sc-t-lg); }
-    .offer__copy { gap: var(--sc-2); }
-  }
-  /* ── close stacks below 1100px ── */
-  @media (max-width: 1100px) {
-    .close { display: flex; flex-direction: column; padding: calc(var(--promo-h) + 4.5rem) var(--sc-gutter) 0; }
-    .close__copy { position: static; max-width: none; gap: var(--sc-4); }
-    .close__copy h2 { font-size: var(--sc-t-2xl); }
-    .map { position: relative; inset: auto; translate: none; margin: 1rem auto 0; width: min(100%, 52svh * 1.617); flex: 0 0 auto; }
-    .map__legend { position: static; justify-content: center; margin-top: .6rem; }
-    .foot { position: static; margin-top: auto; padding-inline: 0; }
-  }
-  /* ── phones ── */
-  @media (max-width: 860px) {
-    .sc-stage.offer-stage video[data-sc-scrub], .sc-stage.offer-stage .sc-stage__poster { left: 0; right: 0; top: auto; bottom: 0; width: 100%; height: 46%; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 58%); mask-image: linear-gradient(to bottom, transparent 0, #000 58%); object-position: 50% 50%; }
-    .cali__grid, .fam__head { grid-template-columns: 1fr; }
-    .counts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .quotes { grid-template-columns: 1fr; }
-    .grow h2 { font-size: var(--sc-t-2xl); }
-    .foot { justify-content: flex-start; }
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Colony is a year-round participatory desert village for stays, art, wellness, and gathering in Jacumba Hot Springs, California.">
+  <meta name="theme-color" content="#171a18">
+  <link rel="canonical" href="https://the-colony-nomadic.valid-comet-1961.chatgpt.site/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Colony | A participatory desert village">
+  <meta property="og:description" content="Real land, existing bones, and a measured path toward desert stays, art, wellness, and gathering.">
+  <meta property="og:url" content="https://the-colony-nomadic.valid-comet-1961.chatgpt.site/">
+  <meta property="og:image" content="https://the-colony-nomadic.valid-comet-1961.chatgpt.site/og.png">
+  <meta property="og:image:alt" content="The Colony at blue hour with Temple Peak, Long Feng, an illuminated red slide, and a desert village gathering.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Colony | A participatory desert village">
+  <meta name="twitter:description" content="Real land, existing bones, and a measured path toward desert stays, art, wellness, and gathering.">
+  <meta name="twitter:image" content="https://the-colony-nomadic.valid-comet-1961.chatgpt.site/og.png">
+  <title>The Colony | A participatory desert village</title>
+  <link rel="preload" as="image" href="assets/colony/today-stage.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="colony.css?v=20260905-2">
 </head>
 <body>
-
-<span data-sc-progress></span>
-<div class="sc-grain" aria-hidden="true"></div>
-<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-
-<div class="promo" role="region" aria-label="This month's offer">
-  <div class="promo__text"><b><span id="promoMonth">Ends Sunday</span>: save 65% + free welcome kit</b><span>Free shipping on the 90-day supply · cancel or pause anytime · 90-day money-back guarantee</span></div>
-  <div class="promo__timer" id="promoTimer" aria-live="off">
-    <div><b id="tD">00</b><i>days</i></div><em>:</em><div><b id="tH">00</b><i>hrs</i></div><em>:</em><div><b id="tM">00</b><i>mins</i></div><em>:</em><div><b id="tS">00</b><i>secs</i></div>
-  </div>
-</div>
-<header class="bar">
-  <a class="mark" href="#top" aria-label="mcrdse"><svg viewBox="0 0 544 116" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M 348.500 6.889 L 335.500 13.733 335.198 18.866 L 334.895 24 338.448 24 C 340.584 24, 342.029 24.498, 342.074 25.250 C 342.242 28.098, 342.491 41, 342.377 41 C 342.310 41, 340.060 40.024, 337.377 38.831 C 331.082 36.031, 319.745 35.828, 312.238 38.380 C 304.981 40.847, 297.048 48.274, 293.699 55.737 C 284.969 75.189, 290.155 100.290, 304.925 110.073 C 314.521 116.430, 328.524 117.692, 338.101 113.065 C 340.452 111.929, 342.454 111, 342.549 111 C 342.645 111, 342.495 112.193, 342.216 113.651 C 341.722 116.236, 341.807 116.286, 345.676 115.668 C 349.702 115.024, 364.576 114.037, 375.500 113.689 L 381.500 113.498 381.796 108.436 L 382.092 103.375 378.296 102.438 L 374.500 101.500 374.241 50.750 L 373.982 0 367.741 0.023 C 361.981 0.044, 360.499 0.573, 348.500 6.889 M 13.750 43.179 L 0 50.356 0 55.118 L 0 59.879 3.750 60.190 L 7.500 60.500 7.500 81 L 7.500 101.500 3.704 102.438 L -0.092 103.375 0.204 108.438 L 0.500 113.500 23.750 113.699 L 47 113.898 47 106.571 C 47 102.531, 47.632 97.732, 48.409 95.872 C 49.184 94.017, 49.582 91.262, 49.292 89.750 C 48.842 87.395, 48.280 87, 45.383 87 C 41.521 87, 38 84.103, 38 80.926 C 38 78.411, 48.624 67, 50.965 67 C 54.334 67, 62 78.063, 62 82.925 C 62 85.221, 59.248 87, 55.697 87 C 53.628 87, 53.141 87.637, 52.450 91.250 C 51.366 96.911, 51.285 111.622, 52.331 112.668 C 52.789 113.126, 62.146 113.646, 73.126 113.824 L 93.088 114.147 92.879 107.324 C 92.764 103.571, 93.238 98.680, 93.931 96.456 C 95.942 90.011, 95.161 87.634, 90.802 86.929 C 82.158 85.532, 81.664 80.742, 89.329 72.636 C 92.484 69.299, 95.508 67, 96.740 67 C 99.235 67, 102.945 71.189, 105.953 77.404 C 108.865 83.417, 108.081 85.669, 102.706 86.731 C 98.635 87.537, 98.491 87.701, 97.614 92.530 C 96.334 99.577, 96.462 109.126, 97.871 111.759 C 99.056 113.973, 99.328 114, 120.453 114 C 132.214 114, 142.548 113.727, 143.418 113.393 C 144.551 112.958, 145 111.448, 145 108.069 C 145 103.450, 144.922 103.334, 141.250 102.426 L 137.500 101.500 136.955 78 C 136.363 52.489, 135.794 49.597, 130.197 43.620 C 121.928 34.789, 104.806 34.079, 89.802 41.943 L 83.751 45.115 81.613 43.106 C 74.442 36.369, 58.957 34.547, 47.500 39.093 C 39.995 42.071, 39.542 42.066, 39.519 39 C 39.501 36.641, 39.161 36.486, 33.500 36.251 C 27.795 36.014, 26.824 36.354, 13.750 43.179 M 172.780 36.990 C 165.629 38.256, 157.628 42.333, 152.046 47.554 C 136.560 62.039, 136.474 89.881, 151.872 104.284 C 160.857 112.688, 172.647 116.623, 186 115.674 C 196.099 114.956, 202.001 112.704, 208.061 107.255 C 212.663 103.118, 218.967 94.020, 218.991 91.484 C 218.999 90.570, 209.011 84, 207.614 84 C 207.299 84, 206.153 85.740, 205.068 87.866 C 201.916 94.045, 198.270 97.732, 193.515 99.548 C 184.943 102.821, 176.540 98.418, 173.888 89.264 C 172.224 83.523, 172.250 63.452, 173.928 57.247 C 175.259 52.329, 178.766 49.473, 182.366 50.377 C 184.771 50.981, 185.800 52.882, 187.865 60.542 C 189.528 66.707, 193.829 70.248, 200.228 70.722 C 211.818 71.578, 218.158 61.551, 213.087 50.384 C 209.504 42.495, 199.680 37.615, 185.500 36.681 C 181.100 36.391, 175.376 36.530, 172.780 36.990 M 232.750 43.219 L 219 50.442 219 55.160 L 219 59.879 222.750 60.190 L 226.500 60.500 226.500 81 L 226.500 101.500 222.704 102.438 L 218.908 103.375 219.204 108.438 L 219.500 113.500 242.750 113.699 L 266 113.898 266 108.528 C 266 103.349, 265.891 103.135, 262.933 102.485 C 261.246 102.115, 259.559 100.986, 259.183 99.977 C 258.807 98.968, 258.725 89.448, 259 78.821 C 259.493 59.780, 259.532 59.495, 261.727 59.183 C 263.274 58.964, 265.134 60.108, 267.822 62.933 C 271.321 66.612, 272.158 67, 276.595 66.996 C 286.482 66.989, 291.495 61.122, 290.810 50.361 C 290.475 45.101, 289.935 43.542, 287.607 41.112 C 282.245 35.515, 272.746 34.908, 264.124 39.612 C 258.607 42.623, 258.260 42.601, 258.392 39.250 C 258.497 36.570, 258.347 36.494, 252.500 36.248 C 246.784 36.007, 245.850 36.337, 232.750 43.219 M 407.081 37.588 C 400.119 39.460, 396.019 42.035, 391.096 47.628 C 382.583 57.300, 384.286 71.371, 394.883 78.917 C 399.731 82.369, 407.197 85.203, 408.365 84.035 C 410.390 82.010, 412.885 83.063, 416.915 87.641 C 422.800 94.327, 422.200 96, 413.918 96 C 409.376 96, 405.522 92.935, 406.304 89.944 C 406.891 87.702, 405.522 86.416, 401.494 85.422 C 399.847 85.016, 397.529 84.055, 396.342 83.287 C 394.477 82.080, 393.411 82.115, 388.494 83.545 C 383.543 84.984, 382.865 85.478, 383.267 87.349 C 383.521 88.532, 384.783 94.787, 386.071 101.250 L 388.412 113 392.656 113 C 395.271 113, 397.208 112.457, 397.700 111.586 C 398.371 110.400, 399.629 110.552, 405.500 112.532 C 414.652 115.619, 423.017 116.448, 430.784 115.039 C 447.523 112.004, 456.700 103.307, 457.706 89.529 C 458.238 82.244, 455.598 76.284, 449.795 71.670 C 445.388 68.165, 435.940 64.690, 434.550 66.062 C 432.769 67.820, 430.147 67.004, 426.488 63.553 C 421.886 59.213, 422.163 56.867, 427.407 55.778 C 432.239 54.774, 436 56.833, 436 60.485 C 436 62.507, 436.725 63.118, 440.250 64.066 C 442.587 64.695, 445.797 65.880, 447.383 66.699 C 450.087 68.097, 450.408 68.044, 452.561 65.844 L 454.856 63.500 452.285 50.750 L 449.714 38 445.892 38 C 443.052 38, 441.786 38.531, 440.964 40.068 C 439.951 41.961, 439.665 42.011, 437.601 40.658 C 430.850 36.235, 417.217 34.863, 407.081 37.588 M 494.780 36.973 C 482.429 39.204, 470.350 48.372, 465.489 59.205 C 461.534 68.016, 460.928 79.992, 463.981 88.991 C 468.006 100.854, 475.284 108.211, 487.895 113.167 C 492.487 114.972, 495.579 115.378, 505 115.413 C 515.526 115.452, 517.018 115.219, 522.610 112.654 C 526.134 111.038, 530.628 107.873, 533.228 105.176 C 538.001 100.223, 543 93.229, 543 91.501 C 543 90.933, 540.443 88.938, 537.318 87.069 L 531.637 83.671 530.068 86.007 C 525.851 92.289, 518.373 98.828, 514.091 99.978 C 501.977 103.233, 494 94.884, 494 78.951 L 494 75 517.500 75 L 541 75 541 70.589 C 541 64.820, 537.845 54.827, 534.499 49.999 C 527.536 39.951, 510.045 34.215, 494.780 36.973 M 498.555 52.250 C 497.148 53.487, 495.717 55.962, 495.374 57.750 L 494.750 61 503.006 61 L 511.262 61 510.661 57.250 C 509.573 50.454, 503.463 47.930, 498.555 52.250 M 328.763 53.565 C 323.940 56.182, 322.606 60.232, 322.186 73.533 C 321.778 86.448, 322.740 92.129, 326.047 96.332 C 328.763 99.785, 334.147 100.777, 338.611 98.648 L 342 97.032 342 75.965 L 342 54.898 338.532 53.449 C 334.226 51.650, 332.250 51.673, 328.763 53.565"/></svg></a>
-  <a class="cta cta--live" href="https://mcrdse.com/shop/mcrdse-focus-bliss-dose-one-month-combo?plan=90">Start from $2.57/day</a>
-</header>
-
-<main id="top">
-
-  <!-- 1 · OFFER: scrub. Two hands bring Focus and Bliss together; the ledger fills and the total halves. -->
-  <section data-sc-act="scrub" data-sc-span="2.2" data-sc-dwell="0.3" data-sc-drift="#F2E8DA" id="offer">
-    <div data-sc-stage class="offer-stage">
-      <img class="sc-stage__poster" src="assets/01-cheers-poster.webp" width="1920" height="1065" alt="">
-      <video data-sc-scrub data-sc-src="assets/01-cheers.mp4" data-sc-src-mobile="assets/01-cheers-m.mp4" playsinline muted></video>
-      <div class="addins" aria-hidden="true">
-        <div class="addin" data-at="0.55 0.68"><img src="assets/hush-gummies.jpg" width="768" height="1024" alt=""><span>+ 60 gummies</span></div>
-        <div class="addin" data-at="0.62 0.75"><b>×5</b><span>+ 5 sachets</span></div>
-        <div class="addin" data-at="0.69 0.82"><b>J</b><span>+ journal</span></div>
-        <div class="addin" data-at="0.76 0.89"><b>?</b><span>+ mystery kit</span></div>
+  <a class="skip-link" href="#main">Skip to story</a>
+  <header class="site-nav" aria-label="Primary navigation">
+    <a class="wordmark" href="#top" aria-label="The Colony home">THE COLONY</a>
+    <nav><a href="#grounds">Grounds</a><a href="#vision">Vision</a><a href="#program">Program</a><a href="#plan">Plan</a></nav>
+    <a class="nav-cta" href="#take-part">Take part</a>
+  </header>
+  <main id="main">
+    <section id="top" class="hero" data-sc-act="pin" data-sc-span="2.1" data-sc-drift="#171a18">
+      <div class="sc-stage hero__stage" data-sc-stage>
+        <img class="hero__media" src="assets/colony/today-stage.jpg" width="1920" height="1280" alt="Existing outdoor stage framed by mature trees and the Jacumba mountains" fetchpriority="high">
+        <div class="hero__veil" aria-hidden="true"></div>
+        <div class="hero__copy">
+          <p class="eyebrow" data-sc-cue="0 .45">Jacumba Hot Springs, California</p>
+          <h1 data-sc-kinetic="lines" data-sc-cue=".04 .78">A desert village built to be lived in.</h1>
+          <p class="hero__lede" data-sc-cue=".22 .82">Real land. Existing bones. A measured path toward stays, art, work, and gathering.</p>
+          <a class="button button--light" href="#vision" data-sc-cue=".34 .9">View the transformation</a>
+        </div>
+        <p class="hero__status">Current property photograph</p>
       </div>
-      <div class="offer">
-        <div class="offer__copy">
-          <span class="sc-label sc-label--rule" data-sc-cue="0 1 0 0.14">sharp days, calm nights · first-order pricing</span>
-          <h1 class="sc-display sc-display--xl" data-sc-cue="0 1 0 0.14" data-sc-kinetic="lines">feel the magic for <em>$2.57 a day</em>.</h1>
-          <p class="offer__coffee" data-sc-cue="0 1 0 0.14">Less than a cup of coffee a day to feel the best version of yourself again.</p>
-          <p class="offer__sub" data-sc-cue="0 1 0 0.14"><b>Focus 2.0</b> 🍄 and <b>Bliss 2.0</b> 🍄 every month, plus a <b>free welcome kit</b> worth <b>$112</b>. <b>$222</b> of product for <b>$77</b> a month.</p>
-          <ul class="gets" aria-label="What you get">
-            <li data-at="0.0 0.08"><img src="assets/focus-cut.png" width="456" height="1514" alt=""><span><b>Focus 2.0</b> 🍄 · 15 capsules, monthly</span><i></i></li>
-            <li data-at="0.06 0.14"><img src="assets/bliss-cut.png" width="449" height="1506" alt=""><span><b>Bliss 2.0</b> 🍄 · 15 capsules, monthly</span><i></i></li>
-            <li data-at="0.14 0.24"><img class="gets__tin" src="assets/hush-gummies.jpg" width="768" height="1024" alt=""><span><b>Welcome kit</b> · gummies, sachets, journal</span><i>$112 value</i></li>
-            <li data-at="0.22 0.32"><em>90</em><span><b>90-day integration coaching</b></span><i>included</i></li>
-          </ul>
-          <div class="ledger" aria-label="Price">
-            <div class="ledger__total" data-at="0.36 0.48"><span class="ledger__was">$222 value</span><span class="ledger__now">$77<small>/mo</small></span></div>
-            <div class="ledger__ship" data-at="0.44 0.56">save 65% · free shipping on the 90-day supply · 90-day guarantee</div>
-          </div>
-          <div class="offer__actions" data-sc-cue="0 1 0 0.14">
-            <a class="cta cta--live" href="https://mcrdse.com/shop/mcrdse-focus-bliss-dose-one-month-combo?plan=90">Start from $2.57/day</a>
-            <span class="offer__fine">21+ · ships US · cancel or pause anytime</span>
-          </div>
+    </section>
+    <section class="land" data-sc-act="flow" data-sc-drift="#d9d2c4">
+      <div class="land__copy" data-sc-in>
+        <h2>The land is already here.</h2>
+        <p>The Colony begins with a functioning desert property, not a blank rendering. The work is to protect what carries it while converting vacant space in deliberate cohorts.</p>
+      </div>
+      <div class="facts" data-sc-in data-sc-stagger="90" aria-label="2022 appraisal baseline">
+        <article><strong>399.64</strong><span>appraised acres</span></article>
+        <article><strong>311</strong><span>RV and mobile-home sites</span></article>
+        <article><strong>20-30</strong><span>sites in the first proposed pilot</span></article>
+      </div>
+      <p class="source-note">Acreage and site counts are from a 2022 CBRE appraisal. They are historical baseline facts and require current verification.</p>
+    </section>
+    <section id="aerial" class="aerial-proof" aria-labelledby="aerial-title" data-sc-act="flow" data-sc-drift="#171a18">
+      <video class="play-on-view" muted playsinline preload="metadata" poster="assets/colony/drone-overview-golden-hour-poster.jpg" aria-label="Real aerial footage revealing the festival grounds within the Jacumba mountain landscape">
+        <source src="assets/colony/drone-overview-golden-hour-mobile-v1.mp4" type="video/mp4" media="(max-width: 700px)">
+        <source src="assets/colony/drone-overview-golden-hour-v1.mp4" type="video/mp4">
+      </video>
+      <div class="aerial-proof__veil" aria-hidden="true"></div>
+      <div class="aerial-proof__copy" data-sc-in>
+        <p>Real aerial footage / existing grounds</p>
+        <h2 id="aerial-title">See the whole canvas.</h2>
+        <span>Festival activity shown is historical documentation, not a representation of current operations.</span>
+      </div>
+    </section>
+    <section id="grounds" class="grounds" data-sc-act="pan" data-sc-span="2.8" data-sc-drift="#d9d2c4">
+      <div class="sc-stage grounds__stage" data-sc-stage>
+        <div class="grounds__intro"><h2>What exists today</h2><p>Places with real use, real texture, and room to become more.</p></div>
+        <div class="grounds__rail" data-sc-pan=".72">
+          <figure class="frame frame--wide"><img src="assets/colony/today-tent.jpg" width="1920" height="1280" loading="lazy" alt="Existing A-frame canvas tent on the property"><figcaption>A-frame stay</figcaption></figure>
+          <figure class="frame frame--wide"><img src="assets/colony/today-clubhouse.jpg" width="2200" height="1466" loading="lazy" alt="Existing open-air clubhouse pavilion"><figcaption>Open-air clubhouse</figcaption></figure>
+          <figure class="frame frame--wide"><img src="assets/colony/today-outdoor-kitchen.jpg" width="2200" height="1466" loading="lazy" alt="Existing outdoor kitchen and bar"><figcaption>Outdoor kitchen</figcaption></figure>
+          <figure class="frame frame--tall"><img src="assets/colony/today-gathering.jpg" width="1280" height="1920" loading="lazy" alt="Outdoor movement gathering with gongs and shade sails"><figcaption>Gathering space</figcaption></figure>
+          <figure class="frame frame--wide"><img src="assets/colony/today-pool.jpg" width="1920" height="1280" loading="lazy" alt="Pool terrace and shaded lounge at the existing property"><figcaption>Pool terrace</figcaption></figure>
+          <figure class="frame frame--wide"><img src="assets/colony/today-indoor-pool.jpg" width="2200" height="1466" loading="lazy" alt="Existing enclosed indoor pool"><figcaption>Indoor pool building</figcaption></figure>
+          <figure class="frame frame--wide"><img src="assets/colony/today-courts.jpg" width="2200" height="1466" loading="lazy" alt="Existing fenced tennis courts with mountain views"><figcaption>Courts and maker-yard potential</figcaption></figure>
+          <figure class="frame frame--wide"><img src="assets/colony/today-stage.jpg" width="1920" height="1280" loading="lazy" alt="Outdoor stage with mountain views"><figcaption>Outdoor stage</figcaption></figure>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 1a · PLANS: flow. Pick a supply. -->
-  <section class="sc-section plans" data-sc-act="flow" data-sc-drift="#F2E8DA" id="plans">
-    <div class="sc-wrap plans__grid">
-      <div class="plans__head" data-sc-in data-sc-stagger="60">
-        <span class="sc-label">subscribe &amp; save</span>
-        <h2 class="sc-display">90 days to <em>change your life</em>.</h2>
-        <p class="sc-body">Feel <em class="limitless">limitless</em> again. A ritual takes weeks to feel natural. Ninety days is where it sticks.</p>
-        <ul class="checks">
-          <li>Exclusive access to the 90-day integration coaching program</li>
-          <li>Free welcome kit, $112 in value, arrives with your first order</li>
-          <li>Cancel or pause anytime</li>
-          <li>90-day money-back guarantee</li>
-        </ul>
+    </section>
+    <section id="vision" class="vision" data-sc-act="pin" data-sc-span="3.2" data-sc-drift="#111513">
+      <div class="sc-stage vision__stage" data-sc-stage>
+        <div class="vision__image vision__image--today"><img src="assets/colony/today-stage.jpg" width="1920" height="1280" alt="Current outdoor stage and surrounding grounds"><span data-sc-cue=".02 .56">Property today</span></div>
+        <div class="vision__image vision__image--future" data-sc-cue=".42"><img src="assets/colony/generated/stage-pilot.jpg" width="2200" height="1222" alt="Illustrative concept showing the current stage upgraded as a shaded performance grove"><span>Illustrative pilot concept</span></div>
+        <div class="vision__copy"><p data-sc-cue=".02 .38">The same ground. A clearer purpose.</p><h2 data-sc-kinetic="lines" data-sc-cue=".36 .94">Transform one district. Prove it. Then grow.</h2></div>
       </div>
-      <div class="plans__list" role="radiogroup" aria-label="Choose a plan" data-sc-in data-sc-stagger="80">
-        <label class="plan plan--best is-on"><input type="radio" name="plan" value="90" checked><span class="plan__tag">best value</span><span class="plan__name">90-day supply</span><span class="plan__price">$77<small>/mo</small></span><span class="plan__meta">Billed $231 every 90 days · <b>$2.57/day</b> · save 65% · <b>free shipping</b></span></label>
-        <label class="plan"><input type="radio" name="plan" value="30"><span class="plan__name">30-day supply</span><span class="plan__price">$99<small>/mo</small></span><span class="plan__meta">Billed monthly · <b>$3.30/day</b> · save 55% · plus shipping</span></label>
-        <label class="plan"><input type="radio" name="plan" value="1"><span class="plan__name">One-time, 30 days</span><span class="plan__price">$139</span><span class="plan__meta">No subscription · <b>$4.63/day</b> · save 37% · plus shipping</span></label>
-        <a class="cta plans__cta" id="plansCta" href="https://mcrdse.com/shop/mcrdse-focus-bliss-dose-one-month-combo?plan=90">Start from $2.57/day</a>
-        <p class="plans__fine">Value based on $222 of product per month at list price. Welcome kit and coaching come with subscription plans. Free shipping on the 90-day supply; shipping is added at checkout on the others.</p>
+    </section>
+    <section class="proof" data-sc-act="flow" data-sc-drift="#d9d2c4">
+      <div class="proof__intro" data-sc-in>
+        <p class="eyebrow">Pilot visual studies / 01–03</p>
+        <h2>Three spaces can tell the whole first chapter.</h2>
+        <p>These matched-photo studies are directional—not construction documents. They keep the existing property legible while making a focused pilot easier to see.</p>
       </div>
-    </div>
-    <div class="sc-wrap">
-      <div class="press" data-sc-in aria-label="As seen in">
-        <div class="press__track"><img src="assets/forbes.svg" alt="Forbes"><img src="assets/vox.svg" alt="Vox"><img src="assets/vogue.svg" alt="Vogue"><img src="assets/time.svg" alt="TIME"><img src="assets/rolling-stone.svg" alt="Rolling Stone"><img src="assets/forbes.svg" aria-hidden="true" alt="Forbes"><img src="assets/vox.svg" aria-hidden="true" alt="Vox"><img src="assets/vogue.svg" aria-hidden="true" alt="Vogue"><img src="assets/time.svg" aria-hidden="true" alt="TIME"><img src="assets/rolling-stone.svg" aria-hidden="true" alt="Rolling Stone"></div>
+      <div class="proof__list">
+        <article class="proof-card" data-sc-in>
+          <div class="proof-card__media">
+            <figure><img src="assets/colony/today-tent.jpg" width="1920" height="1280" loading="lazy" alt="Existing A-frame tent"><figcaption>Today</figcaption></figure>
+            <figure><img src="assets/colony/generated/tent-pilot.jpg" width="2200" height="1222" loading="lazy" alt="Illustrative first lodging prototype with deck, shade, planting, and soaking tub"><figcaption>Illustrative pilot</figcaption></figure>
+          </div>
+          <div class="proof-card__copy"><span>01 / Stay</span><h3>The first lodging prototype</h3><p>Upgrade one existing canvas stay into a complete private arrival: deck, shade, planting, bathing, and a warm night identity.</p></div>
+        </article>
+        <article class="proof-card proof-card--reverse" data-sc-in>
+          <div class="proof-card__media">
+            <figure><img src="assets/colony/today-pool.jpg" width="1920" height="1280" loading="lazy" alt="Existing pool terrace"><figcaption>Today</figcaption></figure>
+            <figure><img src="assets/colony/generated/pool-pilot.jpg" width="2200" height="1238" loading="lazy" alt="Illustrative social and thermal commons around the existing pool"><figcaption>Illustrative pilot</figcaption></figure>
+          </div>
+          <div class="proof-card__copy"><span>02 / Gather</span><h3>The social and thermal commons</h3><p>Let the pool terrace carry the day-to-night hospitality rhythm with better seating, native landscape, sauna, plunge, and service.</p></div>
+        </article>
       </div>
-    </div>
-  </section>
-
-  <!-- 3 · PEAK: scrub. The block fruits under the wheel, then bursts into the capsule row. Largest span on the page. -->
-  <section data-sc-act="scrub" data-sc-span="3.8" data-sc-dwell="0.45" data-sc-drift="#9AAAB4" id="grow">
-    <div data-sc-stage class="grow">
-      <img class="sc-stage__poster" src="assets/03-grow-poster.webp" width="1920" height="1065" alt="">
-      <video data-sc-scrub data-sc-src="assets/03-grow.mp4" data-sc-src-mobile="assets/03-grow-m.mp4" playsinline muted></video>
-      <img class="grow__flat" src="assets/03-flat.webp" width="2736" height="1520" alt="Dried whole mushrooms and capsules in a row">
-      <div class="sc-copy grow__tl">
-        <p class="sc-display grow__line" data-sc-cue="0 0.30 0 0.22" data-sc-kinetic="lines">one block of <em>white mycelium</em>.</p>
+      <p class="concept-note">Concept imagery visualizes intent only. Final scope is subject to ownership, entitlement, engineering, fire, accessibility, utility, operating, and budget diligence.</p>
+    </section>
+    <section id="program" class="program" data-sc-act="flow" data-sc-drift="#171a18">
+      <div class="program__header" data-sc-in>
+        <h2>A village with a monthly pulse.</h2>
+        <p>The working model: artist residencies and daily wellness feed one public-facing community weekend each month—studios open, food is shared, installations light up, and a slow art-car procession moves through approved internal routes.</p>
       </div>
-      <div class="sc-copy grow__tl">
-        <p class="sc-display grow__line" data-sc-cue="0.33 0.57 0.25 0.22" data-sc-kinetic="lines">a few days, <em>and it pins</em>.</p>
+      <div class="program__world" data-sc-in data-sc-stagger="90">
+        <figure class="program-card program-card--residency">
+          <img class="program-card__vision" src="assets/colony/generated/clubhouse-pilot.jpg" width="2200" height="1222" loading="lazy" alt="Illustrative artist residency commons inside the existing clubhouse pavilion">
+          <img class="program-card__today" src="assets/colony/today-clubhouse.jpg" width="2200" height="1466" loading="lazy" alt="">
+          <figcaption><span>Illustrative pilot / clubhouse</span><strong>Artists live here long enough to make something.</strong></figcaption>
+        </figure>
+        <figure class="program-card program-card--maker">
+          <video class="program-card__vision" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="assets/colony/generated/maker-yard-pilot.jpg" aria-label="Illustrative monthly maker yard with sculpture workstations and one art vehicle moving slowly through the courts">
+            <source src="assets/colony/generated/maker-yard-motion-v1.mp4" type="video/mp4">
+          </video>
+          <img class="program-card__today" src="assets/colony/today-courts.jpg" width="2200" height="1466" loading="lazy" alt="">
+          <figcaption><span>Illustrative pilot / courts</span><strong>A maker yard that changes every month.</strong></figcaption>
+        </figure>
+        <figure class="program-card program-card--wellness">
+          <img class="program-card__vision" src="assets/colony/generated/wellness-house-pilot.jpg" width="2200" height="1222" loading="lazy" alt="Illustrative mineral-bath wellness facility inside the existing indoor pool building">
+          <img class="program-card__today" src="assets/colony/today-indoor-pool.jpg" width="2200" height="1466" loading="lazy" alt="">
+          <figcaption><span>Illustrative pilot / indoor pool</span><strong>Wellness is daily infrastructure, not weekend decoration.</strong></figcaption>
+        </figure>
       </div>
-      <div class="sc-copy grow__tl">
-        <h2 class="sc-display grow__big" data-sc-cue="0.60 0.78 0.28 0.2" data-sc-kinetic="lines">then it <em>fruits</em>.</h2>
+      <ol class="program__loop" data-sc-in data-sc-stagger="80">
+        <li><span>Weeks 1–3</span><strong>Residence</strong><p>Artists make, guests stay, and wellness facilities operate at a calm everyday cadence.</p></li>
+        <li><span>Final weekend</span><strong>Assembly</strong><p>Open studios, community supper, workshops, performance, installations, and a managed art-car procession.</p></li>
+        <li><span>Week 4</span><strong>Afterglow</strong><p>Document the work, measure the weekend, reset the grounds, and invite the next cohort.</p></li>
+      </ol>
+      <p class="program__boundary">Proposed programming only. Event frequency, routes, capacity, amplified sound, food service, fire effects, vehicles, and public access require operational, insurance, safety, neighbor, and permitting review.</p>
+    </section>
+    <section id="future-film" class="future-film" data-sc-act="flow" data-sc-drift="#d9d2c4">
+      <div class="future-film__header" data-sc-in>
+        <p class="eyebrow">Illustrative future film / six movements</p>
+        <h2>From real ground to a living work of art.</h2>
+        <p>A thirty-six-second FPV journey moves from Temple Peak by day through dust, tea, trails, a monumental red slide, and a blue-hour assembly—an atmospheric sketch of how a reversible monthly activation could feel.</p>
       </div>
-      <div class="sc-copy grow__tl">
-        <h2 class="sc-display grow__line grow__end" data-sc-cue="0.87 1 0.25 0.1" data-sc-kinetic="lines">whole. dried. <em>capsuled</em>.</h2>
-        <p class="grow__sub" data-sc-cue="0.9 1 0.25 0.1">Cap and stem, ground whole, into the capsule.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4 · INSIDE: pan. Eighteen actives as specimens, ending on the two real labels. -->
-  <section data-sc-act="pan" data-sc-span="2.3" data-sc-drift="#EFE3D2" id="inside">
-    <div data-sc-stage>
-      <div class="rail" data-sc-pan="0.05">
-        <div class="rail__lead">
-          <h2 class="sc-display">eighteen actives. <em>named.</em></h2>
-          <p class="sc-body">Warm dot: in Focus. Cool dot: in Bliss. Cream: in both. Every one of them is on the label, and every batch has its own lab report.</p>
-        </div>
-        <article class="spec spec--both"  style="--i:1"><div class="spec__art"><img src="assets/ingredients/blue-lotus.png" alt=""></div><div><b>Blue Lotus</b><i>Nymphaea caerulea, flower</i></div><u>both</u></article>
-        <article class="spec spec--both"  style="--i:2"><div class="spec__art"><img src="assets/ingredients/kanna.png" alt=""></div><div><b>Kanna</b><i>Sceletium tortuosum</i></div><u>both</u></article>
-        <article class="spec spec--focus" style="--i:3"><div class="spec__art"><img src="assets/ingredients/lions-mane.png" alt=""></div><div><b>Lion's Mane</b><i>Hericium erinaceus, fruiting body</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:4"><div class="spec__art"><img src="assets/ingredients/cordyceps.png" alt=""></div><div><b>Cordyceps</b><i>Cordyceps militaris</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:5"><div class="spec__art"><img src="assets/ingredients/bacopa.png" alt=""></div><div><b>Bacopa</b><i>Bacopa monnieri, leaf</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:6"><div class="spec__art"><img src="assets/ingredients/ginkgo.png" alt=""></div><div><b>Ginkgo</b><i>Ginkgo biloba, leaf</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:7"><div class="spec__art"><img src="assets/ingredients/l-tyr.png" alt=""></div><div><b>L-Tyrosine</b><i>amino acid</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:8"><div class="spec__art"><img src="assets/ingredients/ps.png" alt=""></div><div><b>Phosphatidylserine</b><i>phospholipid</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:9"><div class="spec__art"><img src="assets/ingredients/pine-bark.png" alt=""></div><div><b>Pine Bark</b><i>Pinus pinaster, extract</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:10"><div class="spec__art"><img src="assets/ingredients/panax-ginseng.png" alt=""></div><div><b>Panax Ginseng</b><i>root</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:11"><div class="spec__art"><img src="assets/ingredients/huperzine-a.png" alt=""></div><div><b>Huperzine A</b><i>from Huperzia serrata</i></div><u>focus</u></article>
-        <article class="spec spec--bliss" style="--i:12"><div class="spec__art"><img src="assets/ingredients/reishi.png" alt=""></div><div><b>Reishi</b><i>Ganoderma lucidum, fruiting body</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:13"><div class="spec__art"><img src="assets/ingredients/ashwagandha.png" alt=""></div><div><b>Ashwagandha</b><i>Withania somnifera, root</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:14"><div class="spec__art"><img src="assets/ingredients/schisandra.png" alt=""></div><div><b>Schisandra</b><i>Schisandra chinensis, berry</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:15"><div class="spec__art"><img src="assets/ingredients/gotu-kola.png" alt=""></div><div><b>Gotu Kola</b><i>Centella asiatica</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:16"><div class="spec__art"><img src="assets/ingredients/rosemary.png" alt=""></div><div><b>Rosemary</b><i>Rosmarinus officinalis</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:17"><div class="spec__art"><img src="assets/ingredients/theobromine.png" alt=""></div><div><b>Theobromine</b><i>from cacao</i></div><u>bliss</u></article>
-        <article class="spec spec--both"  style="--i:18"><div class="spec__art"><img src="assets/ingredients/vit-b-plus.png" alt=""></div><div><b>B-Complex</b><i>vitamins B</i></div><u>both</u></article>
-        <article class="spec spec--label" style="--i:19"><img src="assets/magic-2-0-ingredients.png" width="800" height="1000" alt="Focus 2.0 supplement facts"><i>Focus 2.0, supplement facts</i></article>
-        <article class="spec spec--label" style="--i:20"><img src="assets/bliss-2-0-ingredients.png" width="800" height="1000" alt="Bliss 2.0 supplement facts"><i>Bliss 2.0, supplement facts</i></article>
-        <div class="rail__note" style="--i:21"><p class="sc-body">Focus for the front of the day. Bliss for the back of it. One or two capsules, every other day. <a href="https://mcrdse.com/shop/mcrdse-focus-bliss-dose-one-month-combo">The full protocol</a>.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5 · COMMUNITY: flow + count. Real numbers, real names. -->
-  <section class="sc-section fam" data-sc-act="flow" data-sc-drift="#F2E8DA" id="fam">
-    <div class="sc-wrap">
-      <div class="fam__head" data-sc-in data-sc-stagger="70">
-        <h2 class="sc-display">you are not the <em>only one</em>.</h2>
-        <p class="sc-body" id="famLede">The Microdose Movement is the community behind the store: free education, a weekly letter, and people comparing notes on the every-other-day ritual.</p>
-      </div>
-      <div class="counts" data-sc-in data-sc-stagger="60">
-        <div><b><span class="sc-nums" data-sc-count="0 1,390" data-sc-count-at="0.1 0.6">0</span></b><span>people on the ritual</span></div>
-        <div><b><span class="sc-nums" data-sc-count="0 49" data-sc-count-at="0.1 0.6">0</span></b><span>states, plus 9 countries</span></div>
-        <div><b><span class="sc-nums" data-sc-count="0 2,838" data-sc-count-at="0.1 0.6">0</span></b><span>orders since February 2024</span></div>
-        <div><b>1 in <span class="sc-nums" data-sc-count="0 3" data-sc-count-at="0.1 0.6">0</span></b><span>comes back for more</span></div>
-      </div>
-      <div class="quotes" data-sc-in data-sc-stagger="80">
-        <figure class="quotes__fig"><img src="assets/06-heart.webp" width="1400" height="1854" alt="Two hands making a heart around a Focus tube"></figure>
-        <blockquote>“Focus 2.0 has been essential for my late nights in bottle service. I stay sharp while managing VIP tables and keeping track of complex orders without missing a beat.”<footer>Sydney B. · Focus 2.0</footer></blockquote>
-        <blockquote>“This is the best blend. Perfect for an easy weekend, or when you want to go for a nice nature walk.”<footer>Sim · Bliss</footer></blockquote>
-        <blockquote>“This has helped me out so much. I've never felt able to unlock my creativity and stress relief as much as I have with this.”<footer>Andrew Z. · Pure Dose</footer></blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6 · SHARE: scrub. The pour, tubes in hand. -->
-  <section data-sc-act="scrub" data-sc-span="1.5" data-sc-dwell="0.35" data-sc-drift="#EBDCC6" id="share">
-    <div data-sc-stage class="share" data-sc-spotlight>
-      <img class="sc-stage__poster" src="assets/06-pour-poster.webp" width="1920" height="1065" alt="">
-      <video data-sc-scrub data-sc-src="assets/06-pour.mp4" data-sc-src-mobile="assets/06-pour-m.mp4" playsinline muted></video>
-      <div class="share__scrim" aria-hidden="true"></div>
-      <div class="sc-copy sc-copy--trail">
-        <h2 class="sc-display" data-sc-cue="0.06 0.94 0.18 0.15" data-sc-kinetic="lines">pass it <em>on</em>.</h2>
-        <p class="share__sub" data-sc-cue="0.14 0.94 0.2 0.15">The best way in is a friend who already runs it. Send this page to yours.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6b · CALIFORNIA: flow + reveal, the grow room, last thing before the map -->
-  <section class="sc-section cali" data-sc-act="flow" data-sc-drift="#F6F0E8">
-    <div class="sc-wrap cali__grid">
-      <figure data-sc-reveal="up" data-sc-reveal-at="0.05 0.45">
-        <img src="assets/02-room.webp" width="1800" height="1000" alt="Fruiting blocks on steel shelving in the grow room">
-        <figcaption>fruiting blocks on the shelf. grown in house, California.</figcaption>
+      <figure class="future-film__player" data-sc-in>
+        <video class="play-on-view" muted playsinline preload="metadata" poster="assets/colony/fpv-film/01-temple-peak-long-feng-day-v2.jpg" aria-label="Illustrative thirty-six-second FPV journey with a diverse, multigenerational Burner community moving through Temple Peak, a small dust devil, communal tea and fruit, an art trail, a monumental red slide, Heartbreak Hotel, and the Long Feng art car">
+          <source src="assets/colony/fpv-film/the-colony-fpv-future-film-mobile-v3.mp4" type="video/mp4" media="(max-width: 700px)">
+          <source src="assets/colony/fpv-film/the-colony-fpv-future-film-v3.mp4" type="video/mp4">
+        </video>
+        <figcaption><span>00:36</span><strong>Temple Peak → Dust → Tea → Trail → Slide → Night</strong></figcaption>
       </figure>
-      <div class="cali__copy sc-stack" data-sc-in data-sc-stagger="70">
-        <h2 class="sc-display">grown in <em>California</em>.</h2>
-        <p class="sc-body">Our own genetics, grown in house. Small batches, controlled rooms. 100% fruiting body, no mycelium-on-grain filler.</p>
-        <p class="sc-body">Every batch goes to an independent California lab before it goes in a tube.</p>
+      <div class="future-film__pairs" data-sc-in data-sc-stagger="80">
+        <article>
+          <div><figure><img src="assets/colony/future-film/01-arrival-before.jpg" width="1800" height="1013" loading="lazy" alt="Real arrival aerial of the existing Colony grounds"><figcaption>Today</figcaption></figure><figure><img src="assets/colony/future-film/01-arrival-future.jpg" width="1800" height="1013" loading="lazy" alt="Illustrative future aerial with original monumental art and a moving art vehicle"><figcaption>Illustrative future</figcaption></figure></div>
+          <p><span>01 / Scale</span><strong>Art gives the land a rhythm.</strong></p>
+        </article>
+        <article>
+          <div><figure><img src="assets/colony/future-film/02-commons-before.jpg" width="1800" height="1013" loading="lazy" alt="Real aerial of the existing dome and shade-sail gathering zone"><figcaption>Today</figcaption></figure><figure><img src="assets/colony/future-film/02-commons-future.jpg" width="1800" height="1013" loading="lazy" alt="Illustrative monthly gathering with dancers, installations, and an art vehicle"><figcaption>Illustrative future</figcaption></figure></div>
+          <p><span>02 / Assembly</span><strong>The commons comes alive.</strong></p>
+        </article>
+        <article>
+          <div><figure><img src="assets/colony/future-film/03-stage-before.jpg" width="1800" height="1013" loading="lazy" alt="Real existing outdoor stage before activation"><figcaption>Today</figcaption></figure><figure><img src="assets/colony/future-film/03-stage-future.jpg" width="1800" height="1013" loading="lazy" alt="Fictional illustrative scene of Bryan Johnson dancing in dusty festival clothing near the activated stage"><figcaption>Fictional cameo study</figcaption></figure></div>
+          <p><span>03 / Participation</span><strong>The guest becomes part of the work.</strong></p>
+        </article>
+        <article>
+          <div><figure><img src="assets/colony/fpv-film/06-red-slide-stage-day-v1.jpg" width="1534" height="862" loading="lazy" alt="Illustrative daylight placement of a monumental red looping slide beside the existing Colony stage"><figcaption>Illustrative day study</figcaption></figure><figure><img src="assets/colony/fpv-film/06-red-slide-stage-night-v1.jpg" width="1534" height="862" loading="lazy" alt="Illustrative blue-hour placement of the red slide illuminated beside the active Colony stage"><figcaption>Illustrative night study</figcaption></figure></div>
+          <p><span>04 / Play</span><strong>One landmark carries the shift from day to night.</strong></p>
+        </article>
       </div>
-    </div>
-  </section>
-
-  <!-- 7 · CLOSE: pin. The map. Last element on the page. -->
-  <section id="join" data-sc-act="pin" data-sc-span="1.8" data-sc-drift="#F6F0E8">
-    <div data-sc-stage class="close">
-      <div class="close__copy">
-        <h2 class="sc-display" data-sc-cue="0" data-sc-kinetic="lines">where the ritual <em>lives</em>.</h2>
-        <p class="sc-body" data-sc-cue="0.04" id="mapLede">1,390 people in 49 states run the every-other-day ritual. The Microdose Movement is where they compare notes: free education, a weekly letter, and the Telegram.</p>
-        <div data-sc-cue="0.08"><a class="cta" href="https://mcrdse.com/shop/mcrdse-focus-bliss-dose-one-month-combo?plan=90" data-sc-magnet="0.24">Start from $2.57/day</a></div>
-        <p class="close__fine" data-sc-cue="0.08" id="mapSource">Shading: MCRDSE customers by state. <a href="https://mcrdsemovement.com">Join the Movement</a> · <a href="https://t.me/mcrdsemovement">Telegram</a></p>
+      <p class="future-film__boundary">Illustrative AI concept only. Long Feng, the red slide, Heartbreak Hotel, Temple Peak, and referenced artworks are visual placements based on supplied reference images; no ownership, booking, affiliation, or endorsement is represented. The Bryan Johnson likeness below is a fictional internal study and should not be publicly deployed without permission. All events, vehicles, installations, routes, and capacities remain subject to creator and image rights, safety, engineering, insurance, and permitting review.</p>
+    </section>
+    <section id="day" class="day" data-sc-act="flow" data-sc-drift="#d9d2c4">
+      <div class="day__title" data-sc-in><h2>A full day, not a weekend illusion.</h2><p>The future experience should hold quiet mornings, meaningful work, shared meals, movement, music, and room to disappear into the desert.</p></div>
+      <div class="day__grid" data-sc-in data-sc-stagger="80">
+        <figure class="day__image day__image--pool"><img src="assets/colony/today-pool.jpg" width="1920" height="1280" loading="lazy" alt="Morning light across the pool terrace"></figure>
+        <div class="day__beat day__beat--morning"><time>Morning</time><p>Water, movement, breakfast, and the first quiet hour.</p></div>
+        <div class="day__beat day__beat--afternoon"><time>Afternoon</time><p>Build, make, learn, hike, or host a small working session.</p></div>
+        <figure class="day__image day__image--gathering"><img src="assets/colony/today-gathering.jpg" width="1280" height="1920" loading="lazy" alt="People participating in an outdoor wellness gathering"></figure>
+        <div class="day__beat day__beat--night"><time>Night</time><p>Dinner, fire, sound, art, and a sky dark enough to matter.</p></div>
       </div>
-      <div class="map" id="map">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 959 593" class="usmap" aria-label="United States, MCRDSE customers by state">
-        <g class="usmap__states">
-        <path data-st="AL" d="m 643,467.4 .4,-7.3 -.9,-1.2 -1.7,-.7 -2.5,-2.8 .5,-2.9 48.8,-5.1 -.7,-2.2 -1.5,-1.5 -.5,-1.4 .6,-6.3 -2.4,-5.7 .5,-2.6 .3,-3.7 2.2,-3.8 -.2,-1.1 -1.7,-1 v -3.2 l -1.8,-1.9 -2.9,-6.1 -12.9,-45.8 -45.7,4 1.3,2 -1.3,67 4.4,33.2 .9,-.5 1.3,.1 .6,.4 .8,-.1 2,-3.8 v -2.3 l 1.1,-1.1 1.4,.5 3.4,6.4 v .9 l -3.3,2.2 3.5,-.4 4.9,-1.6 z"/>
-        <path data-st="AK" d="m 15.8,572 h 2.4 l .7,.7 -1,1.2 -1.9,.2 -2.5,1.3 -3.7,-.1 2.2,-.9 .3,-1.1 2.5,-.3 z m 8.3,-1.7 1.3,.5 h .9 l .5,1.2 .3,-.6 .9,.2 1.1,1.5 0,.5 -4.2,1.9 -2.4,-.1 -1,-.5 -1.1,.7 -2,0 -1.1,-1.4 4.7,-.5 z m 5.4,-.1 1,.1 .7,.7 v 1 l -1.3,.1 -.9,-1.1 z m 2.5,.3 1.3,-.1 -.1,1 -1.1,.6 z m .3,2.2 3.4,-.1 .2,1.1 -1.3,.1 -.3,-.5 -.8,.6 -.4,-.6 -.9,-.2 z m 166.3,7.6 2.1,.1 -1,1.9 -1.1,-.1 -.4,-.8 .5,-1.3 m -1.1,-2.9 .6,-1.3 -.2,-2.3 2.4,-.5 4.5,4.4 1.3,3.4 1.9,1.6 .3,5.1 -1.4,0 -1.3,-2.3 -3.1,-2.4 h -.6 l 1.1,2.8 1.7,.2 .2,2.1 -.9,.1 -4.1,-4.4 -.1,-.9 1.9,-1 0,-1 -.5,-.8 -1.6,-.6 -1.7,-1.3 1.4,.1 .5,-.4 -.6,-.9 -.6,.5 z m -3.6,-9.1 1.3,.1 2.4,2.5 -.2,.8 -.8,-.1 -.1,1.8 .5,.5 0,1.5 -.8,.3 -.4,1.2 -.8,-.4 -.4,-2.2 1.1,-1.4 -2.1,-2.2 .1,-1.2 z m 1.5,-1.5 1.9,.2 2.5,.1 3.4,3.2 -.2,.5 -1.1,.6 -1.1,-.2 -.1,-.7 -1.2,-1.6 -.3,.7 1,1.3 -.2,1.2 -.8,-.1 -1.3,.2 -.1,-1.7 -2.6,-2.8 z m -12.7,-8.9 .9,-.4 h 1.6 l .7,-.5 4.1,2.2 .1,1.5 -.5,.5 h -.8 l -1.4,-.7 1.1,1.3 1.8,0 .5,2 -.9,0 -2.2,-1.5 -1.1,-.2 .6,1.3 .1,.9 .8,-.6 1.7,1.2 1.3,-.1 -.2,.8 1.9,4.3 0,3.4 .4,2.1 -.8,.3 -1.2,-2 -.5,-1.5 -1.6,-1.6 -.2,-2.7 -.6,-1.7 h -.7 l .3,1.1 0,.5 -1.4,1 .1,-3.3 -1.6,-1.6 -1.3,-2.3 -1.2,-1.2 z m 7.2,-2.3 1.1,1.8 2.4,-.1 1,2.1 -.6,.6 2,3.2 v 1.3 l -1.2,.8 v .7 l -2,1.9 -.5,-1.4 -.1,-1.3 .6,-.7 v -1.1 l -1.5,-1.9 -.5,-3.7 -.9,-1.5 z m -56.7,-18.3 -4,4.1 v 1.6 l 2.1,-.8 .8,-1.9 2.2,-2.4 z m -31.6,16.6 0,.6 1.8,1.2 .2,-1.4 .6,.9 3.5,.1 .7,-.6 .2,-1.8 -.5,-.7 -1.4,0 0,-.8 .4,-.6 v -.4 l -1.5,-.3 -3.3,3.6 z m -8.1,6.2 1.5,5.8 h 2.1 l 2.4,-2.5 .3,1.2 6.3,-4 .7,-1 -1,-1.1 v -.7 l .5,-1.3 -.9,-.1 -2,1 0,-1.2 -2.7,-.6 -2.4,.3 -.2,3.4 -.8,-2 -1.5,-.1 -1,.6 z m -2.2,8.2 .1,-.7 2.1,-1.3 .6,.3 1.3,.2 1.3,1.2 -2.2,-.2 -.4,-.6 -1,.6 z m -5.2,3.3 -1.1,.8 1.5,1.4 .8,-.7 -.1,-1.3 z m -6.3,-7.9 1.4,.1 .4,.6 -1.8,.1 z m -13.9,11.9 v .5 l .7,.1 -.1,-.6 z m -.4,-3.2 -1,1 v .5 l .7,1.1 1,-1 -.7,-.1 z m -2,-.8 -.3,1 -1.3,.1 -.4,.2 0,1.3 -.5,.9 .6,0 .7,-.9 .8,-.1 .9,-1 .2,-1.3 z m -4.4,-2 -.2,1.8 1.4,.8 1.2,-.6 0,-1 1.7,-.3 -.1,-.6 -.9,-.2 -.7,.6 -.9,-.5 z m -4.9,-.1 1,.7 -.3,1.2 -1.4,-1.1 z m -4.2,1.3 1.4,.1 -.7,.8 z m -3.5,3 1.8,1.1 -1.7,.1 z m -25.4,-31.2 1.2,.6 -.8,.6 z m -.7,-6.3 .4,1.2 .8,-1.2 z m 24.3,-19.3 1.5,-.1 .9,.4 1.1,-.5 1.3,-.1 1.6,.8 .8,1.9 -.1,.9 -1.2,2 -2.4,-.2 -2.1,-1.8 -1,-.4 -1.1,-2 z m -21.1,-14.4 .1,1.9 2,2 v .5 l -.8,-.2 -1.7,-.8 -.3,-1.1 -.3,-1.6 z m 18.3,-23.3 v 1.2 l 1.9,1.8 h 2.3 l .6,1.1 v 1.6 l 2.1,1.9 1.8,1.2 -.1,.7 -.7,1.1 -1.4,-1.2 -2.1,.1 -.8,-.8 -.9,-2.1 -1.5,-2.2 -2.6,-.1 -1,-.7 1,-2.1 z m 16.8,-4.5 1,0 .1,1.1 h -1 z m 16.2,19.7 .9,.1 0,1.2 -1.7,-.5 z m 127.8,77.7 -1.2,.4 -.1,1.1 h 1.2 z m -157.6,-4.5 -1.3,-.4 -4.1,.6 -2.8,1.4 -.1,1.9 1.9,.7 1.5,-.9 1.7,-.1 4.7,1.4 .1,-1.3 -1.6,-1.1 z m 2.1,2.3 -.4,-1.4 1.2,.2 .1,1.4 1.8,0 .4,-2.5 .3,2.4 2.5,-.1 3.2,-3.3 .8,.1 -.7,1.3 1.4,.9 4.2,-.2 2.6,-1.2 1.4,-.1 .3,1.5 .6,-.5 .4,-1.4 5.9,.2 1.9,-1.6 -1.3,-1.1 .6,-1.2 2.6,.2 -.2,-1.2 2.5,.2 .7,-1.1 1.1,.2 4.6,-1.9 .2,-1.7 5.6,-2.4 2,-1.9 1.2,-.6 1.3,.8 2.3,-.9 1.1,-1.9 .5,-1.3 1.7,-.9 1.5,-.7 .4,-1.4 -1.1,-1.7 -2.2,-.2 -.2,-1.3 .8,-1.6 1.4,-.2 1.3,-1.5 1.9,-.1 3.4,-3.2 .4,-1.4 1.5,-2.3 3.8,-4.1 2.5,-.9 1.9,-.9 2.1,.8 1.4,2.6 -1.5,0 -1.4,-1.5 -3,2 -1.7,.1 -.2,3.1 -3.1,4.9 .6,2 2.3,0 -.6,1 -1.4,.1 -2.4,1.8 0,.9 1.9,1 3.4,-.6 1.4,-1.7 1.4,.1 3,-1.7 .5,-2.3 1.6,-.1 6.3,.8 1,-1.1 1,-4.5 -1.6,1.1 .6,-2.2 -1.6,-1.4 .8,-1.5 .1,1.5 3.4,0 .7,-1 1.6,-.1 -.3,1.7 1.9,.1 -1.9,1.3 4.1,1.1 -3.5,.4 -1.3,1.2 .9,1.4 4.6,-1.7 2.3,1.7 .7,-.9 .6,1.4 4,2.3 h 2.9 l 3.9,-.5 4.3,1.1 2,1.9 4.5,.4 1.8,-1.5 .8,2.4 -1.8,.7 1.2,1.2 7.4,3.8 1.4,2.5 5.4,4.1 3.3,-2 -.6,-2.2 -3.5,-2 3.1,1.2 .5,-.7 .9,1.3 0,2.7 2.1,-.6 2.1,1.8 -2.5,-9.8 1.2,1.3 1.4,6 2.2,2.5 2.4,-.4 1.8,3.5 h .9 l .6,5.6 3.4,.5 1.6,2.2 1.8,1.1 .4,2.8 -1.8,2.6 2.9,1.6 1.2,-2.4 -.2,3.1 -.8,.9 1.4,1.7 .7,-2.4 -.2,-1.2 .8,.2 .6,2.3 -1,1.4 .6,2.6 .5,.4 .3,-1.6 .7,.6 -.3,2 1.2,.2 -.4,.9 1.7,-.1 0,-1 h -1 l .1,-1.7 -.8,-.6 1.7,-.3 .5,-.8 0,-1.6 .5,1.3 -.6,1.8 1.2,3.9 1.8,.1 2.2,-4.2 .1,-1.9 -1.3,-4 -.1,-1.2 .5,-1.2 -.7,-.7 -1.7,.1 -2.5,-2 -1.7,0 -2,-1.4 -1.5,0 -.5,-1.6 -1.4,-.3 -.2,-1.5 -1,-.5 .1,-1.7 -5.1,-7.4 -1.8,-1.5 v -1.2 l -4.3,-3.5 -.7,-1.1 -1.6,-2 -1.9,-.6 0,-2.2 -1.2,-1.3 -1.7,-.7 -2.1,1.3 -1.6,2.1 -.4,2.4 -1.5,.1 -2.5,2.7 -.8,-.3 v -2.5 l -2.4,-2.2 -2.3,-2 -.5,-2 -2.5,-1.3 .2,-2.2 -2.8,-.1 -.7,1.1 -1.2,0 -.7,-.7 -1.2,.8 -1.8,-1.2 0,-85.8 -6.9,-4.1 -1.8,-.5 -2.2,1.1 -2.2,.1 -2.3,-1.6 -4.3,-.6 -5.8,-3.6 -5.7,-.4 -2,.5 -.2,-1.8 -1.8,-.7 1.1,-1 -.2,-.9 -3.2,-1.1 h -2.4 l -.4,.4 -.9,-.6 .1,-2.6 -.8,-.9 -2.5,2.9 -.8,-.1 v -.8 l 1.7,-.8 v -.8 l -1.9,-2.4 -1.1,-.1 -4.5,3.1 h -3.9 l .4,-.9 -1.8,-.1 -5.2,3.4 -1.8,0 -.6,-.8 -2.7,1.5 -3.6,3.7 -2.8,2.7 -1.5,1.2 -2.6,.1 -2.2,-.4 -2.3,-1.3 v 0 l -2.8,3.9 -.1,2.4 2.6,2.4 2.1,4.5 .2,5.3 2.9,2 3.4,.4 .7,.8 -1.5,2.3 .7,2.7 -1.7,-2.6 v -2.4 l -1.5,-.3 .1,1.2 .7,2.1 2.9,3.7 h -1.4 l -2.2,1.1 -6.2,-2.5 -.1,-2 1.4,-1.3 0,-1.4 -2.1,-.5 -2.3,.2 -4.8,.2 1.5,2.3 -1.9,-1.8 -8.4,1.2 -.8,1.5 4.9,4.7 -.8,1.4 -.3,2 -.7,.8 -.1,1.9 4.4,3.6 4.1,.2 4.6,1.9 h 2 l .8,-.6 3.8,.1 .1,-.8 1.2,1.1 .1,2 -2.5,-.1 .1,3.3 .5,3.2 -2.9,2.7 -1.9,-.1 -2,-.8 -1,.1 -3.1,2.1 -1.7,.2 -1.4,-2.8 -3.1,0 -2.2,2 -.5,1.8 -3.3,1.8 -5.3,4.3 -.3,3.1 .7,2.2 1,1.2 1,-.4 .9,1 -.8,.6 -1.5,.9 1.1,1.5 -2.6,1.1 .8,2.2 1.7,2.3 .8,4.1 4,1.5 2.6,-.8 1.7,-1.1 .5,2.1 .3,4.4 -1.9,1.4 0,4.4 -.6,.9 h -1.7 l 1.7,1.2 2.1,-.1 .4,-1 4.6,-.6 2,2.6 1.3,-.7 1.3,5.1 1,.5 1,-.7 .1,-2.4 .9,-1 .7,1.1 .2,1.6 1.6,.4 4.7,-1.2 .2,1.2 -2,1.1 -1.6,1.7 -2.8,7 -4.3,2 -1.4,1.5 -.3,1.4 -1,-.6 -9.3,3.3 -1.8,4.1 -1.3,-.4 .5,-1.1 -1.5,-1.4 -3.5,-.2 -5.3,3.2 -2.2,1.3 -2.3,0 -.5,2.4 z"/>
-        <path data-st="AZ" d="m 139.6,387.6 3,-2.2 .8,-2.4 -1,-1.6 -1.8,-.2 -1.1,-1.6 1.1,-6.9 1.6,-.3 2.4,-3.2 1.6,-7 2.4,-3.6 4.8,-1.7 1.3,-1.3 -.4,-1.9 -2.3,-2.5 -1.2,-5.8 -1.4,-1.8 -1.3,-3.4 .9,-2.1 1.4,-3 .5,-2.9 -.5,-4.9 1,-13.6 3.5,-.6 3.7,1.4 1.2,2.7 h 2 l 2.4,-2.9 3.4,-17.5 46.2,8.2 40,6 -17.4,124.1 -37.3,-5.4 -64.2,-37.5 .5,-2.9 2,-1.8 z"/>
-        <path data-st="AR" d="m 584.2,367 .9,-2.2 1.2,.5 .7,-1 -.8,-.7 .3,-1.5 -1.1,-.9 .6,-1 -.1,-1.5 -1.1,-.1 .8,-.8 1.3,.8 .3,-1.4 -.4,-1.1 .1,-.7 2,.6 -.4,-1.5 1.6,-1.3 -.5,-.9 -1.1,.1 -.6,-.9 .9,-.9 1.6,-.2 .5,-.8 1.4,-.2 -.1,-.8 -.9,-.9 v -.5 h 1.5 l .4,-.7 -1.4,-1 -.1,-.6 -11.2,.8 2.8,-5.1 1.7,-1.5 v -2.2 l -1.6,-2.5 -39.8,2 -39.1,.7 4.1,24.4 -.7,39 2.6,2.3 2.8,-1.3 3.2,.8 .2,11.9 52.3,-1.3 1.2,-1.5 .5,-3 -1.5,-2.3 -.5,-2.2 .9,-.7 v -.8 l -1.7,-1.1 -.1,-.7 1.6,-.9 -1.2,-1.1 1.7,-7.1 3.4,-1.6 v -.8 l -1.1,-1.4 2.9,-5.4 h 1.9 l 1.5,-1.2 -.3,-5.2 3.1,-4.5 1.8,-.6 -.5,-3.1 z"/>
-        <path data-st="CA" d="m 69.4,365.6 3.4,5.2 -1.4,.1 -1.8,-1.9 z m 1.9,-9.8 1.8,4.1 2.6,1 .7,-.6 -1.3,-2.5 -2.6,-2.4 z m -19.9,-19 v 2.4 l 2,1.2 4.4,-.2 1,-1 -3.1,-.2 z m -5.9,.1 3.3,.5 1.4,2.2 h -3.8 z m 47.9,45.5 -1,-3 .2,-3 -.4,-7.9 -1.8,-4.8 -1.2,-1.4 -.6,-1.5 -7,-8.6 -3.6,.1 -2,-1.9 1.1,-1.8 -.7,-3.7 -2.2,-1.2 -3.9,-.6 -2.8,-1.3 -1.5,-1.9 -4.5,-6.6 -2.7,-2.2 -3.7,-.5 -3.1,-2.3 -4.7,-1.5 -2.8,-.3 -2.5,-2.5 .2,-2.8 .8,-4.8 1.8,-5.1 -1.4,-1.6 -4,-9.4 -2.7,-3.7 -.4,-3 -1.6,-2.3 .2,-2.5 -2,-5 -2.9,-2.7 .6,-7.1 2.4,-.8 1.8,-3.1 -.4,-3.2 -1,-.9 h -2.5 l -2.5,-3.3 -1.5,-3.5 v -7.5 l 1.2,-4.2 .2,-2.1 2.5,.2 -.1,1.6 -.8,.7 v 2.5 l 3.7,3.2 v -4.7 l -1.4,-3.4 .5,-1.1 -1,-1.7 2.8,-1.5 -1.9,-3 -1.4,.5 -1.5,3.8 .5,1.3 -.8,1 -.9,-.1 -5.4,-6.1 .7,-5.6 -1.1,-3.9 -6.5,-12.8 .8,-10.7 2.3,-3.6 .2,-6.4 -5.5,-11.1 .3,-5.2 6.9,-7.5 1.7,-2.4 -.1,-1.4 4,-9.2 .1,-8.4 .9,-2.5 66.1,18.6 -16.4,63.1 1.1,3.5 70.4,105 -.9,2.1 1.3,3.4 1.4,1.8 1.2,5.8 2.3,2.5 .4,1.9 -1.3,1.3 -4.8,1.7 -2.4,3.6 -1.6,7 -2.4,3.2 -1.6,.3 -1.1,6.9 1.1,1.6 1.8,.2 1,1.6 -.8,2.4 -3,2.2 -2.2,-.1 z"/>
-        <path data-st="CO" d="m 374.6,323.3 -16.5,-1 -51.7,-4.8 -52.6,-6.5 11.5,-88.3 44.9,5.7 37.5,3.4 33.1,2.4 -1.4,22.1 z"/>
-        <path data-st="CT" d="m 873.5,178.9 .4,-1.1 -3.2,-12.3 -.1,-.3 -14.9,3.4 v .7 l -.9,.3 -.5,-.7 -10.5,2.4 2.8,16.3 1.8,1.5 -3.5,3.4 1.7,2.2 5.4,-4.5 1.7,-1.3 h .8 l 2.4,-3.1 1.4,.1 2.9,-1.1 h 2.1 l 5.3,-2.7 2.8,-.9 1,-1 1.5,.5 z"/>
-        <path data-st="DE" d="m 822.2,226.6 -1.6,.3 -1.5,1.1 -1.2,2.1 7.6,27.1 10.9,-2.3 -2.2,-7.6 -1.1,.5 -3.3,-2.6 -.5,-1.7 -1.8,-1 -.2,-3.7 -2.1,-2.2 -1.1,-.8 -1.2,-1.1 -.4,-3.2 .3,-2.1 1,-2.2 z"/>
-        <path data-st="FL" d="m 751.7,445.1 -4,-.7 -1.7,-.9 -2.2,1.4 v 2.5 l 1.4,2.1 -.5,4.3 -2.1,.6 -1,-1.1 -.6,-3.2 -50.1,3.3 -3.3,-6 -48.8,5.1 -.5,2.9 2.5,2.8 1.7,.7 .9,1.2 -.4,7.3 -1.1,.6 .5,.4 1,-.3 .7,-.8 10.5,-2.7 9.2,-.5 8.1,1.9 8.5,5 2.4,.8 2.2,2 -.1,2.7 h 2.4 l 1.9,-1 2.5,.1 2,-.8 2.9,-2 3.1,-2.9 1.1,-.4 .6,.5 h 1.4 l .5,-.8 -.5,-1.2 -.6,-.6 .2,-.8 2,-1.1 5,-.4 .8,1 1,.1 2.3,1 3,1.8 1.2,1.7 1.1,1.2 2.8,1.4 v 2.4 l 2.8,1.9 1,.1 1.6,1.4 .7,1.6 1,.2 .8,2.1 .7,.6 1,-1.1 2.9,.1 .5,1.4 1.1,.9 v 1.3 l 2.9,2.2 .2,9.6 -1.8,5.8 1,1.2 -.2,3.4 -.8,1.4 .7,1.2 2.3,2.3 .3,1.5 .8,1 -.4,-1.9 1.3,-.6 .8,-3.6 -3,-1.2 .1,-.6 2.6,-.4 .9,2.6 1.1,.6 .1,-2 1.1,.3 .6,.8 -.1,.7 -2.9,4.2 -.2,1.1 -1.7,1.9 v 1.1 l 3.7,3.8 5.3,7.9 1.8,2.1 v 1.8 l 2.8,4.6 2.3,.6 .7,-1.2 -2.1,.3 -3,-4.5 .2,-1.4 1.5,-.8 v -1.5 l -.6,-1.3 .9,-.9 .4,.9 .7,.5 v 4 l -1.2,-.6 -.8,.9 1.4,1.6 1,2.6 1.2,-.6 2.3,1.2 2.1,2.2 1.6,5.1 3.1,4.8 .8,-1.3 2.8,-.5 3.2,1.3 .3,1.7 3.3,3.8 .1,1.1 2.2,2.7 -.7,.5 v 2.7 l 2.7,1.4 h 1.5 l 2.7,-1.8 1.5,.3 1.1,.4 2.3,-1.7 .2,-.7 1.2,.3 2.4,-1.7 1.3,-2.3 -.7,-3.2 -.2,-1.3 1.1,-4 .6,-.2 .6,1.6 .8,-1.8 -.8,-7.2 -.4,-10.5 -1,-6.8 -.7,-1.7 -6.6,-11.1 -5.2,-9.1 -2.2,-3.3 -1.3,-3.6 -.2,-3.4 .9,-.3 v -.9 l -1.1,-2.2 -4,-4 -7.6,-9.7 -5.7,-10.4 -4.3,-10.7 -.6,-3.7 -1.2,-1 -.5,-3.8 z m 9.2,134.5 1.7,-.1 -.7,-1 z m 7.3,-1.1 v -.7 l 1.6,-.2 3.7,-3.3 1.5,-.6 2.4,-.9 .3,1.3 1.7,.8 -2.6,1.2 h -2.4 l -3.9,2.5 z m 17.2,-7.6 -3,1.4 -1,1.3 1.1,.1 z m 3.8,-2.9 -1.1,.3 -1.4,2 1.1,-.2 1.5,-1.6 z m 8.3,-15.7 -1.7,5.6 -.8,1 -1,2.6 -1.2,1.6 -.7,1.7 -1.9,2.2 v .9 l 2.7,-2.8 2.4,-3.5 .6,-2 2.1,-4.9 z"/>
-        <path data-st="GA" d="m 761.8,414.1 v 1.4 l -4.2,6.2 -1.2,.2 1.5,.5 v 2 l -.9,1.1 -.6,6 -2.3,6.2 .5,2 .7,5.1 -3.6,.3 -4,-.7 -1.7,-.9 -2.2,1.4 v 2.5 l 1.4,2.1 -.5,4.3 -2.1,.6 -1,-1.1 -.6,-3.2 -50.1,3.3 -3.3,-6 -.7,-2.2 -1.5,-1.5 -.5,-1.4 .6,-6.3 -2.4,-5.7 .5,-2.6 .3,-3.7 2.2,-3.8 -.2,-1.1 -1.7,-1 v -3.2 l -1.8,-1.9 -2.9,-6.1 -12.9,-45.8 22.9,-2.9 21.4,-3 -.1,1.9 -1.9,1 -1.4,3.2 .2,1.3 6.1,3.8 2.6,-.3 3.1,4 .4,1.7 4.2,5.1 2.6,1.7 1.4,.2 2.2,1.6 1.1,2.2 2,1.6 1.8,.5 2.7,2.7 .1,1.4 2.6,2.8 5,2.3 3.6,6.7 .3,2.7 3.9,2.1 2.5,4.8 .8,3.1 4.2,.4 z"/>
-        <path data-st="HI" d="m 317,553.7 -.2,3.2 1.7,1.9 .1,1.2 -4.8,4.5 -.1,1.2 1.9,3.2 1.7,4.2 v 2.6 l -.5,1.2 .1,3.4 4.1,2.1 1.1,1.1 1.2,-1.1 2.1,-3.6 4.5,-2.9 3.3,-.5 2.5,-1 1.7,-1.2 3.2,-3.5 -2.8,-1.1 -1.4,-1.4 .1,-1.7 -.5,-.6 h -2 l .2,-2.5 -.7,-1.2 -2.6,-2.3 -4.5,-1.9 -2.8,-.2 -3.3,-2.7 -1.2,-.6 z m -15.3,-17 -1.1,1.5 -.1,1.7 2.7,2.4 1.9,.5 .6,1 .4,3 3.6,.2 5.3,-2.6 -.1,-2.5 -1.4,-.5 -3.5,-2.6 -1.8,-.3 -2.9,1.3 -1.5,-2.7 z m -1.5,11.5 .9,-1.4 2.5,-.3 .6,1.8 z m -7,-8.7 1.7,4 3.1,-.6 .3,-2 -1.4,-1.5 z m -4.1,-6.7 -1.1,2.4 h 5 l 4.8,1.6 2.5,-1.6 .2,-1.5 -4.8,.2 z m -16,-10.6 -1.9,2.1 -2.9,.6 .8,2.2 2.2,2.8 .1,1 2.1,-.3 2.3,.1 1.7,1.2 3.5,-.8 v -.7 l -1,-.8 -.5,-2.1 -.8,-.3 -.5,1 -1.2,-1.3 .2,-1.4 -1.8,-3.3 -1.1,-.7 z m -31.8,-12.4 -4.2,2.9 .2,2.3 2.4,1.2 1.9,1.3 2.7,.4 2.6,-2.2 -.2,-1.9 .8,-1.7 v -1.4 l -1,-.9 z m -10.8,4.8 -.3,1.2 -1.9,.9 -.6,1.8 1,.8 1.1,-1.5 1.9,-.6 .4,-2.6 z"/>
-        <path data-st="ID" d="m 165.3,183.1 -24.4,-5.4 8.5,-37.3 2.9,-5.8 .4,-2.1 .8,-.9 -.9,-2 -2.9,-1.2 .2,-4.2 4,-5.8 2.5,-.8 1.6,-2.3 -.1,-1.6 1.8,-1.6 3.2,-5.5 4.2,-4.8 -.5,-3.2 -3.5,-3.1 -1.6,-3.6 1.1,-4.3 -.7,-4 12.7,-56.1 14.2,3 -4.8,22 3.7,7.4 -1.6,4.8 3.6,4.8 1.9,.7 3.9,8.3 v 2.1 l 2.3,3 h .9 l 1.4,2.1 h 3.2 v 1.6 l -7.1,17 -.5,4.1 1.4,.5 1.6,2.6 2.8,-1.4 3.6,-2.4 1.9,1.9 .5,2.5 -.5,3.2 2.5,9.7 2.6,3.5 2.3,1.4 .4,3 v 4.1 l 2.3,2.3 1.6,-2.3 6.9,1.6 2.1,-1.2 9,1.7 2.8,-3.3 1.8,-.6 1.2,1.8 1.6,4.1 .9,.1 -8.5,54.8 -47.9,-8.2 z"/>
-        <path data-st="IL" d="m 623.5,265.9 -1,5.2 v 2 l 2.4,3.5 v .7 l -.3,.9 .9,1.9 -.3,2.4 -1.6,1.8 -1.3,4.2 -3.8,5.3 -.1,7 h -1 l .9,1.9 v .9 l -2.2,2.7 .1,1.1 1.5,2.2 -.1,.9 -3.7,.6 -.6,1.2 -1.2,-.6 -1,.5 -.4,3.3 1.7,1.8 -.4,2.4 -1.5,.3 -6.9,-3 -4,3.7 .3,1.8 h -2.8 l -1.4,-1.5 -1.8,-3.8 v -1.9 l .8,-.6 .1,-1.3 -1.7,-1.9 -.9,-2.5 -2.7,-4.1 -4.8,-1.3 -7.4,-7.1 -.4,-2.4 2.8,-7.6 -.4,-1.9 1.2,-1.1 v -1.3 l -2.8,-1.5 -3,-.7 -3.4,1.2 -1.3,-2.3 .6,-1.9 -.7,-2.4 -8.6,-8.4 -2.2,-1.5 -2.5,-5.9 -1.2,-5.4 1.4,-3.7 .7,-.7 .1,-2.3 -.7,-.9 1,-1.5 1.8,-.6 .9,-.3 1,-1.2 v -2.4 l 1.7,-2.4 .5,-.5 .1,-3.5 -.9,-1.4 -1,-.3 -1.1,-1.6 1,-4 3,-.8 h 2.4 l 4.2,-1.8 1.7,-2.2 .1,-2.4 1.1,-1.3 1.3,-3.2 -.1,-2.6 -2.8,-3.5 h -1.2 l -.9,-1.1 .2,-1.6 -1.7,-1.7 -2.5,-1.3 .5,-.6 45.9,-2.8 .1,4.6 3.4,4.6 1.2,4.1 1.6,3.2 z"/>
-        <path data-st="IN" d="m 629.2,214.8 -5.1,2.3 -4.7,-1.4 4.1,50.2 -1,5.2 v 2 l 2.4,3.5 v .7 l -.3,.9 .9,1.9 -.3,2.4 -1.6,1.8 -1.3,4.2 -3.8,5.3 -.1,7 h -1 l .9,1.9 1.1,.8 .6,-1 -.7,-1.7 4.6,-.5 .2,1.2 1.1,.2 .4,-.9 -.6,-1.3 .3,-.8 1.3,.8 1.7,-.4 1.7,.6 3.4,2.1 1.8,-2.8 3.5,-2.2 3,3.3 1.6,-2.1 .3,-2.7 3.8,-2.3 .2,1.3 1.9,1.2 3,-.2 1.2,-.7 .1,-3.4 2.5,-3.7 4.6,-4.4 -.1,-1.7 1.2,-3.8 2.2,1 6.7,-4.5 -.4,-1.7 -1.5,-2.1 1,-1.9 -6.6,-57.2 -.1,-1.4 -32.4,3.4 z"/>
-        <path data-st="IA" d="m 556.9,183 2.1,1.6 .6,1.1 -1.6,3.3 -.1,2.5 2,5.5 2.7,1.5 3.3,.7 1.3,2.8 -.5,.6 2.5,1.3 1.7,1.7 -.2,1.6 .9,1.1 h 1.2 l 2.8,3.5 .1,2.6 -1.3,3.2 -1.1,1.3 -.1,2.4 -1.7,2.2 -4.2,1.8 h -2.4 l -3,.8 -1,4 1.1,1.6 1,.3 .9,1.4 -.1,3.5 -.5,.5 -1.7,2.4 v 2.4 l -1,1.2 -.9,.3 -1.8,.6 -1,1.5 .7,.9 -.1,2.3 -.7,.7 -1.5,-.8 -1.1,-1.1 -.6,-1.6 -1.7,-1.3 -14.3,.8 -27.2,1.2 -25.9,-.1 -1.8,-4.4 .7,-2.2 -.8,-3.3 .2,-2.9 -1.3,-.7 -.4,-6.1 -2.8,-5 -.2,-3.7 -2.2,-4.3 -1.3,-3.7 v -1.4 l -.6,-1.7 v -2.3 l -.5,-.9 -.7,-1.7 -.3,-1.3 -1.3,-1.2 1,-4.3 1.7,-5.1 -.7,-2 -1.3,-.4 -.4,-1.6 1,-.5 .1,-1.1 -1.3,-1.5 .1,-1.6 2.2,.1 h 28.2 l 36.3,-.9 18.6,-.7 z"/>
-        <path data-st="KS" d="m 459.1,259.5 -43.7,-1.2 -36,-2 -4.8,67 67.7,2.9 62,.1 -.5,-48.1 -3.2,-.7 -2.6,-4.7 -2.5,-2.5 .5,-2.3 2.7,-2.6 .1,-1.2 -1.5,-2.1 -.9,1 -2,-.6 -2.9,-3 z"/>
-        <path data-st="KY" d="m 692.1,322.5 -20.5,1.4 -5.2,.8 -17.4,1 -2.6,.8 -22.6,2 -.7,-.6 h -3.7 l 1.2,3.2 -.6,.9 -23.3,1.5 1,-2.7 1.4,.9 .7,-.4 1.2,-4.1 -1,-1 1,-2 .2,-.9 -1.3,-.8 -.3,-1.8 4,-3.7 6.9,3 1.5,-.3 .4,-2.4 -1.7,-1.8 .4,-3.3 1,-.5 1.2,.6 .6,-1.2 3.7,-.6 .1,-.9 -1.5,-2.2 -.1,-1.1 2.2,-2.7 0,-.9 1.1,.8 .6,-1 -.7,-1.7 4.6,-.5 .2,1.2 1.1,.2 .4,-.9 -.6,-1.3 .3,-.8 1.3,.8 1.7,-.4 1.7,.6 3.4,2.1 1.8,-2.8 3.5,-2.2 3,3.3 1.6,-2.1 .3,-2.7 3.8,-2.3 .2,1.3 1.9,1.2 3,-.2 1.2,-.7 .1,-3.4 2.5,-3.7 4.6,-4.4 -.1,-1.7 1.2,-3.8 2.2,1 6.7,-4.5 -.4,-1.7 -1.5,-2.1 1,-1.9 1.3,.5 2.2,.1 1.9,-.8 2.9,1.2 2.2,3.4 v 1 l 4.1,.7 2.3,-.2 1.9,2.1 2.2,.2 v -1 l 1.9,-.8 3,.8 1.2,.8 1.3,-.7 h .9 l .6,-1.7 3.4,-1.8 .5,.8 .8,2.9 3.5,1.4 1.2,2.1 -.1,1.1 .6,1 -.6,3.6 1.9,1.6 .8,1.1 1,.6 -.1,.9 4.4,5.6 h 1.4 l 1.5,1.8 1.2,.3 1.4,-.1 -4.9,6.6 -2.9,1 -3,3 -.4,2.2 -2.1,1.3 -.1,1.7 -1.4,1.4 -1.8,.5 -.5,1.9 -1,.4 -6.9,4.2 z m -98,11.3 -.7,-.7 .2,-1 h 1.1 l .7,.7 -.3,1 z"/>
-        <path data-st="LA" d="m 602.5,472.8 -1.2,-1.8 .3,-1.3 -4.8,-6.8 .9,-4.6 1,-1.4 .1,-1.4 -36,2 1.7,-11.9 2.4,-4.8 6,-8.4 -1.8,-2.5 h 2 v -3.3 l -2.4,-2.5 .5,-1.7 -1.2,-1 -1.6,-7.1 .6,-1.4 -52.3,1.3 .5,19.9 .7,3.4 2.6,2.8 .7,5.4 3.8,4.6 .8,4.3 h 1 l -.1,7.3 -3.3,6.4 1.3,2.3 -1.3,1.5 .7,3 -.1,4.3 -2.2,3.5 -.1,.8 -1.7,1.2 1,1.8 1.2,1.1 1.6,-1.3 5.3,-.9 6.1,-.1 9.6,3.8 8,1 1.5,-1.4 1.8,-.2 4.8,2.2 1.6,-.4 1.1,-1.5 -4.2,-1.8 -2.2,1 -1.1,-.2 -1.4,-2 3.3,-2.2 1.6,-.1 v 1.7 l 1.5,-.1 3.4,-.3 .4,2.3 1.1,.4 .6,1.9 4.8,1 1.7,1.6 v .7 h -1.2 l -1.5,1.7 1.7,1.2 5.4,1 2.7,2.8 4.4,-1 -3.7,.2 -.1,-.6 2.8,-.7 .2,-1.8 1.2,-.3 v -1.4 l 1.1,.1 v 1.6 l 2.5,.1 .8,-1.9 .9,.3 .2,2.5 1.2,.2 -1.8,2 2.6,-.9 2,-1.1 2.9,-3.3 h -.7 l -1.3,1.2 -.4,-.1 -.5,-.8 .9,-1.2 v -2.3 l 1.1,-.8 .7,.7 1,-.8 1,-.1 .6,1.3 -.6,1.9 h 2.4 l 5.1,1.7 .5,1.3 1.6,1.4 2.8,.1 1.3,.7 1.8,-1 .9,-1.7 v -1.7 h -1.4 l -1.2,-1.4 -1.1,-1.1 -3.2,-.9 -2.6,.2 -4.2,-2.4 v -2.3 l 1.3,-1 2.4,.6 -3.1,-1.6 .2,-.8 h 3.6 l 2.6,-3.5 -2.6,-1.8 .8,-1.5 -1.2,-.8 h -.8 l -2,2.1 v 2.1 l -.6,.7 -1.1,-.1 -1.6,-1.4 h -1.3 v -1.5 l .6,-.7 .8,.7 1.7,-1.6 .7,-1.6 .8,-.3 z m -10.3,-2.7 1.9,1 .8,1.1 2.5,.1 1.5,.8 .2,1.4 -.4,.6 -.9,-1.5 -1.4,1.2 -.9,1.4 -2.8,.8 -1.6,.1 -3.7,-1 .1,-1.7 2,-2 1.1,-2.4 z m -4.7,1.2 v 1.1 l -1.8,2 h -1.2 v -2.2 l 1.6,-1.5 z"/>
-        <path data-st="ME" d="m 875,128.7 .6,4 3.2,2 .8,2.2 2.3,1.4 1.4,-.3 1,-3 -.8,-2.9 1.6,-.9 .5,-2.8 -.6,-1.3 3.3,-1.9 -2.2,-2.3 .9,-2.4 1.4,-2.2 .5,3.2 1.6,-2 1.3,.9 1.2,-.8 v -1.7 l 3.2,-1.3 .3,-2.9 2.5,-.2 2.7,-3.7 v -.7 l -.9,-.5 -.1,-3.3 .6,-1.1 .2,1.6 1,-.5 -.2,-3.2 -.9,.3 -.1,1.2 -1.2,-1.4 .9,-1.4 .6,.1 1.1,-.4 .5,2.8 2,-.3 2.9,.7 v -1 l -1.1,-1.2 1.3,.1 .1,-2.3 .6,.8 .3,1.9 2.1,1.5 .2,-1 .9,-.2 -.3,-.8 .8,-.6 -.1,-1.6 -1.6,-.2 -2,.7 1.4,-1.6 .7,-.8 1.3,-.2 .4,1.3 1.7,1.6 .4,-2.1 2.3,-1.2 -.9,-1.3 .1,-1.7 1.1,.5 h .7 l 1.7,-1.4 .4,-2.3 2.2,.3 .1,-.7 .2,-1.6 .5,1.4 1.5,-1 2.3,-4.1 -.1,-2.2 -1.4,-2 -3,-3.2 h -1.9 l -.8,2.2 -2.9,-3 .3,-.8 v -1.5 l -1.6,-4.5 -.8,-.2 -.7,.4 h -4.8 l -.3,-3.6 -8.1,-26 -7.3,-3.7 -2.9,-.1 -6.7,6.6 -2.7,-1 -1,-3.9 h -2.7 l -6.9,19.5 .7,6.2 -1.7,2.4 -.4,4.6 1.3,3.7 .8,.2 v 1.6 l -1.6,4.5 -1.5,1.4 -1.3,2.2 -.4,7.8 -2.4,-1 -1.5,.4 z m 34.6,-24.7 -1,.8 v 1.3 l .7,-.8 .9,.8 .4,-.5 1.1,.2 -1,-.8 .4,-.8 z m -1.7,2.6 -1,1.1 .5,.4 -.1,1 h 1.1 v -1.8 z m -3,-1.6 .9,1.3 1,.5 .3,-1 v -1.8 l -1.3,-.7 -.4,1.2 z m -1,5 -1.7,-1.7 1.6,-2.4 .8,.3 .2,1.1 1,.8 v 1.1 l -1,1 z"/>
-        <path data-st="MD" d="m 822.9,269.3 0,-1.7 h -.8 l 0,1.8 z m 11.8,-3.9 1.2,-2.2 .1,-2.5 -.6,-.6 -.7,.9 -.2,2.1 -.8,1.4 -.3,1.1 -4.6,1.6 -.7,.8 -1.3,.2 -.4,.9 -1.3,.6 -.3,-2.5 .4,-.7 -.8,-.5 .2,-1.5 -1.6,1 v -2 l 1.2,-.3 -1.9,-.4 -.7,-.8 .4,-1.3 -.8,-.6 -.7,1.6 .5,.8 -.7,.6 -1.1,.5 -2,-1 -.2,-1.2 -1,-1.1 -1.4,-1.7 1.5,-.8 -1,-.6 v -.9 l .6,-1 1.7,-.3 -1.4,-.6 -.1,-.7 -1.3,-.1 -.4,1.1 -.6,.3 .1,-3.4 1,-1 .8,.7 .1,-1.6 -1,-.9 -.9,1.1 -1,1.4 -.6,-1 .2,-2.4 .9,-1 .9,.9 1.2,-.7 -.4,-1.7 -1,1 -.9,-2.1 -.2,-1.7 1.1,-2.4 1.1,-1.4 1.4,-.2 -.5,-.8 .5,-.6 -.3,-.7 .2,-2.1 -1.5,.4 -.8,1.1 1,1.3 -2.6,3.6 -.9,-.4 -.7,.9 -.6,2.2 -1.8,.5 1.3,.6 1.3,1.3 -.2,.7 .9,1.2 -1.1,1 .5,.3 -.5,1.3 v 2.1 l -.5,1.3 .9,1.1 .7,3.4 1.3,1.4 1.6,1.4 .4,2.8 1.6,2 .4,1.4 v 1 h -.7 l -1.5,-1.2 -.4,.2 -1.2,-.2 -1.7,-1.4 -1.4,-.3 -1,.5 -1.2,-.3 -.4,.2 -1.7,-.8 -1,-1 -1,-1.3 -.6,-.2 -.8,.7 -1.6,1.3 -1.1,-.8 -.4,-2.3 .8,-2.1 -.3,-.5 .3,-.4 -.7,-1 1,-.1 1,-.9 .4,-1.8 1.7,-2.6 -2.6,-1.8 -1,1.7 -.6,-.6 h -1 l -.6,-.1 -.4,-.4 .1,-.5 -1.7,-.6 -.8,.3 -1.2,-.1 -.7,-.7 -.5,-.2 -.2,-.7 .6,-.8 v -.9 l -1.2,-.2 -1,-.9 -.9,.1 -1.6,-.3 -.9,-.4 .2,-1.6 -1,-.5 -.2,-.7 h -.7 l -.8,-1.2 .2,-1 -2.6,.4 -2.2,-1.6 -1.4,.3 -.9,1.4 h -1.3 l -1.7,2.9 -3.3,.4 -1.9,-1 -2.6,3.8 -2.2,-.3 -3.1,3.9 -.9,1.6 -1.8,1.6 -1.7,-11.4 60.5,-11.8 7.6,27.1 10.9,-2.3 0,5.3 -.1,3.1 -1,1.8 z m -13.4,-1.8 -1.3,.9 .8,1.8 1.7,.8 -.4,-1.6 z"/>
-        <path data-st="MA" d="m 899.9,174.2 h 3.4 l .9,-.6 .1,-1.3 -1.9,-1.8 .4,1 -1.5,1.5 h -2.3 l .1,.8 z m -9,1.8 -1.2,-.6 1,-.8 .6,-2.1 1.2,-1 .8,-.2 .6,.9 1.1,.2 .6,-.6 .5,1.9 -1.3,.3 -2.8,.7 z m -34.9,-23.4 18.4,-3.8 1,-1.5 .3,-1.7 1.9,-.6 .5,-1.1 1.7,-1.1 1.3,.3 1.7,3.3 1,.4 1.1,-1.3 .8,1.3 v 1.1 l -3,2.4 .2,.8 -.9,1 .4,.8 -1.3,.3 .9,1.2 -.8,.7 .6,1 .9,-.2 .3,-.8 1.1,.6 h 1.8 l 2.5,2.6 .2,2.6 1.8,.1 .8,1.1 .6,2 1,.7 h 1.9 l 1.9,-.1 .8,-.9 1.6,-1.2 1.1,-.3 -1.2,-2.1 -.3,.9 -1.5,-3.6 h -.8 l -.4,.9 -1.2,-1 1.3,-1.1 1.8,.4 2.3,2.1 1.3,2.7 1.2,3.3 -1,2.8 v -1.8 l -.7,-1 -3.5,2.3 -.9,-.3 -1.6,1 -.1,1.2 -2.2,1.2 -2,2.1 -2,1.9 h -1.2 l 3.3,-3.3 .5,-1.9 -.5,-.6 -.3,-1.3 -.9,-.1 -.1,1.3 -1,1.2 h -1.2 l -.3,1.1 .4,1.2 -1.2,1.1 -1.1,-.2 -.4,1 -1.4,-3 -1.3,-1.1 -2.6,-1.3 -.6,-2.2 h -.8 l -.7,-2.6 -6.5,2 -.1,-.3 -14.9,3.4 v .7 l -.9,.3 -.5,-.7 -10.5,2.4 -.7,-1 .5,-15 z"/>
-        <path data-st="MI" d="m 663.3,209.8 .1,1.4 21.4,-3.5 .5,-1.2 3.9,-5.9 v -4.3 l .8,-2.1 2.2,-.8 2,-7.8 1,-.5 1,.6 -.2,.6 -1.1,.8 .3,.9 .8,.4 1.9,-1.4 .4,-9.8 -1.6,-2.3 -1.2,-3.7 v -2.5 l -2.3,-4.4 v -1.8 l -1.2,-3.3 -2.3,-3 -2.9,-1 -4.8,3 -2.5,4.6 -.2,.9 -3,3.5 -1.5,-.2 -2.9,-2.8 -.1,-3.4 1.5,-1.9 2,-.2 1.2,-1.7 .2,-4 .8,-.8 1.1,-.1 .9,-1.7 -.2,-9.6 -.3,-1.3 -1.2,-1.2 -1.7,-1 -.1,-1.8 .7,-.6 1.8,.8 -.3,-1.7 -1.9,-2.7 -.7,-1.6 -1.1,-1.1 h -2.2 l -8.1,-2.9 -1.4,-1.7 -3.1,-.3 -1.2,.3 -4.4,-2.3 h -1.4 l .5,1 -2.7,-.1 .1,.6 .6,.6 -2.5,2.1 .1,1.8 1.5,2.3 1.5,.2 v .6 l -1.5,.5 -2.1,-.1 -2.8,2.5 .1,2.5 .4,5.8 -2.2,3.4 .8,-4.5 -.8,-.6 -.9,5.3 -1,-2.3 .5,-2.3 -.5,-1 .6,-1.3 -.6,-1.1 1,-1 v -1.2 l -1.3,.6 -1.3,3.1 -.7,.7 -1.3,2.4 -1.7,-.2 -.1,1.2 h -1.6 l .2,1.5 .2,2 -3,1.2 .1,1.3 1,1.7 -.1,5.2 -1.3,4.4 -1.7,2.5 1.2,1.4 .8,3.5 -1,2.5 -.2,2.1 1.7,3.4 2.5,4.9 1.2,1.9 1.6,6.9 -.1,8.8 -.9,3.9 -2,3.2 -.9,3.7 -2,3 -1.2,1 z m -95.8,-96.8 3,3.8 17,3.8 1.4,1 4,.8 .7,.5 2.8,-.2 4.9,.8 1.4,1.5 -1,1 .8,.8 3.8,.7 1.2,1.2 .1,4.4 -1.3,2.8 2,.1 1,-.8 .9,.8 -1.1,3.1 1,1.6 1.2,.3 .8,-1.8 2.9,-4.6 1.6,-6 2.3,-2 -.5,-1.6 .5,-.9 1,1.6 -.3,2.2 2.9,-2.2 .2,-2.3 2.1,.6 .8,-1.6 .7,.6 -.7,1.5 -1,.5 -1,2 1.4,1.8 1.1,-.5 -.5,-.7 1,-1.5 1.9,-1.7 h .8 l .2,-2.6 2,-1.8 7.9,-.5 1.9,-3.1 3.8,-.3 3.8,1.2 4.2,2.7 .7,-.2 -.2,-3.5 .7,-.2 4.5,1.1 1.5,-.2 2.9,-.7 1.7,.4 1.8,.1 v -1.1 l -.7,-.9 -1.5,-.2 -1.1,-.8 .5,-1.4 -.8,-.3 -2.6,.1 -.1,-1 1.1,-.8 .6,.8 .5,-1.8 -.7,-.7 .7,-.2 -1.4,-1.3 .3,-1.3 .1,-1.9 h -1.3 l -1.5,1 -1.9,.1 -.5,1.8 -1.9,.2 -.3,-1.2 -2.2,.1 -1,1.2 -.7,-.1 -.2,-.8 -2.6,.4 -.1,-4.8 1,-2 -.7,-.1 -1.8,1.1 h -2.2 l -3.8,2.7 -6.2,.3 -4.1,.8 -1.9,1.5 -1.4,1.3 -2.5,1.7 -.3,.8 -.6,-1.7 -1.3,-.6 v .6 l .7,.7 v 1.3 l -1.5,-.6 h -.6 l -.3,1.2 -2,-1.9 -1.3,-.2 -1.3,1.5 -3.2,-.1 -.5,-1.4 -2,-1.9 -1.3,-1.6 v -.7 l -1.1,-1.4 -2.6,-1.2 -3.3,-.1 -1.1,-.9 h -1.4 l -.7,.4 -2.2,2.2 -.7,1.1 -1,-.7 .2,-1 .8,-2.1 3.2,-5 .8,-.2 1.7,-1.9 .7,-1.6 3,-.6 .8,-.6 -.1,-1 -.5,-.5 -4.5,.2 -2,.5 -2.6,1.2 -1.2,1.2 -1.7,2.2 -1.8,1 -3.3,3.4 -.4,1.6 -7.4,4.6 -4,.5 -1.8,.4 -2.3,3 -1.8,.7 -4.4,2.3 z m 100.7,3.8 3.8,.1 .6,-.5 -.2,-2 -1.7,-1.8 -1.9,.1 -.1,.5 1.1,.4 -1.6,.8 -.3,1 -.6,-.6 -.4,.8 z m -75.1,-41.9 -2.3,.2 -2.7,1.9 -7.1,5.3 .8,1 1.8,.3 2.8,-2 -1.1,-.5 2.3,-1.6 h 1 l 3,-1.9 -.1,-.9 z m 41.1,62.8 v 1 l 2.1,1.6 -.2,-2.4 z m -.7,2.8 1.1,.1 v .9 h -1 z m 21.4,-21.3 v .9 l .8,-.2 v -.5 z m 4.7,3.1 -.1,-1.1 -1.6,-.2 -.6,-.4 h -.9 l -.4,.3 .9,.4 1.1,1.1 z m -18,1.2 -.1,1.1 -.3,.7 .2,2.2 .4,.3 .7,.1 .5,-.9 .1,-1.6 -.3,-.6 -.1,-1.1 z"/>
-        <path data-st="MN" d="m 464.7,68.6 -1.1,2.8 .8,1.4 -.3,5.1 -.5,1.1 2.7,9.1 1.3,2.5 .7,14 1,2.7 -.4,5.8 2.9,7.4 .3,5.8 -.1,2.1 -.1,2.2 -.9,2 -3.1,1.9 -.3,1.2 1.7,2.5 .4,1.8 2.6,.6 1.5,1.9 -.2,39.5 h 28.2 l 36.3,-.9 18.6,-.7 -1.1,-4.5 -.2,-3 -2.2,-3 -2.8,-.7 -5.2,-3.6 -.6,-3.3 -6.3,-3.1 -.2,-1.3 h -3.3 l -2.2,-2.6 -2,-1.3 .7,-5.1 -.9,-1.6 .5,-5.4 1,-1.8 -.3,-2.7 -1.2,-1.3 -1.8,-.3 v -1.7 l 2.8,-5.8 5.9,-3.9 -.4,-13 .9,.4 .6,-.5 .1,-1.1 .9,-.6 1.4,1.2 .7,-.1 v 0 l -1.2,-2.2 4.3,-3.1 3.1,-3.7 1.6,-.8 4.7,-5.9 6.3,-5.8 3.9,-2.1 6.3,-2.7 7.6,-4.5 -.6,-.4 -3.7,.7 -2.8,.1 -1,-1.6 -1.4,-.9 -9.8,1.2 -1,-2.8 -1.6,-.1 -1.7,.8 -3.7,3.1 h -4.1 l -2.1,-1 -.3,-1.7 -3.9,-.8 -.6,-1.6 -.7,-1.3 -1,.9 -2.6,.1 -9.9,-5.5 h -2.9 l -.8,-.7 -3.1,1.3 -.8,1.3 -3.3,.8 -1.3,-.2 v -1.7 l -.7,-.9 h -5.9 l -.4,-1.4 h -2.6 l -1.1,.4 -2.4,-1.7 .3,-1.4 -.6,-2.4 -.7,-1.1 -.2,-3 -1,-3.1 -2.1,-1.6 h -2.9 l .1,8 -30.9,-.4 z"/>
-        <path data-st="MS" d="m 623.8,468.6 -5,.1 -2.4,-1.5 -7.9,2.5 -.9,-.7 -.5,.2 -.1,1.6 -.6,.1 -2.6,2.7 -.7,-.1 -.6,-.7 -1.2,-1.8 .3,-1.3 -4.8,-6.8 .9,-4.6 1,-1.4 .1,-1.4 -36,2 1.7,-11.9 2.4,-4.8 6,-8.4 -1.8,-2.5 h 2 v -3.3 l -2.4,-2.5 .5,-1.7 -1.2,-1 -1.6,-7.1 .6,-1.4 1.2,-1.5 .5,-3 -1.5,-2.3 -.5,-2.2 .9,-.7 v -.8 l -1.7,-1.1 -.1,-.7 1.6,-.9 -1.2,-1.1 1.7,-7.1 3.4,-1.6 v -.8 l -1.1,-1.4 2.9,-5.4 h 1.9 l 1.5,-1.2 -.3,-5.2 3.1,-4.5 1.8,-.6 -.5,-3.1 38.3,-2.6 1.3,2 -1.3,67 4.4,33.2 z"/>
-        <path data-st="MO" d="m 555.3,248.9 -1.1,-1.1 -.6,-1.6 -1.7,-1.3 -14.3,.8 -27.2,1.2 -25.9,-.1 1.3,1.3 -.3,1.4 2.1,3.7 3.9,6.3 2.9,3 2,.6 .9,-1 1.5,2.1 -.1,1.2 -2.7,2.6 -.5,2.3 2.5,2.5 2.6,4.7 3.2,.7 .5,48.1 .2,10.8 39.1,-.7 39.8,-2 1.6,2.5 v 2.2 l -1.7,1.5 -2.8,5.1 11.2,-.8 1,-2 1.2,-.5 v -.7 l -1.2,-1.1 -.6,-1 1.7,.2 .8,-.7 -1.4,-1.5 1.4,-.5 .1,-1 -.6,-1 v -1.3 l -.7,-.7 .2,-1 h 1.1 l .7,.7 -.3,1 .8,.7 .8,-1 1,-2.7 1.4,.9 .7,-.4 1.2,-4.1 -1,-1 1,-2 .2,-.9 -1.3,-.8 h -2.8 l -1.4,-1.5 -1.8,-3.8 v -1.9 l .8,-.6 .1,-1.3 -1.7,-1.9 -.9,-2.5 -2.7,-4.1 -4.8,-1.3 -7.4,-7.1 -.4,-2.4 2.8,-7.6 -.4,-1.9 1.2,-1.1 v -1.3 l -2.8,-1.5 -3,-.7 -3.4,1.2 -1.3,-2.3 .6,-1.9 -.7,-2.4 -8.6,-8.4 -2.2,-1.5 -2.5,-5.9 -1.2,-5.4 1.4,-3.7 z"/>
-        <path data-st="MT" d="m 247,130.5 57.3,7.9 51,5.3 2,-20.7 5.2,-66.7 -53.5,-5.6 -54.3,-7.7 -65.9,-12.5 -4.8,22 3.7,7.4 -1.6,4.8 3.6,4.8 1.9,.7 3.9,8.3 v 2.1 l 2.3,3 h .9 l 1.4,2.1 h 3.2 v 1.6 l -7.1,17 -.5,4.1 1.4,.5 1.6,2.6 2.8,-1.4 3.6,-2.4 1.9,1.9 .5,2.5 -.5,3.2 2.5,9.7 2.6,3.5 2.3,1.4 .4,3 v 4.1 l 2.3,2.3 1.6,-2.3 6.9,1.6 2.1,-1.2 9,1.7 2.8,-3.3 1.8,-.6 1.2,1.8 1.6,4.1 .9,.1 z"/>
-        <path data-st="NE" d="m 402.5,191.1 38,1.6 3.4,3.2 1.7,.2 2.1,2 1.8,-.1 1.8,-2 1.5,.6 1,-.7 .7,.5 .9,-.4 .7,.4 .9,-.4 1,.5 1.4,-.6 2,.6 .6,1.1 6.1,2.2 1.2,1.3 .9,2.6 1.8,.7 1.5,-.2 .5,.9 v 2.3 l .6,1.7 v 1.4 l 1.3,3.7 2.2,4.3 .2,3.7 2.8,5 .4,6.1 1.3,.7 -.2,2.9 .8,3.3 -.7,2.2 1.8,4.4 1.3,1.3 -.3,1.4 2.1,3.7 3.9,6.3 h -32.4 l -43.7,-1.2 -36,-2 1.4,-22.1 -33.1,-2.4 3.7,-44.2 z"/>
-        <path data-st="NV" d="m 167.6,296.8 -3.4,17.5 -2.4,2.9 h -2 l -1.2,-2.7 -3.7,-1.4 -3.5,.6 -1,13.6 .5,4.9 -.5,2.9 -1.4,3 -70.4,-105 -1.1,-3.5 16.4,-63.1 47,11.2 24.4,5.4 23.3,4.7 z"/>
-        <path data-st="NH" d="m 862.6,93.6 -1.3,.1 -1,-1.1 -1.9,1.4 -.5,6.1 1.2,2.3 -1.1,3.5 2.1,2.8 -.4,1.7 .1,1.3 -1.1,2.1 -1.4,.4 -.6,1.3 -2.1,1 -.7,1.5 1.4,3.4 -.5,2.5 .5,1.5 -1,1.9 .4,1.9 -1.3,1.9 .2,2.2 -.7,1.1 .7,4.5 .7,1.5 -.5,2.6 .9,1.8 -.2,2.5 -.5,1.3 -.1,1.4 2.1,2.6 18.4,-3.8 1,-1.5 .3,-1.7 1.9,-.6 .5,-1.1 1.7,-1.1 1.3,.3 .8,-4.8 -2.3,-1.4 -.8,-2.2 -3.2,-2 -.6,-4 -11.9,-36.8 z"/>
-        <path data-st="NJ" d="m 842.5,195.4 -14.6,-4.9 -1.8,2.5 .1,2.2 -3,5.4 1.5,1.8 -.7,2 -1,1 .5,3.6 2.7,.9 1,2.8 2.1,1.1 4.2,3.2 -3.3,2.6 -1.6,2.3 -1.8,3 -1.6,.6 -1.4,1.7 -1,2.2 -.3,2.1 .8,.9 .4,2.3 1.2,.6 2.4,1.5 1.8,.8 1.6,.8 .1,1.1 .8,.1 1.1,-1.2 .8,.4 2.1,.2 -.2,2.9 .2,2.5 1.8,-.7 1.5,-3.9 1.6,-4.8 2.9,-2.8 .6,-3.5 -.6,-1.2 1.7,-2.9 v -1.2 l -.7,-1.1 1.2,-2.7 -.3,-3.6 -.6,-8.2 -1.2,-1.4 v 1.4 l .5,.6 h -1.1 l -.6,-.4 -1.3,-.2 -.9,.6 -1.2,-1.6 .7,-1.7 v -1 l 1.7,-.7 .8,-2.1 z"/>
-        <path data-st="NM" d="m 357.5,332.9 h -.8 l -7.9,99.3 -31.8,-2.6 -34.4,-3.6 -.3,3 2,2.2 -30.8,-4.1 -1.4,10.2 -15.7,-2.2 17.4,-124.1 52.6,6.5 51.7,4.8 z"/>
-        <path data-st="NY" d="m 872.9,181.6 -1.3,.1 -.5,1 z m -30.6,22.7 .7,.6 1.3,-.3 1.1,.3 .9,-1.3 h 1.9 l 2.4,-.9 5.1,-2.1 -.5,-.5 -1.9,.8 -2,.9 .2,-.8 2.6,-1.1 .8,-1 1.2,.1 4.1,-2.3 v .7 l -4.2,3 4.5,-2.8 1.7,-2.2 1.5,-.1 4.5,-3.1 3.2,-3.1 3,-2.3 1,-1.2 -1.7,-.1 -1,1.2 -.2,.7 -.9,.7 -.8,-1.1 -1.7,1 -.1,.9 -.9,-.2 .5,-.9 -1.2,-.7 -.6,.9 .9,.3 .2,.5 -.3,.5 -1.4,2.6 h -1.9 l .9,-1.8 .9,-.6 .3,-1.7 1.4,-1.6 .9,-.8 1.5,-.7 -1.2,-.2 -.7,.9 h -.7 l -1.1,.8 -.2,1 -2.2,2.1 -.4,.9 -1.4,.9 -7.7,1.9 .2,.9 -.9,.7 -2,.3 -1,-.6 -.2,1.1 -1.1,-.4 .1,1 -1.2,-.1 -1.2,.5 -.2,1.1 h -1 l .2,1 h -.7 l .2,1 -1.8,.4 -1.5,2.3 z m -.8,-.4 -1.6,.4 v 1 l -.7,1.6 .6,.7 2.4,-2.3 -.1,-.9 z m -10.1,-95.2 -.6,1.9 1.4,.9 -.4,1.5 .5,3.2 2.2,2.3 -.4,2.2 .6,2 -.4,1 -.3,3.8 3.1,6.7 -.8,1.8 .9,2.2 .9,-1.6 1.9,1.5 3,14.2 -.5,2 1.1,1 -.5,15 .7,1 2.8,16.3 1.8,1.5 -3.5,3.4 1.7,2.2 -1.3,3.3 -1.5,1.7 -1.5,2.3 -.2,-.7 .4,-5.9 -14.6,-4.9 -1.6,-1.1 -1.9,.3 -3,-2.2 -3,-5.8 h -2 l -.4,-1.5 -1.7,-1.1 -70.5,13.9 -.8,-6 4.3,-3.9 .6,-1.7 3.9,-2.5 .6,-2.4 2.3,-2 .8,-1.1 -1.7,-3.3 -1.7,-.5 -1.8,-3 -.2,-3.2 7.6,-3.9 8.2,-1.6 h 4.4 l 3.2,1.6 .9,-.1 1.8,-1.6 3.4,-.7 h 3 l 2.6,-1.3 2.5,-2.6 2.4,-3.1 1.9,-.4 1.1,-.5 .4,-3.2 -1.4,-2.7 -1.2,-.7 2,-1.3 -.1,-1.8 h -1.5 l -2.3,-1.4 -.1,-3.1 6.2,-6.1 .7,-2.4 3.7,-6.3 5.9,-6.4 2.1,-1.7 2.5,.1 20.6,-5.2 z"/>
-        <path data-st="NC" d="m 829,300.1 -29.1,6.1 -39.4,7.3 -29.4,3.5 v 5.2 l -1.5,-.1 -1.4,1.2 -2.4,5.2 -2.6,-1.1 -3.5,2.5 -.7,2.1 -1.5,1.2 -.8,-.8 -.1,-1.5 -.8,-.2 -4,3.3 -.6,3.4 -4.7,2.4 -.5,1.2 -3.2,2.6 -3.6,.5 -4.6,3 -.8,4.1 -1.3,.9 -1.5,-.1 -1.4,1.3 -.1,4.9 21.4,-3 4.4,-1.9 1.3,-.1 7.3,-4.3 23.2,-2.2 .4,.5 -.2,1.4 .7,.3 1.2,-1.5 3.3,3 .1,2.6 19.7,-2.8 24.5,17.1 4,-2.2 3,-.7 h 1.7 l 1.1,1.1 .8,-2 .6,-5 1.7,-3.9 5.4,-6.1 4.1,-3.5 5.4,-2.3 2.5,-.4 1.3,.4 .7,1.1 3.3,-6.6 3.3,-5.3 -.7,-.3 -4.4,6.8 -.5,-.8 2,-2.2 -.4,-1.5 -2,-.5 1,1.3 -1.2,.1 -1.2,-1.8 -1.2,2 -1.6,.2 1,-2.7 .7,-1.7 -.2,-2.9 -2.2,-.1 .9,-.9 1.1,.3 2.7,.1 .8,-.5 h 2.3 l 2,-1.9 .2,-3.2 1.3,-1.4 1.2,-.2 1.3,-1 -.5,-3.7 -2.2,-3.8 -2.7,-.2 -.9,1.6 -.5,-1 -2.7,.2 -1.2,.4 -1.9,1.2 -.3,-.4 h -.9 l -1.8,1.2 -2.6,.5 v -1.3 l .8,-1 1,.7 h 1 l 1.7,-2.1 3.7,-1.7 2,-2.2 h 2.4 l .8,1.3 1.7,.8 -.5,-1.5 -.3,-1.6 -2.8,-3.1 -.3,-1.4 -.4,1 -.9,-1.3 z m 7,31 2.7,-2.5 4.6,-3.3 v -3.7 l -.4,-3.1 -1.7,-4.2 1.5,1.4 1,3.2 .4,7.6 -1.7,.4 -3.1,2.4 -3.2,3.2 z m 1.9,-19.3 -.9,-.2 v 1 l 2.5,2.2 -.2,-1.4 z m 2.9,2.1 -1.4,-2.8 -2.2,-3.4 -2.4,-3 -2.2,-4.3 -.8,-.7 2.2,4.3 .3,1.3 3.4,5.5 1.8,2.1 z"/>
-        <path data-st="ND" d="m 464.7,68.6 -1.1,2.8 .8,1.4 -.3,5.1 -.5,1.1 2.7,9.1 1.3,2.5 .7,14 1,2.7 -.4,5.8 2.9,7.4 .3,5.8 -.1,2.1 -29.5,-.4 -46,-2.1 -39.2,-2.9 5.2,-66.7 44.5,3.4 55.3,1.6 z"/>
-        <path data-st="OH" d="m 685.7,208.8 1.9,-.4 3,1.3 2.1,.6 .7,.9 h 1 l 1,-1.5 1.3,.8 h 1.5 l -.1,1 -3.1,.5 -2,1.1 1.9,.8 1.6,-1.5 2.4,-.4 2.2,1.5 1.5,-.1 2.5,-1.7 3.6,-2.1 5.2,-.3 4.9,-5.9 3.8,-3.1 9.3,-5.1 4.9,29.9 -2.2,1.2 1.4,2.1 -.1,2.2 .6,2 -1.1,3.4 -.1,5.4 -1,3.6 .5,1.1 -.4,2.2 -1.1,.5 -2,3.3 -1.8,2 h -.6 l -1.8,1.7 -1.3,-1.2 -1.5,1.8 -.3,1.2 h -1.3 l -1.3,2.2 .1,2.1 -1,.5 1.4,1.1 v 1.9 l -1,.2 -.7,.8 -1,.5 -.6,-2.1 -1.6,-.5 -1,2.3 -.3,2.2 -1.1,1.3 1.3,3.6 -1.5,.8 -.4,3.5 h -1.5 l -3.2,1.4 -1.2,-2.1 -3.5,-1.4 -.8,-2.9 -.5,-.8 -3.4,1.8 -.6,1.7 h -.9 l -1.3,.7 -1.2,-.8 -3,-.8 -1.9,.8 v 1 l -2.2,-.2 -1.9,-2.1 -2.3,.2 -4.1,-.7 v -1 l -2.2,-3.4 -2.9,-1.2 -1.9,.8 -2.2,-.1 -1.3,-.5 -6.6,-57.2 21.4,-3.5 z"/>
-        <path data-st="OK" d="m 501.5,398.6 -4.6,-3.8 -2.2,-.9 -.5,1.6 -5.1,.3 -.6,-1.5 -5,2.5 -1.6,-.7 -3.7,.3 -.6,1.7 -3.6,.9 -1.3,-1.2 -1.2,.1 -2,-1.8 -2.1,.7 -2,-.5 -1.8,-2 -2.5,4.2 -1.2,.8 -1,-1.8 .3,-2 -1.2,-.7 -2.3,2.5 -1.7,-1.2 -.1,-1.5 -1.3,.5 -2.6,-1.7 -3,2.6 -2.3,-1.1 .7,-2.1 -2.3,.1 -1.9,-3 -3.5,-1.1 -2,2.3 -2.3,-2.2 -1.4,.4 -2,.1 -3.5,-1.9 -2.3,.1 -1.2,-.7 -.5,-2.9 -2.3,-1.7 -1.1,1.5 -1.4,-1 -1.2,-.4 -1.1,1 -1.5,-.3 -2.5,-3 -2.7,-1.3 1.4,-42.7 -52.6,-3.2 .6,-10.6 16.5,1 67.7,2.9 62,.1 .2,10.8 4.1,24.4 -.7,39 z"/>
-        <path data-st="OR" d="m 93.9,166.5 47,11.2 8.5,-37.3 2.9,-5.8 .4,-2.1 .8,-.9 -.9,-2 -2.9,-1.2 .2,-4.2 4,-5.8 2.5,-.8 1.6,-2.3 -.1,-1.6 1.8,-1.6 3.2,-5.5 4.2,-4.8 -.5,-3.2 -3.5,-3.1 -1.6,-3.6 -30.3,-7.3 -2.8,1 -5.4,-.9 -1.8,-.9 -1.5,1.2 -3.3,-.4 -4.5,.5 -.9,.7 -4.2,-.4 -.8,-1.6 -1.2,-.2 -4.4,1.3 -1.6,-1.1 -2.2,.8 -.2,-1.8 -2.3,-1.2 -1.5,-.2 -1,-1.1 -3,.3 -1.2,-.8 h -1.2 l -1.2,.9 -5.5,.7 -6.6,-4.2 1.1,-5.6 -.4,-4.1 -3.2,-3.7 -3.7,.1 -.4,-1.1 .4,-1.2 -.7,-.8 -1,.1 -1.1,1.3 -1.5,-.2 -.5,-1.1 -1,-.1 -.7,.6 -2,-1.9 v 4.3 l -1.3,1.3 -1.1,3.5 -.1,2.3 -4.5,12.3 -13.2,31.3 -3.2,4.6 -1.6,-.1 .1,2.1 -5.2,7.1 -.3,3.3 1,1.3 .1,2.4 -1.2,1.1 -1.2,3 .1,5.7 1.2,2.9 z"/>
-        <path data-st="PA" d="m 826.3,189.4 -1.9,.3 -3,-2.2 -3,-5.8 h -2 l -.4,-1.5 -1.7,-1.1 -70.5,13.9 -.8,-6 -4.2,3.4 -.9,.1 -2.7,3 -3.3,1.7 4.9,29.9 3.2,19.7 17.4,-2.9 60.5,-11.8 1.2,-2.1 1.5,-1.1 1.6,-.3 1.6,.6 1.4,-1.7 1.6,-.6 1.8,-3 1.6,-2.3 3.3,-2.6 -4.2,-3.2 -2.1,-1.1 -1,-2.8 -2.7,-.9 -.5,-3.6 1,-1 .7,-2 -1.5,-1.8 3,-5.4 -.1,-2.2 1.8,-2.5 z"/>
-        <path data-st="RI" d="m 883.2,170.7 -1.3,-1.1 -2.6,-1.3 -.6,-2.2 h -.8 l -.7,-2.6 -6.5,2 3.2,12.3 -.4,1.1 .4,1.8 5.6,-3.6 .1,-3 -.8,-.8 .4,-.6 -.1,-1.3 -.9,-.7 1.2,-.4 -.9,-1.6 1.8,.7 .3,1.4 .7,1.2 -1.4,-.8 1.1,1.7 -.3,1.2 -.6,-1.1 v 2.5 l .6,-.9 .4,.9 1.3,-1.5 -.2,-2.5 1.4,3.1 1,-.9 z m -4.7,12.2 h .9 l .5,-.6 -.8,-1.3 -.7,.7 z"/>
-        <path data-st="SC" d="m 772.3,350.2 -19.7,2.8 -.1,-2.6 -3.3,-3 -1.2,1.5 -.7,-.3 .2,-1.4 -.4,-.5 -23.2,2.2 -7.3,4.3 -1.3,.1 -4.4,1.9 -.1,1.9 -1.9,1 -1.4,3.2 .2,1.3 6.1,3.8 2.6,-.3 3.1,4 .4,1.7 4.2,5.1 2.6,1.7 1.4,.2 2.2,1.6 1.1,2.2 2,1.6 1.8,.5 2.7,2.7 .1,1.4 2.6,2.8 5,2.3 3.6,6.7 .3,2.7 3.9,2.1 2.5,4.8 .8,3.1 4.2,.4 .8,-1.5 h .6 l 1.8,-1.5 .5,-2 3.2,-2.1 .3,-2.4 -1.2,-.9 .8,-.7 .8,.4 1.3,-.4 1.8,-2.1 3.8,-1.8 1.6,-2.4 .1,-.7 4.8,-4.4 -.1,-.5 -.9,-.8 1.1,-1.5 h .8 l .4,.5 .7,-.8 h 1.3 l .6,-1.5 2.3,-2.1 -.3,-5.4 .8,-2.3 3.6,-6.2 2.4,-2.2 2.2,-1.1 z"/>
-        <path data-st="SD" d="m 396.5,125.9 46,2.1 29.5,.4 -.1,2.2 -.9,2 -3.1,1.9 -.3,1.2 1.7,2.5 .4,1.8 2.6,.6 1.5,1.9 -.2,39.5 -2.2,-.1 -.1,1.6 1.3,1.5 -.1,1.1 -1,.5 .4,1.6 1.3,.4 .7,2 -1.7,5.1 -1,4.3 1.3,1.2 .3,1.3 .7,1.7 -1.5,.2 -1.8,-.7 -.9,-2.6 -1.2,-1.3 -6.1,-2.2 -.6,-1.1 -2,-.6 -1.4,.6 -1,-.5 -.9,.4 -.7,-.4 -.9,.4 -.7,-.5 -1,.7 -1.5,-.6 -1.8,2 -1.8,.1 -2.1,-2 -1.7,-.2 -3.4,-3.2 -38,-1.6 -51.1,-3.5 3.9,-43.9 2,-20.7 z"/>
-        <path data-st="TN" d="m 620.9,365.1 45.7,-4 22.9,-2.9 .1,-4.9 1.4,-1.3 1.5,.1 1.3,-.9 .8,-4.1 4.6,-3 3.6,-.5 3.2,-2.6 .5,-1.2 4.7,-2.4 .6,-3.4 4,-3.3 .8,.2 .1,1.5 .8,.8 1.5,-1.2 .7,-2.1 3.5,-2.5 2.6,1.1 2.4,-5.2 1.4,-1.2 1.5,.1 0,-5.2 .3,-.7 -4.6,.5 -.2,1 -28.9,3.3 -5.6,1.4 -20.5,1.4 -5.2,.8 -17.4,1 -2.6,.8 -22.6,2 -.7,-.6 h -3.7 l 1.2,3.2 -.6,.9 -23.3,1.5 -.8,1 -.8,-.7 h -1 v 1.3 l .6,1 -.1,1 -1.4,.5 1.4,1.5 -.8,.7 -1.7,-.2 .6,1 1.2,1.1 v .7 l -1.2,.5 -1,2 .1,.6 1.4,1 -.4,.7 h -1.5 v .5 l .9,.9 .1,.8 -1.4,.2 -.5,.8 -1.6,.2 -.9,.9 .6,.9 1.1,-.1 .5,.9 -1.6,1.3 .4,1.5 -2,-.6 -.1,.7 .4,1.1 -.3,1.4 -1.3,-.8 -.8,.8 1.1,.1 .1,1.5 -.6,1 1.1,.9 -.3,1.5 .8,.7 -.7,1 -1.2,-.5 -.9,2.2 -1.6,.7 z"/>
-        <path data-st="TX" d="m 282.3,429 .3,-3 34.4,3.6 31.8,2.6 7.9,-99.3 .8,0 52.6,3.2 -1.4,42.7 2.7,1.3 2.5,3 1.5,.3 1.1,-1 1.2,.4 1.4,1 1.1,-1.5 2.3,1.7 .5,2.9 1.2,.7 2.3,-.1 3.5,1.9 2,-.1 1.4,-.4 2.3,2.2 2,-2.3 3.5,1.1 1.9,3 2.3,-.1 -.7,2.1 2.3,1.1 3,-2.6 2.6,1.7 1.3,-.5 .1,1.5 1.7,1.2 2.3,-2.5 1.2,.7 -.3,2 1,1.8 1.2,-.8 2.5,-4.2 1.8,2 2,.5 2.1,-.7 2,1.8 1.2,-.1 1.3,1.2 3.6,-.9 .6,-1.7 3.7,-.3 1.6,.7 5,-2.5 .6,1.5 5.1,-.3 .5,-1.6 2.2,.9 4.6,3.8 6.4,1.9 2.6,2.3 2.8,-1.3 3.2,.8 .2,11.9 .5,19.9 .7,3.4 2.6,2.8 .7,5.4 3.8,4.6 .8,4.3 h 1 l -.1,7.3 -3.3,6.4 1.3,2.3 -1.3,1.5 .7,3 -.1,4.3 -2.2,3.5 -.1,.8 -1.7,1.2 1,1.8 1.2,1.1 -3.5,.3 -8.4,3.9 -3.5,1.4 -1.8,1.8 -.7,-.5 2.1,-2.3 1.8,-.7 .5,-.9 -2.9,-.1 -.7,-.8 .8,-2 -.9,-1.8 h -.6 l -2.4,1.3 -1.9,2.6 .3,1.7 3.3,3.4 1.3,.3 v .8 l -2.3,1.6 -4.9,4 -4,3.9 -3.2,1.4 -5,3 -3.7,2 -4.5,1.9 -4.1,2.5 3.2,-3 v -1.1 l .6,-.8 -.2,-1.8 -1.5,-.1 -1.1,1.5 -2.6,1.3 -1.8,-1.2 -.3,-1.7 h -1.5 l .8,2.2 1.4,.7 1.2,.9 1.8,1.6 -.7,.8 -3.9,1.7 -1.7,.1 -1.2,-1.2 -.5,2.1 .5,1.1 -2.7,2 -1.5,.2 -.8,.7 -.4,1.7 -1.8,3.3 -1.6,.7 -1.6,-.6 -1.8,1.1 .3,1.4 1.3,.8 1,.8 -1.8,3.5 -.3,2.8 -1,1.7 -1.4,1 -2.9,.4 1.8,.6 1.9,-.6 -.4,3.2 -1.1,-.1 .2,1.2 .3,1.4 -1.3,.9 v 3.1 l 1.6,1.4 .6,3.1 -.4,2.2 -1,.4 .4,1.5 1.1,.4 .8,1.7 v 2.6 l 1.1,2.1 2.2,2.6 -.1,.7 -2.2,-.2 -1.6,1.4 .2,1.4 -.9,-.3 -1.4,-.2 -3.4,-3.7 -2.3,-.6 h -7.1 l -2.8,-.8 -3.6,-3 -1.7,-1 -2.1,.1 -3.2,-2.6 -5.4,-1.6 v -1.3 l -1.4,-1.8 -.9,-4.7 -1.1,-1.7 -1.7,-1.4 v -1.6 l -1.4,-.6 .6,-2.6 -.3,-2.2 -1.3,-1.4 .7,-3 -.8,-3.2 -1.7,-1.4 h -1.1 l -4,-3.5 .1,-1.9 -.8,-1.7 -.8,-.2 -.9,-2.4 -2,-1.6 -2.9,-2.5 -.2,-2.1 -1,-.7 .2,-1.6 .5,-.7 -1.4,-1.5 .1,-.7 -2,-2.2 .1,-2.1 -2.7,-4.9 -.1,-1.7 -1.8,-3.1 -5.1,-4.8 v -1.1 l -3.3,-1.7 -.1,-1.8 -1.2,-.4 v -.7 l -.8,-.2 -2.1,-2.8 h -.8 l -.7,-.6 -1.3,1.1 h -2.2 l -2.6,-1.1 h -4.6 l -4.2,-2.1 -1.3,1.9 -2.2,-.6 -3.3,1.2 -1.7,2.8 -2,3.2 -1.1,4.4 -1.4,1.2 -1.1,.1 -.9,1.6 -1.3,.6 -.1,1.8 -2.9,.1 -1.8,-1.5 h -1 l -2,-2.9 -3.6,-.5 -1.7,-2.3 -1.3,-.2 -2.1,-.8 -3.4,-3.4 .2,-.8 -1.6,-1.2 -1,-.1 -3.4,-3.1 -.1,-2 -2.3,-4 .2,-1.6 -.7,-1.3 .8,-1.5 -.1,-2.4 -2.6,-4.1 -.6,-4.2 -1.6,-1.6 v -1 l -1.2,-.2 -.7,-1.1 -2.4,-1.7 -.9,-.1 -1.9,-1.6 v -1.1 l -2.9,-1.8 -.6,-2.1 -2.6,-2.3 -3.2,-4.4 -3,-1.3 -2.1,-1.8 .2,-1.2 -1.3,-1.4 -1.7,-3.7 -2.4,-1 z m 174.9,138.3 .8,.1 -.6,-4.8 -3.5,-12.3 -.2,-8.1 4.9,-10.5 6.1,-8.2 7.2,-5.1 v -.7 h -.8 l -2.6,1 -3.6,2.3 -.7,1.5 -8.2,11.6 -2.8,7.9 v 8.8 l 3.6,12 z"/>
-        <path data-st="UT" d="m 233.2,217.9 3.3,-21.9 -47.9,-8.2 -21,109 46.2,8.2 40,6 11.5,-88.3 z"/>
-        <path data-st="VT" d="m 859.1,102.4 -1.1,3.5 2.1,2.8 -.4,1.7 .1,1.3 -1.1,2.1 -1.4,.4 -.6,1.3 -2.1,1 -.7,1.5 1.4,3.4 -.5,2.5 .5,1.5 -1,1.9 .4,1.9 -1.3,1.9 .2,2.2 -.7,1.1 .7,4.5 .7,1.5 -.5,2.6 .9,1.8 -.2,2.5 -.5,1.3 -.1,1.4 2.1,2.6 -12.4,2.7 -1.1,-1 .5,-2 -3,-14.2 -1.9,-1.5 -.9,1.6 -.9,-2.2 .8,-1.8 -3.1,-6.7 .3,-3.8 .4,-1 -.6,-2 .4,-2.2 -2.2,-2.3 -.5,-3.2 .4,-1.5 -1.4,-.9 .6,-1.9 -.8,-1.7 27.3,-6.9 z"/>
-        <path data-st="VA" d="m 834.7,265.4 -1.1,2.8 .5,1.1 .4,-1.1 .8,-3.1 z m -34.6,-7 -.7,-1 1,-.1 1,-.9 .4,-1.8 -.2,-.5 .1,-.5 -.3,-.7 -.6,-.5 -.4,-.1 -.5,-.4 -.6,-.6 h -1 l -.6,-.1 -.4,-.4 .1,-.5 -1.7,-.6 -.8,.3 -1.2,-.1 -.7,-.7 -.5,-.2 -.2,-.7 .6,-.8 v -.9 l -1.2,-.2 -1,-.9 -.9,.1 -1.6,-.3 -.4,.7 -.4,1.6 -.5,2.3 -10,-5.2 -.2,.9 .9,1.6 -.8,2.3 .1,2.9 -1.2,.8 -.5,2.1 -.9,.8 -1.4,1.8 -.9,.8 -1,2.5 -2.4,-1.1 -2.3,8.5 -1.3,1.6 -2.8,-.5 -1.3,-1.9 -2.3,-.7 -.1,4.7 -1.4,1.7 .4,1.5 -2.1,2.2 .4,1.9 -3.7,6.3 -1,3.3 1.5,1.2 -1.5,1.9 .1,1.4 -2.3,2 -.7,-1.1 -4.3,3.1 -1.5,-1 -.6,1.4 .8,.5 -.5,.9 -5.5,2.4 -3,-1.8 -.8,1.7 -1.9,1.8 -2.3,.1 -4.4,-2.3 -.1,-1.5 -1.5,-.7 .8,-1.2 -.7,-.6 -4.9,6.6 -2.9,1 -3,3 -.4,2.2 -2.1,1.3 -.1,1.7 -1.4,1.4 -1.8,.5 -.5,1.9 -1,.4 -6.9,4.2 28.9,-3.3 .2,-1 4.6,-.5 -.3,.7 29.4,-3.5 39.4,-7.3 29.1,-6.1 -.6,-1.2 .4,-.1 .9,.9 -.1,-1.4 -.3,-1.9 1.6,1.2 .9,2.1 v -1.3 l -3.4,-5.5 v -1.2 l -.7,-.8 -1.3,.7 .5,1.4 h -.8 l -.4,-1 -.6,.9 -.9,-1.1 -2.1,-.1 -.2,.7 1.5,2.1 -1.4,-.7 -.5,-1 -.4,.8 -.8,.1 -1.5,1.7 .3,-1.6 v -1.4 l -1.5,-.7 -1.8,-.5 -.2,-1.7 -.6,-1.3 -.6,1.1 -1.7,-1 -2,.3 .2,-.9 1.5,-.2 .9,.5 1.7,-.8 .9,.4 .5,1 v .7 l 1.9,.4 .3,.9 .9,.4 .9,1.2 1.4,-1.6 h .6 l -.1,-2.1 -1.3,1 -.6,-.9 1.5,-.2 -1.2,-.9 -1.2,.6 -.1,-1.7 -1.7,.2 -2.2,-1.1 -1.8,-2.2 3.6,2.2 .9,.3 1.7,-.8 -1.7,-.9 .6,-.6 -1,-.5 .8,-.2 -.3,-.9 1.1,.9 .4,-.8 .4,1.3 1.2,.8 .6,-.5 -.5,-.6 -.1,-2.5 -1.1,-.1 -1.6,-.8 .9,-1.1 -2,-.1 -.4,-.5 -1.4,.6 -1.4,-.8 -.5,-1.2 -2.1,-1.2 -2.1,-1.8 -2.2,-1.9 3,1.3 .9,1.2 2.1,.7 2.3,2.5 .2,-1.7 .6,1.3 2.3,.5 v -4 l -.8,-1.1 1.1,.4 .1,-1.6 -3.1,-1.4 -1.6,-.2 -1.3,-.2 .3,-1.2 -1.5,-.3 -.1,-.6 h -1.8 l -.2,.8 -.7,-1 h -2.7 l -1,-.4 -.2,-1 -1.2,-.6 -.4,-1.5 -.6,-.4 -.7,1.1 -.9,.2 -.9,.7 h -1.5 l -.9,-1.3 .4,-3.1 .5,-2.4 .6,.5 z m 21.9,11.6 .9,-.1 0,-.6 -.8,.1 z m 7.5,14.2 -1,2.7 1.2,-1.3 z m -1.8,-15.3 .7,.3 -.2,1.9 -.5,-.5 -1.3,1 1,.4 -1.8,4.4 .1,8.1 1.9,3.1 .5,-1.5 .4,-2.7 -.3,-2.3 .7,-.9 -.2,-1.4 1.2,-.6 -.6,-.5 .5,-.7 .8,1.1 -.2,1.1 -.4,3.9 1.1,-2.2 .4,-3.1 .1,-3 -.3,-2 .6,-2.3 1.1,-1.8 .1,-2.2 .3,-.9 -4.6,1.6 -.7,.8 z"/>
-        <path data-st="WA" d="m 161.9,83.6 .7,4 -1.1,4.3 -30.3,-7.3 -2.8,1 -5.4,-.9 -1.8,-.9 -1.5,1.2 -3.3,-.4 -4.5,.5 -.9,.7 -4.2,-.4 -.8,-1.6 -1.2,-.2 -4.4,1.3 -1.6,-1.1 -2.2,.8 -.2,-1.8 -2.3,-1.2 -1.5,-.2 -1,-1.1 -3,.3 -1.2,-.8 h -1.2 l -1.2,.9 -5.5,.7 -6.6,-4.2 1.1,-5.6 -.4,-4.1 -3.2,-3.7 -3.7,.1 -.4,-1.1 .4,-1.2 -.7,-.8 -1,.1 -2.1,-1.5 -1.2,.4 -2,-.1 -.7,-1.5 -1.6,-.3 2.5,-7.5 -.7,6 .5,.5 v -2 l .8,-.2 1.1,2.3 -.5,-2.2 1.2,-4.2 1.8,.4 -1.1,-2 -1,.3 -1.5,-.4 .2,-4.2 .2,1.5 .9,.5 .6,-1.6 h 3.2 l -2.2,-1.2 -1.7,-1.9 -1.4,1.6 1.2,-3.1 -.3,-4.6 -.2,-3.6 .9,-6.1 -.5,-2 -1.4,-2.1 .1,-4 .4,-2.7 2,-2.3 -.7,-1.4 .2,-.6 .9,.1 7.8,7.6 4.7,1.9 5.1,2.5 3.2,-.1 .2,3 1,-1.6 h .7 l .6,2.7 .5,-2.6 1.4,-.2 .5,.7 -1.1,.6 .1,1.6 .7,-1.5 h 1.1 l -.4,2.6 -1.1,-.8 .4,1.4 -.1,1.5 -.8,.7 -2.5,2.9 1.2,-3.4 -1.6,.4 -.4,2.1 -3.8,2.8 -.4,1 -2.1,2.2 -.1,1 h 2.2 l 2.4,-.2 .5,-.9 -3.9,.5 v -.6 l 2.6,-2.8 1.8,-.8 1.9,-.2 1,-1.6 3,-2.3 v -1.4 h 1.1 l .1,4 h -1.5 l -.6,.8 -1.1,-.9 .3,1.1 v 1.7 l -.7,.7 -.3,-1.6 -.8,.8 .7,.6 -.9,1.1 h 1.3 l .7,-.5 .1,2 -1,1.9 -.9,1 -.1,1.8 -1,-.2 -.2,-1.4 .9,-1.1 -.8,-.5 -.8,.7 -.7,2.2 -.8,.9 -.1,-2 .8,-1.1 -.2,-1.1 -1.2,1.2 .1,2.2 -.6,.4 -2.1,-.4 -1.3,1.2 2.2,-.6 -.2,2.2 1,-1.8 .4,1.4 .5,-1 .7,1.8 h .7 l .7,-.8 .6,-.1 2,-1.9 .2,-1.2 .8,.6 .3,.9 .7,-.3 .1,-1.2 h 1.3 l .2,-2.9 -.1,-2.7 .9,.3 -.7,-2.1 1.4,-.8 .2,-2.4 2.3,-2.2 1,.1 .3,-1.4 -1.2,-1.4 -.1,-3.5 -.8,.9 .7,2.9 -.6,.1 -.6,-1.9 -.6,-.5 .3,-2.3 1.8,-.1 .3,.7 .3,-1.6 -1.6,-1.7 -.6,-1.6 -.2,2 .9,1.1 -.7,.4 -1,-.8 -1.8,1.3 1.5,.5 .2,2.4 -.3,1.8 .9,-1.3 1.4,2.3 -.4,1.9 h -1.5 v -1.2 l -1.5,-1.2 .5,-3 -1.9,-2.6 2.7,-3 .6,-4.1 h .9 l 1.4,3.2 v -2.6 l 1.2,.3 v -3.3 l -.9,-.8 -1.2,2.5 -1,-3 1.3,-.1 -1.5,-4.9 1.9,-.6 25.4,7.5 31.7,8 23.6,5.5 z m -78.7,-39.4 h .5 l .1,.8 -.5,.3 .1,.6 -.7,.4 -.2,-.9 .5,-.4 z m 5,-4.3 -1.2,1.9 -.1,.8 .4,.2 .5,-.6 1.1,.1 z m -.4,-21.6 .5,.6 1.3,-.3 .2,-1 1.2,-1.8 -1,-.4 -.7,1.6 -.1,-1.6 -1.1,.2 -.7,1.4 z m 3.2,-5.5 .7,1.5 -.9,.2 -.8,.4 -.2,-2.4 z m -2.7,-1.6 -1.1,-.2 .5,1.4 z m -1,2.5 .8,.4 -.4,1.1 1.7,-.5 -.2,-2.2 -.9,-.2 z m -2.7,-.4 .3,2.7 1.6,1.3 .6,-1.9 -1.1,-2.2 z m 1.9,-1.1 -1.1,-1 -.9,.1 1.8,1.5 z m 3.2,-7 h -1.2 v .8 l 1.2,.6 z m -.9,32.5 .4,-2.7 h -1.1 l -.2,1.9 z"/>
-        <path data-st="WV" d="m 723.4,297.5 -.8,1.2 1.5,.7 .1,1.5 4.4,2.3 2.3,-.1 1.9,-1.8 .8,-1.7 3,1.8 5.5,-2.4 .5,-.9 -.8,-.5 .6,-1.4 1.5,1 4.3,-3.1 .7,1.1 2.3,-2 -.1,-1.4 1.5,-1.9 -1.5,-1.2 1,-3.3 3.7,-6.3 -.4,-1.9 2.1,-2.2 -.4,-1.5 1.4,-1.7 .1,-4.7 2.3,.7 1.3,1.9 2.8,.5 1.3,-1.6 2.3,-8.5 2.4,1.1 1,-2.5 .9,-.8 1.4,-1.8 .9,-.8 .5,-2.1 1.2,-.8 -.1,-2.9 .8,-2.3 -.9,-1.6 .2,-.9 10,5.2 .5,-2.3 .4,-1.6 .4,-.7 -.9,-.4 .2,-1.6 -1,-.5 -.2,-.7 h -.7 l -.8,-1.2 .2,-1 -2.6,.4 -2.2,-1.6 -1.4,.3 -.9,1.4 h -1.3 l -1.7,2.9 -3.3,.4 -1.9,-1 -2.6,3.8 -2.2,-.3 -3.1,3.9 -.9,1.6 -1.8,1.6 -1.7,-11.4 -17.4,2.9 -3.2,-19.7 -2.2,1.2 1.4,2.1 -.1,2.2 .6,2 -1.1,3.4 -.1,5.4 -1,3.6 .5,1.1 -.4,2.2 -1.1,.5 -2,3.3 -1.8,2 h -.6 l -1.8,1.7 -1.3,-1.2 -1.5,1.8 -.3,1.2 h -1.3 l -1.3,2.2 .1,2.1 -1,.5 1.4,1.1 v 1.9 l -1,.2 -.7,.8 -1,.5 -.6,-2.1 -1.6,-.5 -1,2.3 -.3,2.2 -1.1,1.3 1.3,3.6 -1.5,.8 -.4,3.5 h -1.5 l -3.2,1.4 -.1,1.1 .6,1 -.6,3.6 1.9,1.6 .8,1.1 1,.6 -.1,.9 4.4,5.6 h 1.4 l 1.5,1.8 1.2,.3 1.4,-.1 z"/>
-        <path data-st="WI" d="m 611,144 -2.9,.8 .2,2.3 -2.4,3.4 -.2,3.1 .6,.7 .8,-.7 .5,-1.6 2,-1.1 1.6,-4.2 3.5,-1.1 .8,-3.3 .7,-.9 .4,-2.1 1.8,-1.1 v -1.5 l 1,-.9 1.4,.1 v 2 l -1,.1 .5,1.2 -.7,2.2 -.6,.1 -1.2,4.5 -.7,.5 -2.8,7.2 -.3,4.2 .6,2 .1,1.3 -2.4,1.9 .3,1.9 -.9,3.1 .3,1.6 .4,3.7 -1.1,4.1 -1.5,5 1,1.5 -.3,.3 .8,1.7 -.5,1.1 1.1,.9 v 2.7 l 1.3,1.5 -.4,3 .3,4 -45.9,2.8 -1.3,-2.8 -3.3,-.7 -2.7,-1.5 -2,-5.5 .1,-2.5 1.6,-3.3 -.6,-1.1 -2.1,-1.6 -.2,-2.6 -1.1,-4.5 -.2,-3 -2.2,-3 -2.8,-.7 -5.2,-3.6 -.6,-3.3 -6.3,-3.1 -.2,-1.3 h -3.3 l -2.2,-2.6 -2,-1.3 .7,-5.1 -.9,-1.6 .5,-5.4 1,-1.8 -.3,-2.7 -1.2,-1.3 -1.8,-.3 v -1.7 l 2.8,-5.8 5.9,-3.9 -.4,-13 .9,.4 .6,-.5 .1,-1.1 .9,-.6 1.4,1.2 .7,-.1 h 2.6 l 6.8,-2.6 .3,-1 h 1.2 l .7,-1.2 .4,.8 1.8,-.9 1.8,-1.7 .3,.5 1,-1 2.2,1.6 -.8,1.6 -1.2,1.4 .5,1.5 -1.4,1.6 .4,.9 2.3,-1.1 v -1.4 l 3.3,1.9 1.9,.7 1.9,.7 3,3.8 17,3.8 1.4,1 4,.8 .7,.5 2.8,-.2 4.9,.8 1.4,1.5 -1,1 .8,.8 3.8,.7 1.2,1.2 .1,4.4 -1.3,2.8 2,.1 1,-.8 .9,.8 -1.1,3.1 1,1.6 1.2,.3 z m -49.5,-37.3 -.5,.1 -1.5,1.6 .2,.5 1.5,-.6 v -.6 l .9,-.3 z m 1.6,-1.1 -1,.3 -.2,.7 .9,-.1 z m -1.3,-1.6 -.2,.9 h 1.7 l .6,-.4 .1,-1 z m 2.8,-3 -.3,1.9 1.2,-.5 .1,-1.4 z m 58.3,31.9 -2,.3 -.4,1.3 1.3,1.7 z"/>
-        <path data-st="WY" d="m 355.3,143.7 -51,-5.3 -57.3,-7.9 -2,10.7 -8.5,54.8 -3.3,21.9 32.1,4.8 44.9,5.7 37.5,3.4 3.7,-44.2 z"/>
-        <path data-st="DC" d="m 803.5,252 -2.6,-1.8 -1,1.7 .5,.4 .4,.1 .6,.5 .3,.7 -.1,.5 .2,.5 z"/>
-        </g></svg>
-        <div class="map__legend" id="mapLegend" aria-hidden="true"></div>
-        <div class="map__tip" id="mapTip" role="status"></div>
+    </section>
+    <section id="plan" class="plan" data-sc-act="flow" data-sc-drift="#d9d2c4">
+      <div class="plan__headline" data-sc-in><h2>The vision earns trust in steps.</h2></div>
+      <ol class="plan__sequence" data-sc-in data-sc-stagger="90">
+        <li><span>Know the property</span><p>Reconcile ownership, operations, occupancy, utilities, and every serviceable site.</p></li>
+        <li><span>Stabilize the base</span><p>Protect resident income and repair the systems that make every future stay dependable.</p></li>
+        <li><span>Open the pilot</span><p>Concentrate the first 20-30 sites into one legible, measurable Colony district.</p></li>
+        <li><span>Prove the rhythm</span><p>Show occupancy, repeat stays, hosted programs, operating discipline, and visible progress.</p></li>
+      </ol>
+    </section>
+    <section id="take-part" class="participate" data-sc-act="flow" data-sc-drift="#171a18">
+      <div class="participate__copy" data-sc-in><h2>Find your way into the story.</h2><p>Come for the land, return for the people, and follow the first district as it takes shape.</p></div>
+      <div class="paths" data-sc-in data-sc-stagger="70">
+        <a href="#grounds"><strong>Stay</strong><span>See the first hospitality spaces</span></a>
+        <a href="#day"><strong>Host</strong><span>Imagine a retreat or working gathering</span></a>
+        <a href="#plan"><strong>Build</strong><span>Follow the physical pilot and milestones</span></a>
+        <a href="#top"><strong>Follow</strong><span>Return as the story and proof grow</span></a>
       </div>
-      <footer class="foot">
-        <span class="foot__mark"><svg viewBox="0 0 544 116" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M 348.500 6.889 L 335.500 13.733 335.198 18.866 L 334.895 24 338.448 24 C 340.584 24, 342.029 24.498, 342.074 25.250 C 342.242 28.098, 342.491 41, 342.377 41 C 342.310 41, 340.060 40.024, 337.377 38.831 C 331.082 36.031, 319.745 35.828, 312.238 38.380 C 304.981 40.847, 297.048 48.274, 293.699 55.737 C 284.969 75.189, 290.155 100.290, 304.925 110.073 C 314.521 116.430, 328.524 117.692, 338.101 113.065 C 340.452 111.929, 342.454 111, 342.549 111 C 342.645 111, 342.495 112.193, 342.216 113.651 C 341.722 116.236, 341.807 116.286, 345.676 115.668 C 349.702 115.024, 364.576 114.037, 375.500 113.689 L 381.500 113.498 381.796 108.436 L 382.092 103.375 378.296 102.438 L 374.500 101.500 374.241 50.750 L 373.982 0 367.741 0.023 C 361.981 0.044, 360.499 0.573, 348.500 6.889 M 13.750 43.179 L 0 50.356 0 55.118 L 0 59.879 3.750 60.190 L 7.500 60.500 7.500 81 L 7.500 101.500 3.704 102.438 L -0.092 103.375 0.204 108.438 L 0.500 113.500 23.750 113.699 L 47 113.898 47 106.571 C 47 102.531, 47.632 97.732, 48.409 95.872 C 49.184 94.017, 49.582 91.262, 49.292 89.750 C 48.842 87.395, 48.280 87, 45.383 87 C 41.521 87, 38 84.103, 38 80.926 C 38 78.411, 48.624 67, 50.965 67 C 54.334 67, 62 78.063, 62 82.925 C 62 85.221, 59.248 87, 55.697 87 C 53.628 87, 53.141 87.637, 52.450 91.250 C 51.366 96.911, 51.285 111.622, 52.331 112.668 C 52.789 113.126, 62.146 113.646, 73.126 113.824 L 93.088 114.147 92.879 107.324 C 92.764 103.571, 93.238 98.680, 93.931 96.456 C 95.942 90.011, 95.161 87.634, 90.802 86.929 C 82.158 85.532, 81.664 80.742, 89.329 72.636 C 92.484 69.299, 95.508 67, 96.740 67 C 99.235 67, 102.945 71.189, 105.953 77.404 C 108.865 83.417, 108.081 85.669, 102.706 86.731 C 98.635 87.537, 98.491 87.701, 97.614 92.530 C 96.334 99.577, 96.462 109.126, 97.871 111.759 C 99.056 113.973, 99.328 114, 120.453 114 C 132.214 114, 142.548 113.727, 143.418 113.393 C 144.551 112.958, 145 111.448, 145 108.069 C 145 103.450, 144.922 103.334, 141.250 102.426 L 137.500 101.500 136.955 78 C 136.363 52.489, 135.794 49.597, 130.197 43.620 C 121.928 34.789, 104.806 34.079, 89.802 41.943 L 83.751 45.115 81.613 43.106 C 74.442 36.369, 58.957 34.547, 47.500 39.093 C 39.995 42.071, 39.542 42.066, 39.519 39 C 39.501 36.641, 39.161 36.486, 33.500 36.251 C 27.795 36.014, 26.824 36.354, 13.750 43.179 M 172.780 36.990 C 165.629 38.256, 157.628 42.333, 152.046 47.554 C 136.560 62.039, 136.474 89.881, 151.872 104.284 C 160.857 112.688, 172.647 116.623, 186 115.674 C 196.099 114.956, 202.001 112.704, 208.061 107.255 C 212.663 103.118, 218.967 94.020, 218.991 91.484 C 218.999 90.570, 209.011 84, 207.614 84 C 207.299 84, 206.153 85.740, 205.068 87.866 C 201.916 94.045, 198.270 97.732, 193.515 99.548 C 184.943 102.821, 176.540 98.418, 173.888 89.264 C 172.224 83.523, 172.250 63.452, 173.928 57.247 C 175.259 52.329, 178.766 49.473, 182.366 50.377 C 184.771 50.981, 185.800 52.882, 187.865 60.542 C 189.528 66.707, 193.829 70.248, 200.228 70.722 C 211.818 71.578, 218.158 61.551, 213.087 50.384 C 209.504 42.495, 199.680 37.615, 185.500 36.681 C 181.100 36.391, 175.376 36.530, 172.780 36.990 M 232.750 43.219 L 219 50.442 219 55.160 L 219 59.879 222.750 60.190 L 226.500 60.500 226.500 81 L 226.500 101.500 222.704 102.438 L 218.908 103.375 219.204 108.438 L 219.500 113.500 242.750 113.699 L 266 113.898 266 108.528 C 266 103.349, 265.891 103.135, 262.933 102.485 C 261.246 102.115, 259.559 100.986, 259.183 99.977 C 258.807 98.968, 258.725 89.448, 259 78.821 C 259.493 59.780, 259.532 59.495, 261.727 59.183 C 263.274 58.964, 265.134 60.108, 267.822 62.933 C 271.321 66.612, 272.158 67, 276.595 66.996 C 286.482 66.989, 291.495 61.122, 290.810 50.361 C 290.475 45.101, 289.935 43.542, 287.607 41.112 C 282.245 35.515, 272.746 34.908, 264.124 39.612 C 258.607 42.623, 258.260 42.601, 258.392 39.250 C 258.497 36.570, 258.347 36.494, 252.500 36.248 C 246.784 36.007, 245.850 36.337, 232.750 43.219 M 407.081 37.588 C 400.119 39.460, 396.019 42.035, 391.096 47.628 C 382.583 57.300, 384.286 71.371, 394.883 78.917 C 399.731 82.369, 407.197 85.203, 408.365 84.035 C 410.390 82.010, 412.885 83.063, 416.915 87.641 C 422.800 94.327, 422.200 96, 413.918 96 C 409.376 96, 405.522 92.935, 406.304 89.944 C 406.891 87.702, 405.522 86.416, 401.494 85.422 C 399.847 85.016, 397.529 84.055, 396.342 83.287 C 394.477 82.080, 393.411 82.115, 388.494 83.545 C 383.543 84.984, 382.865 85.478, 383.267 87.349 C 383.521 88.532, 384.783 94.787, 386.071 101.250 L 388.412 113 392.656 113 C 395.271 113, 397.208 112.457, 397.700 111.586 C 398.371 110.400, 399.629 110.552, 405.500 112.532 C 414.652 115.619, 423.017 116.448, 430.784 115.039 C 447.523 112.004, 456.700 103.307, 457.706 89.529 C 458.238 82.244, 455.598 76.284, 449.795 71.670 C 445.388 68.165, 435.940 64.690, 434.550 66.062 C 432.769 67.820, 430.147 67.004, 426.488 63.553 C 421.886 59.213, 422.163 56.867, 427.407 55.778 C 432.239 54.774, 436 56.833, 436 60.485 C 436 62.507, 436.725 63.118, 440.250 64.066 C 442.587 64.695, 445.797 65.880, 447.383 66.699 C 450.087 68.097, 450.408 68.044, 452.561 65.844 L 454.856 63.500 452.285 50.750 L 449.714 38 445.892 38 C 443.052 38, 441.786 38.531, 440.964 40.068 C 439.951 41.961, 439.665 42.011, 437.601 40.658 C 430.850 36.235, 417.217 34.863, 407.081 37.588 M 494.780 36.973 C 482.429 39.204, 470.350 48.372, 465.489 59.205 C 461.534 68.016, 460.928 79.992, 463.981 88.991 C 468.006 100.854, 475.284 108.211, 487.895 113.167 C 492.487 114.972, 495.579 115.378, 505 115.413 C 515.526 115.452, 517.018 115.219, 522.610 112.654 C 526.134 111.038, 530.628 107.873, 533.228 105.176 C 538.001 100.223, 543 93.229, 543 91.501 C 543 90.933, 540.443 88.938, 537.318 87.069 L 531.637 83.671 530.068 86.007 C 525.851 92.289, 518.373 98.828, 514.091 99.978 C 501.977 103.233, 494 94.884, 494 78.951 L 494 75 517.500 75 L 541 75 541 70.589 C 541 64.820, 537.845 54.827, 534.499 49.999 C 527.536 39.951, 510.045 34.215, 494.780 36.973 M 498.555 52.250 C 497.148 53.487, 495.717 55.962, 495.374 57.750 L 494.750 61 503.006 61 L 511.262 61 510.661 57.250 C 509.573 50.454, 503.463 47.930, 498.555 52.250 M 328.763 53.565 C 323.940 56.182, 322.606 60.232, 322.186 73.533 C 321.778 86.448, 322.740 92.129, 326.047 96.332 C 328.763 99.785, 334.147 100.777, 338.611 98.648 L 342 97.032 342 75.965 L 342 54.898 338.532 53.449 C 334.226 51.650, 332.250 51.673, 328.763 53.565"/></svg> limitless by nature</span>
-        <nav><a href="https://mcrdse.com/shop">shop</a><a href="https://mcrdse.com/contact">contact</a></nav>
-        <span>These statements have not been evaluated by the FDA. Not medical advice.</span>
-      </footer>
-    </div>
-  </section>
-
-</main>
-
-<script src="scrollcraft.js"></script>
-<script>
-ScrollCraft.mount(document.body);
-
-// ── promo countdown: ends Sunday 23:59:59 in the visitor's clock, then rolls to the next Sunday
-(function tickPromo() {
-  const now = new Date(), end = new Date(now); end.setHours(24, 0, 0, 0); end.setDate(end.getDate() + ((7 - end.getDay()) % 7));   // next midnight after Sunday
-  promoMonth.textContent = 'Ends Sunday';
-  const left = Math.max(0, end - now);
-  const d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60, sec = Math.floor(left / 1e3) % 60;
-  const two = n => String(n).padStart(2, '0');
-  tD.textContent = two(d); tH.textContent = two(h); tM.textContent = two(m); tS.textContent = two(sec);
-  setTimeout(tickPromo, 1000);
-})();
-
-
-
-// ── illumination on every press: ring burst on the element, a few 🍄 spores from the pointer
-function illuminate(el, x, y) {
-  el.classList.add('lit'); el.classList.remove('is-lit'); void el.offsetWidth; el.classList.add('is-lit');
-  if (reduced) return;
-  for (let i = 0; i < 7; i++) {
-    const sp = document.createElement('span'); sp.className = 'spore'; sp.textContent = '🍄';
-    const a = (i / 7) * Math.PI * 2 + Math.random() * 0.6, r = 46 + Math.random() * 48;
-    sp.style.cssText = `left:${x}px;top:${y}px;--dx:${(Math.cos(a) * r).toFixed(0)}px;--dy:${(Math.sin(a) * r - 24).toFixed(0)}px;--rot:${((Math.random() - .5) * 90).toFixed(0)}deg`;
-    document.body.appendChild(sp); setTimeout(() => sp.remove(), 950);
-  }
-}
-document.addEventListener('pointerdown', e => {
-  const t = e.target.closest('.cta, .plan');
-  if (t) illuminate(t, e.clientX, e.clientY);
-});
-
-// ── plans: the CTA follows the selected plan
-const PLAN_CTA = { '90': 'Start from $2.57/day', '30': 'Start from $3.30/day', '1': 'Buy once, $4.63/day' };
-document.querySelectorAll('.plan input').forEach(r => r.addEventListener('change', () => {
-  document.querySelectorAll('.plan').forEach(l => l.classList.toggle('is-on', l.contains(r)));
-  const cta = document.getElementById('plansCta'); cta.textContent = PLAN_CTA[r.value]; cta.href = 'https://mcrdse.com/shop/mcrdse-focus-bliss-dose-one-month-combo?plan=' + r.value;
-}));
-
-// ── shared: read an act's progress off the engine's --sc-p ──
-const P = el => parseFloat(el.style.getPropertyValue('--sc-p')) || 0;
-const clamp01 = v => v < 0 ? 0 : v > 1 ? 1 : v;
-const easeOut = t => 1 - Math.pow(1 - t, 3);
-const win = (p, a, b) => clamp01((p - a) / (b - a));
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-// ── 1 · the stack assembles ──
-const offerAct = document.getElementById('offer');
-const stackItems = [...offerAct.querySelectorAll('.gets [data-at], .ledger [data-at], .addin')].map(el => {
-  const [a, b] = el.dataset.at.split(' ').map(Number); return { el, a, b };
-});
-function drawStack() {
-  const p = P(offerAct);
-  const out = 1 - win(p, 0.86, 0.98);   // leave with the copy, not after it
-  for (const { el, a, b } of stackItems) {
-    const t = easeOut(win(p, a, b)) * out;
-    el.style.opacity = t;
-    el.style.transform = reduced ? 'none' : `translateY(${(1 - t) * 40}px) scale(${0.94 + 0.06 * t})`;
-  }
-  offerAct.dataset.scVerifyState = 'stack:' + Math.round(p * 40);
-}
-
-// ── 3 · the burst: one spore shower the moment the capsule row starts to open
-const growAct = document.getElementById('grow');
-let burstFired = false;
-function drawGrow() {
-  const p = P(growAct);
-  if (p > 0.78 && p < 0.84 && !burstFired && !reduced) {
-    burstFired = true;
-    const r = growAct.getBoundingClientRect(), cx = r.left + r.width * 0.5, cy = r.top + Math.min(r.height, innerHeight) * 0.6;
-    for (let i = 0; i < 24; i++) {
-      const sp = document.createElement('span'); sp.className = 'spore'; sp.textContent = i % 3 ? '🍄' : '💊';
-      const a = Math.random() * Math.PI * 2, d = 120 + Math.random() * 260;
-      sp.style.cssText = `left:${cx}px;top:${cy}px;--dx:${(Math.cos(a) * d).toFixed(0)}px;--dy:${(Math.sin(a) * d - 40).toFixed(0)}px;--rot:${((Math.random() - .5) * 240).toFixed(0)}deg;font-size:${(1 + Math.random()).toFixed(2)}rem;animation-duration:1.3s`;
-      document.body.appendChild(sp); setTimeout(() => sp.remove(), 1400);
+      <p class="public-boundary">This public prototype shares the project vision only. It is not an offer to sell securities or a request for investment.</p>
+    </section>
+  </main>
+  <footer><a class="wordmark" href="#top">THE COLONY</a><p>Year-round participatory desert village. Jacumba Hot Springs, California.</p><p>Current conditions and plans evolve as property diligence and pilot work continue.</p></footer>
+  <script src="scrollcraft.js"></script>
+  <script>
+    document.fonts.ready.then(function () { ScrollCraft.mount(document); });
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) {
+      document.querySelectorAll('video[autoplay]').forEach(function (video) {
+        video.removeAttribute('autoplay');
+        video.pause();
+      });
     }
-  }
-  if (p < 0.7) burstFired = false;
-  growAct.dataset.scVerifyState = 'grow:' + Math.round(p * 60);
-}
-
-// ── 7 · the map: states paint west to east, then the cities sprout in year order
-const closeAct = document.getElementById('join');
-const NAMES = {AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',DC:'District of Columbia',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'};
-const statePaths = [...document.querySelectorAll('.usmap__states path')];
-const tip = document.getElementById('mapTip'), mapEl = document.getElementById('map');
-let stateVals = {}, stateMeta = null, order = [];
-// west-to-east paint order from each path's box
-for (const el of statePaths) { const b = el.getBBox(); order.push({ el, x: b.x + b.width / 2 }); }
-order.sort((a, b) => a.x - b.x); order.forEach((o, i) => o.el.dataset.i = i);
-const mix = (a, b, t) => a.map((c, i) => Math.round(c + (b[i] - c) * t));
-const ramp = t => { const c = t < 0.5 ? mix([239,227,210],[205,179,242], t * 2) : mix([205,179,242],[91,45,142], (t - 0.5) * 2); return `rgb(${c.join(',')})`; };
-fetch('data/customers-by-state.json').then(r => r.json()).then(R => {
-  stateVals = R.values || {}; stateMeta = R;
-  const vals = Object.values(stateVals).filter(v => typeof v === 'number');
-  const lo = 0, hi = Math.max(...vals);
-  for (const el of statePaths) { const v = stateVals[el.dataset.st]; el.dataset.t = v == null ? '' : Math.pow((v - lo) / (hi - lo || 1), 0.45).toFixed(3); }   // gentle curve so small states still read
-  document.getElementById('mapLegend').innerHTML = `<span>1</span><i></i><span>${hi}</span><span>people on the ritual</span>`;
-}).catch(() => {});
-function showTip(e, html) { const r = mapEl.getBoundingClientRect(); tip.innerHTML = html; tip.style.left = (e.clientX - r.left) + 'px'; tip.style.top = (e.clientY - r.top) + 'px'; tip.classList.add('is-on'); }
-function hideTip() { tip.classList.remove('is-on'); }
-for (const el of statePaths) {
-  el.addEventListener('pointerenter', e => { el.classList.add('is-hot'); const v = stateVals[el.dataset.st]; showTip(e, `<b>${NAMES[el.dataset.st] || el.dataset.st}</b>${v == null ? 'nobody yet. be the first.' : v + (v === 1 ? ' person' : ' people') + ' on the ritual'}`); });
-  el.addEventListener('pointermove', e => { const r = mapEl.getBoundingClientRect(); tip.style.left = (e.clientX - r.left) + 'px'; tip.style.top = (e.clientY - r.top) + 'px'; });
-  el.addEventListener('pointerleave', () => { el.classList.remove('is-hot'); hideTip(); });
-}
-function drawMap() {
-  const p = reduced ? 1 : P(closeAct), n = statePaths.length;
-  for (const el of statePaths) {
-    const t = el.dataset.t === '' || el.dataset.t == null ? null : parseFloat(el.dataset.t);
-    const k = clamp01((p * 0.45 - (el.dataset.i / n) * 0.36) / 0.09);   // west to east sweep across the first 45% of the act
-    el.style.fill = t == null ? '#E4D5C4' : (k <= 0 ? '#EFE3D2' : ramp(t * easeOut(k)));
-  }
-  closeAct.dataset.scVerifyState = 'map:' + Math.round(p * 80);
-  if (p >= 0.999) closeAct.dataset.scVerifyHold = 'true'; else delete closeAct.dataset.scVerifyHold;
-}
-
-// ── one loop ──
-function frame() { drawStack(); drawGrow(); drawMap(); requestAnimationFrame(frame); }
-requestAnimationFrame(frame);
-</script>
+    if (!reducedMotion) {
+      document.querySelectorAll('.play-on-view').forEach(function (video) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              video.currentTime = 0;
+              video.play().catch(function () {});
+            } else {
+              video.pause();
+            }
+          });
+        }, { threshold: 0.35 }).observe(video);
+      });
+    }
+  </script>
 </body>
 </html>
