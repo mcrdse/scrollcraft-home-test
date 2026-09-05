@@ -262,3 +262,29 @@ All CTAs now → https://mcrdse.com/shop/mcrdse-focus-bliss-dose-one-month-combo
 has a subscribe/one-time radio ("purchase-type") and ignores `plan`; the Astro port must
 (a) read `plan` to preselect, and (b) add the $77 90-day / $99 monthly / $139 one-time Stripe
 prices and the welcome kit, since the live page still prices the Duo at $77.77 sub / $117.77.
+
+## Round 12 (9/4): Stamets quote act
+New flow section `#stamets` after INSIDE (ingredients) and before COMMUNITY, matching Magic Mind: their single big endorsement (Matthew Stafford) sits right after the ingredients/benefits block, before research stats; the 3-quote row and advisory board come later. White ground, left = "Mushrooms can help save the world." (Mycelium Running subtitle), right = kie-colorized/outpainted `assets/stamets-wide-1600.webp` (source Downloads/"paul and mush.jpg", variant B, near-white flattened to #fff). guard.py 0 block. Pre-edit copy at out/index.pre-stamets.html.
+
+Round 12b (9/4): Stamets block mirrored to Magic Mind layout (round portrait badge left, quote right, cream ground), lede added under the attribution on the new-beginning theme ("sharp in the morning and calm at night"). Kevin: no quiz, no product picker; hero-product page like AG1. No second proof layer (3-quote row / advisory board) yet, nothing to fill it with.
+
+Round 13 (9/4): COMMUNITY polish (impeccable). BUG: `.counts span` was hitting the `.sc-nums` span inside `<b>` so every count rendered at caption size and "1 in 3" wrapped; now `.counts > div > span`. Quotes: removed the nth-child size bump, all three at t-lg/1.4 in equal columns, image column 3fr, blockquotes stretch with footer pinned bottom, hairline top + kraft opening-mark ::before (markup quotes stripped), product as a pill tag. Mobile image 4:3. Impeccable context.mjs reports NO_PRODUCT_MD; BRIEF.md stands in, init skipped on purpose.
+
+Round 14 (9/4): keyword highlights `mark.hl` (kraft underline band; accent band inside the dark promo bar) on 90-day supply / free shipping on the 90-day supply / 90-day money-back guarantee / free welcome kit $112 / cancel or pause anytime / 90-day integration coaching. Wording unified: "90-day guarantee" -> "90-day money-back guarantee" everywhere. `.checks li` switched from flex to absolute check so inline marks do not split the sentence. Products: Pure Dose testimonial replaced with Brandon W. / Focus 2.0 from mcrdse-site src/data/reviews.json (lightly trimmed punctuation); page now names only Focus 2.0 and Bliss 2.0 as products (welcome kit gummies/sachets stay as the free kit, flagged to Kevin). Footer: discreet nofollow "members" link to mcrdse.shop/members-gate; no other .shop link on the page. Pre-edit copy at out/index.pre-hl.html.
+
+## Round 15 (2026-09-05): seams + copy pass (no-ai-slop, tasteskill, impeccable)
+Kevin: "things need to transition smoother and flow between each other." Contact sheets of every
+act seam (lab/seams.mjs → lab/shots/) showed the cause: each pinned stage left the page as a
+hard-edged rectangle sliding under the next flow section. Fix is one CSS rule: every scrub/pin/pan
+stage gets a `::before` feather (13% band top and bottom) painted in `--sc-canvas`, which is the
+engine's drift colour, so the band always matches whatever the page is at that moment. Close copy
+un-gated from cues (a pin's copy cannot show before p=0, so the map arrived blank); unpainted
+states darkened to #E9DCC9 so the map reads on arrival. Copy: coffee line cut to "Less than a cup
+of coffee a day."; ledger loses the duplicated guarantee (still in the promo bar and plans); plans
+h2 "give it ninety days."; "Exclusive access" dropped; peak end "dried whole, ground whole." +
+"Cap and stem, nothing extracted, into the capsule."; inside h2 "eighteen actives, every one
+named." with the dot legend fixed (the "both" dot was lilac, same as Bliss; now a kraft/lilac
+split dot and the copy says so); Stamets lede loses the "new beginning, grown from the ground up"
+kicker; close lede no longer repeats the community lede. Kept on purpose (Kevin's asks, taste
+rules waived): gradient light on "limitless", best-plan halo, certificate frame, 🍄 spores.
+Pre-edit copy at out/index.pre-seams.html. guard.py 0 block. 0 em dashes.
