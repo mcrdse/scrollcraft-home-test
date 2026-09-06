@@ -332,3 +332,11 @@ by Kevin. Dose beats: "125 mg of MCRDSE mushrooms." / "150 mg of MCRDSE mushroom
 per Kevin), subs "Focus 2.0. A capsule for the morning…" / "Bliss 2.0. A capsule for the rest of your
 day." plus small print "Take your last one at least four hours before bed. Any later and it can keep
 you up." Dose headlines at t-2xl / 18ch so they hold two lines and the small print stays off the caps.
+
+## Round 17 (2026-09-07): no-ai-slop pass over all 159 strings
+Slop left on the page was repetition, not vocabulary. Hero sub no longer restates the ledger
+($222 → $77 → save 65% said three times in one screen). Focus dose sub cut to "Focus 2.0. A capsule
+for the morning." (its California/lab line repeated act 6b verbatim). "front / back of the day" now
+appears once (rail note); brain panel body is "The mushroom leads. Eighteen actives back it up."
+"every one named" + "Every one of them" → "All eighteen are on the label". Close lede drops one
+"ritual" (was 8 on the page). California caption made one sentence. Customer quotes untouched.
