@@ -321,3 +321,14 @@ spec card gets an italic "known for" line (`.spec__for`, structure/function word
 line stays in the footer) and an illumination: a radial glow behind the specimen in the family
 colour (--glow: kraft / amethyst / mix) whose opacity rides the card's existing arrival curve
 (--lit). Pan span 2.3 → 2.9 for the extra panel. Assumed: 125/150 mg is per capsule. Page ~16.5vh.
+
+## Round 16b (2026-09-06): Kevin's voice pass on the peak
+"nothing extracted" cut ("Cap and stem, into the capsule."). Third beat is "then it becomes your
+teacher." "gold" and "teacher" are gilded: a `.gild` class the page adds at runtime to the engine's
+word-split spans (words mode is plain text, so no markup hook), gradient-clipped bronze→gold with a
+light that sweeps through the letters on scroll (background-position driven by --sc-p between
+--g0/--g1), soft gold drop-shadow; reduced motion = flat bronze. Gradient-text taste rule waived
+by Kevin. Dose beats: "125 mg of MCRDSE mushrooms." / "150 mg of MCRDSE mushrooms." (MCRDSE in caps
+per Kevin), subs "Focus 2.0. A capsule for the morning…" / "Bliss 2.0. A capsule for the rest of your
+day." plus small print "Take your last one at least four hours before bed. Any later and it can keep
+you up." Dose headlines at t-2xl / 18ch so they hold two lines and the small print stays off the caps.

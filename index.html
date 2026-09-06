@@ -198,8 +198,18 @@
   .grow__line { font-size: var(--sc-t-2xl); margin: 0; }
   .grow__big { font-size: var(--sc-t-3xl); margin: 0; }
   .grow__end { font-size: var(--sc-t-3xl); max-width: 22ch; }
+  .grow__dose { font-size: var(--sc-t-2xl); max-width: 18ch; }
   .grow__sub { margin: var(--sc-4) 0 0; font: italic 600 var(--sc-t-base)/1.35 var(--sc-font-display); color: var(--sc-ink); max-width: 44ch; }
   /* the burst: the flush swells and the capsule row irises in over it, driven by the act's progress */
+  .grow__fine { margin: var(--sc-3) 0 0; font: 400 var(--sc-t-xs)/1.45 var(--sc-font-text); color: var(--sc-ink-soft); max-width: 40ch; letter-spacing: .02em; }
+  /* the gilding: "gold" and "teacher" are gold, and a light passes through the letters as the reader scrolls.
+     --g0/--g1 are the act progress where the sweep starts and ends. Kevin's ask; the gradient-text taste rule is waived here. */
+  .gild { color: transparent; -webkit-background-clip: text; background-clip: text;
+    background-image: linear-gradient(100deg, #5A4210 0 38%, #C9A24A 46%, #FBE7A1 50%, #C9A24A 54%, #5A4210 62% 100%);
+    background-size: 320% 100%;
+    background-position: calc((1 - clamp(0, (var(--sc-p, 0) - var(--g0)) / (var(--g1) - var(--g0)), 1)) * 220% - 110%) 0;
+    filter: drop-shadow(0 0 10px rgba(251, 231, 161, .45)); }
+  @media (prefers-reduced-motion: reduce) { .gild { background-image: none; color: #5A4210; filter: none; } }
   /* burst at p=0.62: the flush swells, the iris opens over ~0.14 of the act (not a snap), and the flat lay fades up inside it */
   .grow video, .grow .sc-stage__poster { transform: scale(calc(1 + clamp(0, (var(--sc-p, 0) - 0.62) * 4, 1) * 0.12)); transform-origin: 50% 60%; }
   .grow__flat { --iris: calc(clamp(0, (var(--sc-p, 0) - 0.62) * 7, 1) * 95%); position: absolute; inset: auto 0 -16% 0; width: 100%; height: 116%; object-fit: cover; object-position: 50% 70%; -webkit-mask-image: radial-gradient(circle at 50% 62%, #000 calc(var(--iris) - 16%), transparent var(--iris)); mask-image: radial-gradient(circle at 50% 62%, #000 calc(var(--iris) - 16%), transparent var(--iris)); opacity: clamp(0, (var(--sc-p, 0) - 0.62) * 12, 1); }
@@ -477,20 +487,21 @@
         <p class="sc-display grow__line" data-sc-cue="0.24 0.42 0.12 0.05" data-sc-kinetic="words">turns to gold.</p>
       </div>
       <div class="sc-copy grow__tl">
-        <h2 class="sc-display grow__big" data-sc-cue="0.46 0.61 0.12 0.04" data-sc-kinetic="words">then it teaches you.</h2>
+        <h2 class="sc-display grow__big" data-sc-cue="0.46 0.61 0.12 0.04" data-sc-kinetic="words">then it becomes your teacher.</h2>
       </div>
       <!-- the capsule page: iris opens at 0.62, then three beats on the flat lay -->
       <div class="sc-copy grow__tl">
         <h2 class="sc-display grow__line grow__end" data-sc-cue="0.66 0.78 0.08 0.05" data-sc-kinetic="lines">dried whole, <em>ground whole</em>.</h2>
-        <p class="grow__sub" data-sc-cue="0.68 0.78 0.06 0.05">Cap and stem, nothing extracted, into the capsule.</p>
+        <p class="grow__sub" data-sc-cue="0.68 0.78 0.06 0.05">Cap and stem, into the capsule.</p>
       </div>
       <div class="sc-copy grow__tl">
-        <h2 class="sc-display grow__line grow__end" data-sc-cue="0.80 0.90 0.08 0.05" data-sc-kinetic="lines">125 mg of <em>magic</em>.</h2>
-        <p class="grow__sub" data-sc-cue="0.82 0.90 0.06 0.05">Focus 2.0, the morning capsule. Our own genetics, grown in California, every batch lab-tested.</p>
+        <h2 class="sc-display grow__line grow__end grow__dose" data-sc-cue="0.80 0.90 0.08 0.05" data-sc-kinetic="lines">125 mg of MCRDSE <em>mushrooms</em>.</h2>
+        <p class="grow__sub" data-sc-cue="0.82 0.90 0.06 0.05">Focus 2.0. A capsule for the morning. Our own genetics, grown in California, every batch lab-tested.</p>
       </div>
       <div class="sc-copy grow__tl">
-        <h2 class="sc-display grow__line grow__end" data-sc-cue="0.92 1 0.08 0" data-sc-kinetic="lines">150 mg of <em>magic</em>.</h2>
-        <p class="grow__sub" data-sc-cue="0.94 1 0.06 0">Bliss 2.0, the evening capsule. Same mushroom, a little more of it, for the back of the day.</p>
+        <h2 class="sc-display grow__line grow__end grow__dose" data-sc-cue="0.92 1 0.08 0" data-sc-kinetic="lines">150 mg of MCRDSE <em>mushrooms</em>.</h2>
+        <p class="grow__sub" data-sc-cue="0.94 1 0.06 0">Bliss 2.0. A capsule for the rest of your day.</p>
+        <p class="grow__fine" data-sc-cue="0.96 1 0.06 0">Take your last one at least four hours before bed. Any later and it can keep you up.</p>
       </div>
     </div>
   </section>
@@ -740,9 +751,18 @@ function drawStack() {
 
 // ── 3 · the burst: one spore shower the moment the capsule row starts to open
 const growAct = document.getElementById('grow');
-let burstFired = false;
+let burstFired = false, gilded = 0;
+// the engine splits kinetic words lazily, so tag "gold" and "teacher" the first time their spans exist
+const GILD = { 'gold.': [0.26, 0.42], 'teacher.': [0.50, 0.62] };
+function gild() {
+  for (const w of growAct.querySelectorAll('.sc-split__i:not(.gild)')) {
+    const g = GILD[w.textContent.trim()];
+    if (g) { w.classList.add('gild'); w.style.setProperty('--g0', g[0]); w.style.setProperty('--g1', g[1]); gilded++; }
+  }
+}
 function drawGrow() {
   const p = P(growAct);
+  if (gilded < 2) gild();
   if (p > 0.62 && p < 0.68 && !burstFired && !reduced) {
     burstFired = true;
     const r = growAct.getBoundingClientRect(), cx = r.left + r.width * 0.5, cy = r.top + Math.min(r.height, innerHeight) * 0.6;
