@@ -194,24 +194,31 @@
 
   /* ── 3 · PEAK ── */
   .grow { background: var(--slate); --sc-ink: #14202A; --sc-ink-soft: #2E3F4B; color: var(--sc-ink); }
-  .grow__tl { position: absolute; inset-inline: auto; bottom: auto; left: var(--sc-gutter); top: calc(var(--promo-h) + clamp(4.5rem, 12vh, 8rem)); max-width: min(40rem, 82vw); }
+  .grow__tl { position: absolute; inset-inline: auto; bottom: auto; left: var(--sc-gutter); top: calc(var(--promo-h) + clamp(4.5rem, 12vh, 8rem)); max-width: min(48rem, 88vw); }
   .grow__line { font-size: var(--sc-t-2xl); margin: 0; }
-  .grow__big { font-size: var(--sc-t-4xl); margin: 0; }
+  .grow__big { font-size: var(--sc-t-3xl); margin: 0; }
   .grow__end { font-size: var(--sc-t-3xl); max-width: 22ch; }
   .grow__sub { margin: var(--sc-4) 0 0; font: italic 600 var(--sc-t-base)/1.35 var(--sc-font-display); color: var(--sc-ink); max-width: 44ch; }
   /* the burst: the flush swells and the capsule row irises in over it, driven by the act's progress */
-  .grow video, .grow .sc-stage__poster { transform: scale(calc(1 + clamp(0, (var(--sc-p, 0) - 0.78) * 4, 1) * 0.12)); transform-origin: 50% 60%; }
-  .grow__flat { position: absolute; inset: auto 0 -16% 0; width: 100%; height: 116%; object-fit: cover; object-position: 50% 70%; clip-path: circle(calc(clamp(0, (var(--sc-p, 0) - 0.78) * 14, 1) * 85%) at 50% 62%); }
+  /* burst at p=0.62: the flush swells, the iris opens over ~0.14 of the act (not a snap), and the flat lay fades up inside it */
+  .grow video, .grow .sc-stage__poster { transform: scale(calc(1 + clamp(0, (var(--sc-p, 0) - 0.62) * 4, 1) * 0.12)); transform-origin: 50% 60%; }
+  .grow__flat { --iris: calc(clamp(0, (var(--sc-p, 0) - 0.62) * 7, 1) * 95%); position: absolute; inset: auto 0 -16% 0; width: 100%; height: 116%; object-fit: cover; object-position: 50% 70%; -webkit-mask-image: radial-gradient(circle at 50% 62%, #000 calc(var(--iris) - 16%), transparent var(--iris)); mask-image: radial-gradient(circle at 50% 62%, #000 calc(var(--iris) - 16%), transparent var(--iris)); opacity: clamp(0, (var(--sc-p, 0) - 0.62) * 12, 1); }
   @media (prefers-reduced-motion: reduce) {
     .grow video, .grow .sc-stage__poster { transform: none; }
-    .grow__flat { clip-path: none; opacity: clamp(0, (var(--sc-p, 0) - 0.78) * 14, 1); }
+    .grow__flat { -webkit-mask-image: none; mask-image: none; opacity: clamp(0, (var(--sc-p, 0) - 0.62) * 12, 1); }
   }
   @media (max-width: 1100px) { .grow__big { font-size: var(--sc-t-3xl); } .grow__line { font-size: var(--sc-t-xl); } }
 
   /* ── 4 · INSIDE (rail) ── */
   #inside [data-sc-stage] { background: #EFE3D2; }
   .rail { display: flex; align-items: stretch; gap: clamp(1rem, 2vw, 1.75rem); padding: 0 var(--sc-gutter); height: 100%; align-items: center; }
-  .rail__lead { flex: 0 0 auto; width: min(30rem, 78vw); padding-right: clamp(1rem, 4vw, 4rem); }
+  /* the brain: the rail opens on the generated still, copy sitting in the empty cream third the image was made with */
+  .rail__hero { flex: 0 0 auto; position: relative; margin: 0; width: min(72rem, 92vw); height: min(78vh, 56rem); border-radius: var(--sc-r-sm); overflow: hidden; }
+  .rail__hero img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; display: block; }
+  .rail__hero figcaption { position: absolute; left: clamp(1.25rem, 4vw, 3.5rem); top: 50%; translate: 0 -50%; max-width: min(24rem, 44%); }
+  .rail__hero h2 { font-size: var(--sc-t-3xl); margin: 0 0 var(--sc-4); }
+  .rail__hero p { color: var(--sc-ink-soft); max-width: 30ch; }
+  .rail__lead { flex: 0 0 auto; width: min(30rem, 78vw); padding-inline: clamp(1rem, 4vw, 4rem); }
   .rail__lead h2 { font-size: var(--sc-t-3xl); margin: 0 0 var(--sc-5); }
   .rail__lead p { color: var(--sc-ink-soft); max-width: 36ch; }
   .spec { flex: 0 0 auto; width: clamp(11rem, 15vw, 14rem); display: grid; grid-template-rows: auto auto auto; gap: .5rem; padding: 1rem 1rem 1.1rem; border-radius: var(--sc-r-sm); background: hsl(0 0% 100% / .45); box-shadow: 0 0 0 1px hsl(var(--sc-shadow-color) / .1); }
@@ -221,16 +228,20 @@
   .spec i { display: block; font-style: normal; font-size: var(--sc-t-xs); color: var(--sc-ink-soft); letter-spacing: .03em; margin-top: .15rem; }
   .spec u { text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; font-size: var(--sc-t-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--sc-ink-soft); }
   .spec u::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: var(--dot); }
-  .spec--focus { --dot: var(--kraft); }
-  .spec--bliss { --dot: var(--lilac); }
-  .spec--both  { --dot: linear-gradient(90deg, var(--kraft) 50%, var(--lilac) 50%); }
+  .spec__for { display: block; font: italic 500 var(--sc-t-sm)/1.2 var(--sc-font-display); color: var(--sc-ink); margin-top: .1rem; }
+  /* illumination: a warm light rises behind each specimen as its card arrives, kraft for Focus, amethyst for Bliss */
+  .spec__art { position: relative; isolation: isolate; }
+  .spec__art::before { content: ""; position: absolute; inset: 8%; border-radius: 50%; z-index: -1; background: radial-gradient(circle, color-mix(in oklab, var(--glow) 42%, transparent), transparent 68%); opacity: var(--lit, 1); }
+  .spec--focus { --dot: var(--kraft); --glow: var(--kraft); }
+  .spec--bliss { --dot: var(--lilac); --glow: #B08BE0; }
+  .spec--both  { --dot: linear-gradient(90deg, var(--kraft) 50%, var(--lilac) 50%); --glow: #C9A2C0; }
   .spec--label { width: clamp(15rem, 22vw, 21rem); background: #FAFAF8; padding: .6rem; }
   .spec--label img { width: 100%; height: auto; display: block; border-radius: 2px; }
   .spec--label i { color: #50385E; padding: .5rem .3rem 0; }
   .rail__note { flex: 0 0 auto; width: min(24rem, 78vw); padding-left: clamp(1rem, 3vw, 3rem); color: var(--sc-ink-soft); }
   .rail__note a { color: var(--sc-ink); }
   @media (prefers-reduced-motion: no-preference) {
-    .spec, .rail__note { opacity: calc(0.55 + 0.45 * clamp(0, (var(--sc-p, 0) * 1.6 - var(--i, 0) * 0.075), 1)); transform: translateY(calc((1 - clamp(0, (var(--sc-p, 0) * 1.6 - var(--i, 0) * 0.075), 1)) * 18px)); }
+    .spec, .rail__note { --lit: clamp(0, (var(--sc-p, 0) * 1.6 - var(--i, 0) * 0.075), 1); opacity: calc(0.55 + 0.45 * var(--lit)); transform: translateY(calc((1 - var(--lit)) * 18px)); }
   }
 
   /* ── 5 · COMMUNITY ── */
@@ -453,53 +464,70 @@
   </section>
 
   <!-- 3 · PEAK: scrub. The block fruits under the wheel, then bursts into the capsule row. Largest span on the page. -->
-  <section data-sc-act="scrub" data-sc-span="3.8" data-sc-dwell="0.45" data-sc-drift="#9AAAB4" id="grow">
+  <section data-sc-act="scrub" data-sc-span="5.4" data-sc-dwell="0.45" data-sc-drift="#9AAAB4" id="grow">
     <div data-sc-stage class="grow">
       <img class="sc-stage__poster" src="assets/03-grow-poster.webp" width="1920" height="1065" alt="">
       <video data-sc-scrub data-sc-src="assets/03-grow.mp4" data-sc-src-mobile="assets/03-grow-m.mp4" playsinline muted></video>
       <img class="grow__flat" src="assets/03-flat.webp" width="2736" height="1520" alt="Dried whole mushrooms and capsules in a row">
+      <!-- the grow: one phrase per beat, one word at a time (kinetic words) while the block fruits -->
       <div class="sc-copy grow__tl">
-        <p class="sc-display grow__line" data-sc-cue="0 0.30 0 0.22" data-sc-kinetic="lines">one block of <em>white mycelium</em>.</p>
+        <p class="sc-display grow__line" data-sc-cue="0.02 0.20 0.12 0.05" data-sc-kinetic="words">the mycelium grows.</p>
       </div>
       <div class="sc-copy grow__tl">
-        <p class="sc-display grow__line" data-sc-cue="0.33 0.57 0.25 0.22" data-sc-kinetic="lines">a few days, <em>and it pins</em>.</p>
+        <p class="sc-display grow__line" data-sc-cue="0.24 0.42 0.12 0.05" data-sc-kinetic="words">turns to gold.</p>
       </div>
       <div class="sc-copy grow__tl">
-        <h2 class="sc-display grow__big" data-sc-cue="0.60 0.78 0.28 0.2" data-sc-kinetic="lines">then it <em>fruits</em>.</h2>
+        <h2 class="sc-display grow__big" data-sc-cue="0.46 0.61 0.12 0.04" data-sc-kinetic="words">then it teaches you.</h2>
+      </div>
+      <!-- the capsule page: iris opens at 0.62, then three beats on the flat lay -->
+      <div class="sc-copy grow__tl">
+        <h2 class="sc-display grow__line grow__end" data-sc-cue="0.66 0.78 0.08 0.05" data-sc-kinetic="lines">dried whole, <em>ground whole</em>.</h2>
+        <p class="grow__sub" data-sc-cue="0.68 0.78 0.06 0.05">Cap and stem, nothing extracted, into the capsule.</p>
       </div>
       <div class="sc-copy grow__tl">
-        <h2 class="sc-display grow__line grow__end" data-sc-cue="0.85 1 0.08 0" data-sc-kinetic="lines">dried whole, <em>ground whole</em>.</h2>
-        <p class="grow__sub" data-sc-cue="0.9 1 0.06 0">Cap and stem, nothing extracted, into the capsule.</p>
+        <h2 class="sc-display grow__line grow__end" data-sc-cue="0.80 0.90 0.08 0.05" data-sc-kinetic="lines">125 mg of <em>magic</em>.</h2>
+        <p class="grow__sub" data-sc-cue="0.82 0.90 0.06 0.05">Focus 2.0, the morning capsule. Our own genetics, grown in California, every batch lab-tested.</p>
+      </div>
+      <div class="sc-copy grow__tl">
+        <h2 class="sc-display grow__line grow__end" data-sc-cue="0.92 1 0.08 0" data-sc-kinetic="lines">150 mg of <em>magic</em>.</h2>
+        <p class="grow__sub" data-sc-cue="0.94 1 0.06 0">Bliss 2.0, the evening capsule. Same mushroom, a little more of it, for the back of the day.</p>
       </div>
     </div>
   </section>
 
   <!-- 4 · INSIDE: pan. Eighteen actives as specimens, ending on the two real labels. -->
-  <section data-sc-act="pan" data-sc-span="2.3" data-sc-drift="#EFE3D2" id="inside">
+  <section data-sc-act="pan" data-sc-span="2.9" data-sc-drift="#EFE3D2" id="inside">
     <div data-sc-stage>
       <div class="rail" data-sc-pan="0.05">
+        <figure class="rail__hero" style="--i:0">
+          <img src="assets/04-brain.webp" width="2352" height="1776" alt="A golden mushroom whose cap is shaped like a brain, ringed by lion's mane, reishi, cordyceps, ginkgo, blue lotus and the other actives" loading="lazy">
+          <figcaption>
+            <h2 class="sc-display">one mushroom, <em>eighteen allies</em>.</h2>
+            <p class="sc-body">The mushroom leads. Eighteen actives back it up, each one picked for the front or the back of the day.</p>
+          </figcaption>
+        </figure>
         <div class="rail__lead">
-          <h2 class="sc-display">eighteen actives, <em>every one named</em>.</h2>
+          <h2 class="sc-display">every one <em>named</em>.</h2>
           <p class="sc-body">Kraft dot: in Focus. Purple dot: in Bliss. Split dot: in both. Every one of them is on the label, and every batch has its own lab report.</p>
         </div>
-        <article class="spec spec--both"  style="--i:1"><div class="spec__art"><img src="assets/ingredients/blue-lotus.png" alt=""></div><div><b>Blue Lotus</b><i>Nymphaea caerulea, flower</i></div><u>both</u></article>
-        <article class="spec spec--both"  style="--i:2"><div class="spec__art"><img src="assets/ingredients/kanna.png" alt=""></div><div><b>Kanna</b><i>Sceletium tortuosum</i></div><u>both</u></article>
-        <article class="spec spec--focus" style="--i:3"><div class="spec__art"><img src="assets/ingredients/lions-mane.png" alt=""></div><div><b>Lion's Mane</b><i>Hericium erinaceus, fruiting body</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:4"><div class="spec__art"><img src="assets/ingredients/cordyceps.png" alt=""></div><div><b>Cordyceps</b><i>Cordyceps militaris</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:5"><div class="spec__art"><img src="assets/ingredients/bacopa.png" alt=""></div><div><b>Bacopa</b><i>Bacopa monnieri, leaf</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:6"><div class="spec__art"><img src="assets/ingredients/ginkgo.png" alt=""></div><div><b>Ginkgo</b><i>Ginkgo biloba, leaf</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:7"><div class="spec__art"><img src="assets/ingredients/l-tyr.png" alt=""></div><div><b>L-Tyrosine</b><i>amino acid</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:8"><div class="spec__art"><img src="assets/ingredients/ps.png" alt=""></div><div><b>Phosphatidylserine</b><i>phospholipid</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:9"><div class="spec__art"><img src="assets/ingredients/pine-bark.png" alt=""></div><div><b>Pine Bark</b><i>Pinus pinaster, extract</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:10"><div class="spec__art"><img src="assets/ingredients/panax-ginseng.png" alt=""></div><div><b>Panax Ginseng</b><i>root</i></div><u>focus</u></article>
-        <article class="spec spec--focus" style="--i:11"><div class="spec__art"><img src="assets/ingredients/huperzine-a.png" alt=""></div><div><b>Huperzine A</b><i>from Huperzia serrata</i></div><u>focus</u></article>
-        <article class="spec spec--bliss" style="--i:12"><div class="spec__art"><img src="assets/ingredients/reishi.png" alt=""></div><div><b>Reishi</b><i>Ganoderma lucidum, fruiting body</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:13"><div class="spec__art"><img src="assets/ingredients/ashwagandha.png" alt=""></div><div><b>Ashwagandha</b><i>Withania somnifera, root</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:14"><div class="spec__art"><img src="assets/ingredients/schisandra.png" alt=""></div><div><b>Schisandra</b><i>Schisandra chinensis, berry</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:15"><div class="spec__art"><img src="assets/ingredients/gotu-kola.png" alt=""></div><div><b>Gotu Kola</b><i>Centella asiatica</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:16"><div class="spec__art"><img src="assets/ingredients/rosemary.png" alt=""></div><div><b>Rosemary</b><i>Rosmarinus officinalis</i></div><u>bliss</u></article>
-        <article class="spec spec--bliss" style="--i:17"><div class="spec__art"><img src="assets/ingredients/theobromine.png" alt=""></div><div><b>Theobromine</b><i>from cacao</i></div><u>bliss</u></article>
-        <article class="spec spec--both"  style="--i:18"><div class="spec__art"><img src="assets/ingredients/vit-b-plus.png" alt=""></div><div><b>B-Complex</b><i>vitamins B</i></div><u>both</u></article>
+        <article class="spec spec--both"  style="--i:1"><div class="spec__art"><img src="assets/ingredients/blue-lotus.png" alt=""></div><div><b>Blue Lotus</b><em class="spec__for">calm, mood</em><i>Nymphaea caerulea, flower</i></div><u>both</u></article>
+        <article class="spec spec--both"  style="--i:2"><div class="spec__art"><img src="assets/ingredients/kanna.png" alt=""></div><div><b>Kanna</b><em class="spec__for">mood, ease</em><i>Sceletium tortuosum</i></div><u>both</u></article>
+        <article class="spec spec--focus" style="--i:3"><div class="spec__art"><img src="assets/ingredients/lions-mane.png" alt=""></div><div><b>Lion's Mane</b><em class="spec__for">memory, focus</em><i>Hericium erinaceus, fruiting body</i></div><u>focus</u></article>
+        <article class="spec spec--focus" style="--i:4"><div class="spec__art"><img src="assets/ingredients/cordyceps.png" alt=""></div><div><b>Cordyceps</b><em class="spec__for">energy, stamina</em><i>Cordyceps militaris</i></div><u>focus</u></article>
+        <article class="spec spec--focus" style="--i:5"><div class="spec__art"><img src="assets/ingredients/bacopa.png" alt=""></div><div><b>Bacopa</b><em class="spec__for">memory, learning</em><i>Bacopa monnieri, leaf</i></div><u>focus</u></article>
+        <article class="spec spec--focus" style="--i:6"><div class="spec__art"><img src="assets/ingredients/ginkgo.png" alt=""></div><div><b>Ginkgo</b><em class="spec__for">circulation, recall</em><i>Ginkgo biloba, leaf</i></div><u>focus</u></article>
+        <article class="spec spec--focus" style="--i:7"><div class="spec__art"><img src="assets/ingredients/l-tyr.png" alt=""></div><div><b>L-Tyrosine</b><em class="spec__for">drive under stress</em><i>amino acid</i></div><u>focus</u></article>
+        <article class="spec spec--focus" style="--i:8"><div class="spec__art"><img src="assets/ingredients/ps.png" alt=""></div><div><b>Phosphatidylserine</b><em class="spec__for">attention</em><i>phospholipid</i></div><u>focus</u></article>
+        <article class="spec spec--focus" style="--i:9"><div class="spec__art"><img src="assets/ingredients/pine-bark.png" alt=""></div><div><b>Pine Bark</b><em class="spec__for">blood flow</em><i>Pinus pinaster, extract</i></div><u>focus</u></article>
+        <article class="spec spec--focus" style="--i:10"><div class="spec__art"><img src="assets/ingredients/panax-ginseng.png" alt=""></div><div><b>Panax Ginseng</b><em class="spec__for">energy, clarity</em><i>root</i></div><u>focus</u></article>
+        <article class="spec spec--focus" style="--i:11"><div class="spec__art"><img src="assets/ingredients/huperzine-a.png" alt=""></div><div><b>Huperzine A</b><em class="spec__for">recall</em><i>from Huperzia serrata</i></div><u>focus</u></article>
+        <article class="spec spec--bliss" style="--i:12"><div class="spec__art"><img src="assets/ingredients/reishi.png" alt=""></div><div><b>Reishi</b><em class="spec__for">calm, sleep</em><i>Ganoderma lucidum, fruiting body</i></div><u>bliss</u></article>
+        <article class="spec spec--bliss" style="--i:13"><div class="spec__art"><img src="assets/ingredients/ashwagandha.png" alt=""></div><div><b>Ashwagandha</b><em class="spec__for">stress, sleep</em><i>Withania somnifera, root</i></div><u>bliss</u></article>
+        <article class="spec spec--bliss" style="--i:14"><div class="spec__art"><img src="assets/ingredients/schisandra.png" alt=""></div><div><b>Schisandra</b><em class="spec__for">resilience</em><i>Schisandra chinensis, berry</i></div><u>bliss</u></article>
+        <article class="spec spec--bliss" style="--i:15"><div class="spec__art"><img src="assets/ingredients/gotu-kola.png" alt=""></div><div><b>Gotu Kola</b><em class="spec__for">calm focus</em><i>Centella asiatica</i></div><u>bliss</u></article>
+        <article class="spec spec--bliss" style="--i:16"><div class="spec__art"><img src="assets/ingredients/rosemary.png" alt=""></div><div><b>Rosemary</b><em class="spec__for">memory, mood</em><i>Rosmarinus officinalis</i></div><u>bliss</u></article>
+        <article class="spec spec--bliss" style="--i:17"><div class="spec__art"><img src="assets/ingredients/theobromine.png" alt=""></div><div><b>Theobromine</b><em class="spec__for">a gentle lift</em><i>from cacao</i></div><u>bliss</u></article>
+        <article class="spec spec--both"  style="--i:18"><div class="spec__art"><img src="assets/ingredients/vit-b-plus.png" alt=""></div><div><b>B-Complex</b><em class="spec__for">energy metabolism</em><i>vitamins B</i></div><u>both</u></article>
         <article class="spec spec--label" style="--i:19"><img src="assets/magic-2-0-ingredients.png" width="800" height="1000" alt="Focus 2.0 supplement facts"><i>Focus 2.0, supplement facts</i></article>
         <article class="spec spec--label" style="--i:20"><img src="assets/bliss-2-0-ingredients.png" width="800" height="1000" alt="Bliss 2.0 supplement facts"><i>Bliss 2.0, supplement facts</i></article>
         <div class="rail__note" style="--i:21"><p class="sc-body">Focus for the front of the day. Bliss for the back of it. One or two capsules, every other day. <a href="https://mcrdse.com/shop/mcrdse-focus-bliss-dose-one-month-combo">The full protocol</a>.</p></div>
@@ -715,7 +743,7 @@ const growAct = document.getElementById('grow');
 let burstFired = false;
 function drawGrow() {
   const p = P(growAct);
-  if (p > 0.78 && p < 0.84 && !burstFired && !reduced) {
+  if (p > 0.62 && p < 0.68 && !burstFired && !reduced) {
     burstFired = true;
     const r = growAct.getBoundingClientRect(), cx = r.left + r.width * 0.5, cy = r.top + Math.min(r.height, innerHeight) * 0.6;
     for (let i = 0; i < 24; i++) {
@@ -725,7 +753,7 @@ function drawGrow() {
       document.body.appendChild(sp); setTimeout(() => sp.remove(), 1400);
     }
   }
-  if (p < 0.7) burstFired = false;
+  if (p < 0.55) burstFired = false;
   growAct.dataset.scVerifyState = 'grow:' + Math.round(p * 60);
 }
 

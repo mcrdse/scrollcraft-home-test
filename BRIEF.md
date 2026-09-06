@@ -300,3 +300,24 @@ fading in) → "0.85 1 0.08 0" / "0.9 1 0.06 0"; peak end headline wrapped to th
 made static (it counted through "1 in 0 / 1 in 1 / 1 in 2"). No dead scroll; all clips move.
 Harness still reports worst 1.02:1 on the sub: it measures the bbox's empty patches, the frame
 itself (lab/shots/v5-peak-end.png) is clean.
+
+## Round 16 (2026-09-06): peak rebuilt, capsule page, brain rail
+Kevin: one word at a time as the block fruits ("the mycelium grows / turns to gold / then it
+teaches you"), smoother into the capsule page, hold there longer with more on the mushrooms
+(Focus 125 mg, Bliss 150 mg), and an upgraded ingredients act: a brain shaped as a mushroom with
+the ingredients integrated, illumination on the benefits, all on brand.
+Peak: span 3.8 → 5.4. Three growth beats use data-sc-kinetic="words" (native; words mode drops
+<em>, so those lines are plain 800). Burst moved 0.78 → 0.62 (CSS swell/iris + JS spores). Iris
+is now a radial-gradient mask with a 16% feather (clip-path circle was a hard edge) opening over
+~0.14 of the act, plus an opacity ramp. Capsule page = three beats on the flat lay: "dried whole,
+ground whole." / "125 mg of magic." (Focus 2.0, the morning capsule…) / "150 mg of magic."
+(Bliss 2.0, the evening capsule…). Copy container 48rem, grow__big at t-3xl so "then it teaches
+you." is one line above the caps (harness had it 2.32:1 over the flush at 3 lines).
+Ingredients: kie seedream still, three candidates in out/brain/ (A ring of botanicals with lit
+folds, B botanicals growing out of the organism, C overhead flat lay). A wired as the rail's
+opening panel `.rail__hero` (assets/04-brain.webp, 72rem × 78vh, copy in the empty cream third the
+prompt asked for: "one mushroom, eighteen allies."); B kept as assets/04-brain-alt.webp. Every
+spec card gets an italic "known for" line (`.spec__for`, structure/function wording only, FDA
+line stays in the footer) and an illumination: a radial glow behind the specimen in the family
+colour (--glow: kraft / amethyst / mix) whose opacity rides the card's existing arrival curve
+(--lit). Pan span 2.3 → 2.9 for the extra panel. Assumed: 125/150 mg is per capsule. Page ~16.5vh.
