@@ -25,7 +25,7 @@
   <header class="site-nav" aria-label="Primary navigation">
     <a class="wordmark" href="#top" aria-label="The Colony home">THE COLONY</a>
     <nav><a href="#grounds">Grounds</a><a href="#vision">Vision</a><a href="#program">Program</a><a href="#plan">Plan</a></nav>
-    <a class="nav-cta" href="#take-part">Take part</a>
+    <a class="nav-cta" href="#take-part">Join the circle</a>
   </header>
   <main id="main">
     <section id="top" class="hero" data-sc-act="pin" data-sc-span="2.1" data-sc-drift="#171a18">
@@ -217,14 +217,62 @@
       </ol>
     </section>
     <section id="take-part" class="participate" data-sc-act="flow" data-sc-drift="#171a18">
-      <div class="participate__copy" data-sc-in><h2>Find your way into the story.</h2><p>Come for the land, return for the people, and follow the first district as it takes shape.</p></div>
-      <div class="paths" data-sc-in data-sc-stagger="70">
-        <a href="#grounds"><strong>Stay</strong><span>See the first hospitality spaces</span></a>
-        <a href="#day"><strong>Host</strong><span>Imagine a retreat or working gathering</span></a>
-        <a href="#plan"><strong>Build</strong><span>Follow the physical pilot and milestones</span></a>
-        <a href="#top"><strong>Follow</strong><span>Return as the story and proof grow</span></a>
+      <div class="participate__intro" data-sc-in>
+        <div>
+          <p class="eyebrow">The Founding Circle</p>
+          <h2>A place to feel human again.</h2>
+        </div>
+        <p>The Colony starts with a simple belief: time outside, shared creative work, and real community can help people feel more connected. We are gathering the first people who want to help bring that place to life.</p>
       </div>
-      <p class="public-boundary">This public prototype shares the project vision only. It is not an offer to sell securities or a request for investment.</p>
+
+      <div class="founding-grid">
+        <div class="founding-story" data-sc-in>
+          <p class="founding-statement">Not an audience.<br>A circle of makers.</p>
+          <ol class="founding-paths" aria-label="Ways to take part">
+            <li><span>01</span><div><strong>Bring something</strong><p>Art, sound, food, movement, craft, or an idea worth trying.</p></div></li>
+            <li><span>02</span><div><strong>Gather people</strong><p>Host a workshop, wellness practice, retreat, or shared meal.</p></div></li>
+            <li><span>03</span><div><strong>Build the place</strong><p>Help with design, hospitality, operations, land, or the first pilot.</p></div></li>
+            <li><span>04</span><div><strong>Follow the journey</strong><p>See the honest build, the hard choices, and each step forward.</p></div></li>
+          </ol>
+          <div class="founding-number" aria-label="Numbered Founding Circle concept">
+            <span>Founding circle</span>
+            <strong>No. ___</strong>
+            <p>We are exploring a numbered circle to honor early contributors. Joining this list does not reserve a membership, stay, or investment.</p>
+          </div>
+        </div>
+
+        <form class="founding-form" id="founding-form" data-sc-in novalidate>
+          <div class="founding-form__heading">
+            <p class="eyebrow">Start with a conversation</p>
+            <h3>How do you want to take part?</h3>
+            <p>Tell us what pulls you toward the project. A short note is enough.</p>
+          </div>
+
+          <div class="form-row form-row--split">
+            <label><span>First name</span><input type="text" name="first_name" autocomplete="given-name" required></label>
+            <label><span>Email</span><input type="email" name="email" autocomplete="email" inputmode="email" required></label>
+          </div>
+
+          <fieldset>
+            <legend>I want to</legend>
+            <div class="interest-grid">
+              <label><input type="radio" name="interest" value="bring-art" required><span>Bring art or craft</span></label>
+              <label><input type="radio" name="interest" value="host"><span>Host an experience</span></label>
+              <label><input type="radio" name="interest" value="build"><span>Help build or operate</span></label>
+              <label><input type="radio" name="interest" value="visit"><span>Visit when ready</span></label>
+              <label><input type="radio" name="interest" value="follow"><span>Follow the build</span></label>
+              <label><input type="radio" name="interest" value="future-backer"><span>Explore future backing</span></label>
+            </div>
+          </fieldset>
+
+          <label class="form-note"><span>What would you love to bring or experience?</span><textarea name="note" rows="4" maxlength="600" placeholder="A few honest lines about you and your idea."></textarea></label>
+
+          <label class="form-consent"><input type="checkbox" name="updates" value="yes" required><span>Keep me close to the build and send me Founding Circle updates.</span></label>
+          <button class="founding-submit" type="submit">Join the Founding Circle <span aria-hidden="true">&#8599;</span></button>
+          <p class="form-status" id="founding-form-status" role="status" aria-live="polite"></p>
+          <p class="form-fineprint">This is a project and collaborator inquiry. It is not an offer to sell securities, a promise of access, or a request for money. The future-backer choice only asks to hear from you if a separate, legally reviewed path becomes available.</p>
+        </form>
+      </div>
     </section>
   </main>
   <footer><a class="wordmark" href="#top">THE COLONY</a><p>Year-round participatory desert village. Jacumba Hot Springs, California.</p><p>Current conditions and plans evolve as property diligence and pilot work continue.</p></footer>
@@ -250,6 +298,21 @@
             }
           });
         }, { threshold: 0.35 }).observe(video);
+      });
+    }
+    var foundingForm = document.getElementById('founding-form');
+    var foundingStatus = document.getElementById('founding-form-status');
+    if (foundingForm && foundingStatus) {
+      foundingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        foundingForm.classList.add('was-validated');
+        if (!foundingForm.checkValidity()) {
+          foundingStatus.textContent = 'Please add your name, email, one way you want to take part, and permission to send updates.';
+          var firstInvalid = foundingForm.querySelector(':invalid');
+          if (firstInvalid) firstInvalid.focus();
+          return;
+        }
+        foundingStatus.textContent = 'Your note is ready. This local preview does not send or save personal information yet. Connect the private inquiry inbox before launch.';
       });
     }
   </script>
