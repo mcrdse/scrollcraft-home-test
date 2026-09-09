@@ -12,7 +12,7 @@ fi
 rm -rf "$output_dir"
 mkdir -p "$output_dir"
 
-cp "$project_dir/index.html" "$project_dir/colony.css" "$project_dir/scrollcraft.css" "$project_dir/scrollcraft.js" "$project_dir/robots.txt" "$project_dir/_headers" "$project_dir/og.png" "$output_dir/"
+cp "$project_dir/index.html" "$project_dir/colony.css" "$project_dir/scrollcraft.css" "$project_dir/scrollcraft.js" "$project_dir/robots.txt" "$project_dir/_headers" "$project_dir/og.jpg" "$output_dir/"
 
 while IFS= read -r asset; do
   case "$asset" in
