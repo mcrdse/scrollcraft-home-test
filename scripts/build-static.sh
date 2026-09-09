@@ -22,4 +22,17 @@ while IFS= read -r asset; do
   cp "$project_dir/$asset" "$output_dir/$asset"
 done < <(rg -o '(src|poster)="[^"]+"' "$project_dir/index.html" | sed -E 's/^[^=]+="(.*)"$/\1/' | sort -u)
 
+# Keep the hosted package small while preserving the high-quality source media.
+# These website videos are silent, so the deployment copies do not need audio
+# tracks or editing-grade bitrates.
+if command -v ffmpeg >/dev/null 2>&1; then
+  while IFS= read -r video; do
+    optimized_video="$video.optimized.mp4"
+    ffmpeg -nostdin -loglevel error -y -i "$video" \
+      -an -c:v libx264 -preset medium -crf 29 -pix_fmt yuv420p \
+      -movflags +faststart "$optimized_video"
+    mv "$optimized_video" "$video"
+  done < <(find "$output_dir" -type f -name '*.mp4' -size +900k -print)
+fi
+
 echo "Built static site in $output_dir"
