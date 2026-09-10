@@ -33,3 +33,12 @@ Cinematic desert documentary. Black, sand, mineral green, and ember. Large edito
 ## Current prototype scope
 
 The first pass implements the full narrative spine with four current-property photographs and one concept render. Next passes should add a verified property map, matched-camera Today / Pilot / Vision pairs, short drone sequences, operators and people, and real pilot milestones.
+
+## Scrollcraft direction, September 10, 2026
+
+1. Atmosphere: Burning Man energy meets Joshua Tree landscape and El Cosmico hospitality.
+2. Ground truth: begin with the real property, roads, stage, lodge areas, and mountain landmarks.
+3. Future layer: place art, makers, wellness, lodging, and monthly community gatherings into believable zones.
+4. Participation: show a broad mix of burners as active collaborators, not passive spectators.
+5. Signature move: use a full-frame Scrollcraft shift from today to possible. Do not use split screens or divider wipes.
+6. Trust: label every concept image clearly and keep public storytelling separate from private investment material.
