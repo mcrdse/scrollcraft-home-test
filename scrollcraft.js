@@ -31,6 +31,8 @@
      data-sc-span  viewport-heights of scroll this act owns. Pinned devices only
                    (scrub/pin/pan). Default 1.5. The engine sets the outer
                    height and sticks the first .sc-stage / [data-sc-stage] child.
+     data-sc-span-mobile  optional shorter span used at <=860px / coarse pointer.
+                   Phone sticky travel otherwise becomes empty height.
 
      Every act exposes a normalized progress p (0..1):
        pinned  p = (y - top) / (height - vh)
@@ -322,6 +324,7 @@
         device: device,
         pinned: pinned,
         span: parseFloat(el.getAttribute('data-sc-span')) || (pinned ? 1.5 : 0),
+        spanMobile: parseFloat(el.getAttribute('data-sc-span-mobile')),
         dwell: parseFloat(el.getAttribute('data-sc-dwell')) || 0,
         clipTravel: pinned && el.getAttribute('data-sc-clip-map') === 'travel',
         p: 0, raw: 0, top: 0, height: 0, live: false,
@@ -507,10 +510,20 @@
     }
 
     // ---- layout -----------------------------------------------------------
+    function liveSpan(a) {
+      if (!isMobile()) return a.span;
+      if (!isNaN(a.spanMobile) && a.spanMobile > 0) return a.spanMobile;
+      if (a.device === 'pan') return Math.min(a.span, 1.15);
+      if (a.pinned) return Math.min(a.span, 1.55);
+      return a.span;
+    }
+
     function layout() {
       vh = innerHeight; vw = innerWidth;
       acts.forEach(function (a) {
-        if (a.pinned) a.el.style.height = (a.span * 100) + 'vh';
+        // Pixel heights track the live visual viewport, so iOS url-bar `vh`
+        // inflation cannot leave a phone stuck in empty sticky travel.
+        if (a.pinned) a.el.style.height = Math.round(liveSpan(a) * vh) + 'px';
       });
       // The spacer is the whole document flow of a worldflight. Its height is
       // the sum of the leg weights plus one viewport: without that extra screen

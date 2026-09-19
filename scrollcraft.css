@@ -177,7 +177,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .sc-act--pinned { position: relative; }
 .sc-stage {
   position: sticky; top: 0;
-  height: 100vh; height: 100svh;
+  height: 100vh; height: 100svh; height: 100dvh;
   overflow: clip;
   z-index: var(--sc-z-stage);
 }
@@ -417,7 +417,7 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 @media (max-width: 860px) {
   .sc-copy { inset-inline: var(--sc-gutter); max-width: none; }
   .sc-copy--trail { text-align: left; }
-  .sc-stage { height: 100svh; }
+  .sc-stage { height: 100svh; height: 100dvh; }
   /* .sc-copy--trail re-anchors to the left and spans the full width here, so a
      bottom-RIGHT corner gradient darkens the one corner the copy just left and
      guarantees a contrast failure over any bright clip. Point the density at
@@ -429,4 +429,16 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
       color-mix(in oklab, var(--sc-canvas) 30%, transparent) 42%,
       transparent 58%);
   }
+  /* A phone cannot usefully scrub a 2–6vh pin. Collapse leftover sticky
+     travel on coarse viewports unless the page opts back in. */
+  [data-sc-act="pan"] .sc-stage,
+  [data-sc-act="pan"] [data-sc-stage] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+  [data-sc-pan] { will-change: auto; }
+  [data-sc-pan] > * { scroll-snap-align: center; }
 }
