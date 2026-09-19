@@ -41,6 +41,7 @@
   <main id="main">
     <section id="top" class="hero" data-sc-act="pin" data-sc-span="2.1" data-sc-span-mobile="1" data-sc-drift="#171a18">
       <div class="sc-stage hero__stage" data-sc-stage>
+        <img class="hero__poster" src="assets/colony/drone-overview-golden-hour-poster.jpg" width="1920" height="1080" alt="" fetchpriority="high">
         <video class="hero__media hero__recap" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="assets/colony/drone-overview-golden-hour-poster.jpg" aria-label="Real aerial recap of the festival grounds within the Jacumba mountain landscape">
           <source src="assets/colony/drone-overview-golden-hour-mobile-v1.mp4" type="video/mp4" media="(max-width: 900px)">
           <source src="assets/colony/drone-overview-golden-hour-v1.mp4" type="video/mp4">
@@ -303,6 +304,7 @@
   <script>
     document.fonts.ready.then(function () { ScrollCraft.mount(document); });
     var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) document.documentElement.classList.add('is-reduced-motion');
     var armMutedAutoplay = function (video, opts) {
       if (!video) return;
       opts = opts || {};
@@ -310,6 +312,7 @@
         video.removeAttribute('autoplay');
         video.removeAttribute('loop');
         video.pause();
+        try { video.currentTime = 0; } catch (err) {}
         Array.prototype.forEach.call(video.querySelectorAll('source'), function (source) {
           source.removeAttribute('src');
         });

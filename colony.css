@@ -67,7 +67,9 @@ footer{display:grid;grid-template-columns:.7fr 1.3fr 1fr;gap:2rem;padding:2.2rem
 @media(prefers-reduced-motion:reduce){.future-shift{height:auto!important}.future-shift__stage{display:grid;height:auto!important;min-height:0;overflow:visible}.future-shift__scene{position:relative;min-height:78dvh;opacity:1!important;visibility:visible!important}.future-shift__scene:not(:first-child){border-top:1px solid rgb(242 238 227/.3)}.future-shift__layer--before{display:none}.future-shift__layer--future{opacity:1!important}.future-shift__layer img{transform:none!important}.future-shift__labels span:first-child{display:none}.future-shift__labels span+span{position:static;opacity:1!important}.future-shift__rail{display:none}}
 
 /* Hero recap + mobile polish. Desktop look stays; these rules tighten phones. */
-html{overflow-x:clip;max-width:100%}
+html{overflow-x:clip;max-width:100%;scroll-padding-top:var(--nav-h)}
+.hero__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+video.hero__media{z-index:1}
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .nav-toggle{display:none}
 .nav-cta--menu{display:none}
@@ -96,7 +98,7 @@ video.hero__media{object-fit:cover;object-position:50% 42%;transform:none;pointe
   .site-nav.is-open .nav-toggle__bars:before{top:0;transform:rotate(45deg)}
   .site-nav.is-open .nav-toggle__bars:after{top:0;transform:rotate(-45deg)}
   body.nav-open{overflow:hidden}
-  h1{font-size:clamp(2.35rem,11vw,4.4rem);max-width:10ch}
+  h1{font-size:clamp(2.35rem,11vw,4.4rem);max-width:12ch}
   h2{font-size:clamp(2.1rem,10vw,4.2rem)}
   .hero__copy{justify-content:flex-end;padding:calc(var(--nav-h) + 1rem) 1rem 4.25rem;min-height:100svh;min-height:100dvh}
   .hero__copy [data-sc-cue],.hero__copy [data-sc-cue] .sc-split__i{opacity:1!important;transform:none!important}
@@ -149,5 +151,7 @@ video.hero__media{object-fit:cover;object-position:50% 42%;transform:none;pointe
 
 @media(prefers-reduced-motion:reduce){
   .hero__stage{background:#171a18}
+  video.hero__media{visibility:hidden}
   .site-nav nav{transition:none}
 }
+html.is-reduced-motion video.hero__media{visibility:hidden}
